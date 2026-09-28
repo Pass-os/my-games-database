@@ -58,7 +58,7 @@ maior. Tipo de Zoom: **Definir** (vai sempre para o valor), **Aproximar**
 | Pesca | 302 | Aproximar 7 | | | padrao |
 | Ausente (AFK) | 303 | Definir 12 | Rotacao continua 5; Ocultar Interface opacidade 0 | | padrao |
 | NPC grande (dialogo) | custom1 | Afastar **1.5** (ver pendencias) | | ombro 0.6, foco de interacao 1.0 / 0.75 | 0.3 / 0.5 s |
-| Conjurando (fora de combate) | custom3 | Aproximar 8 | | | 0.6 / 0.8 s |
+| Conjurando (fora de combate) | custom3 | Aproximar 8 | tremor de camera (scripts `tremor-*.lua`); ignora montaria e pesca | | 0.6 / 0.8 s |
 | Conjurando (em combate) | custom4 | | (sem acoes, configurar pela interface) | | padrao |
 
 As duas "Conjurando" tem prioridade 60 e condicao em
@@ -120,6 +120,9 @@ Os arquivos desta pasta sao os mesmos textos que estao dentro do
 | `musica-saida.lua` | Interacao com NPC > Script de Saida |
 | `npc-grande-inicializacao.lua` | NPC grande (dialogo) > Script de Inicializacao |
 | `npc-grande-condicao.lua` | NPC grande (dialogo) > Condicao |
+| `conjuracao-condicao.lua` | Conjurando (fora de combate) > Condicao |
+| `tremor-entrada.lua` / `tremor-saida.lua` | Conjurando (fora de combate) > Script de Entrada / Saida |
+| `conjuracao-combate-condicao.lua` | Conjurando (em combate) > Condicao |
 
 ### Criar a "NPC grande" do zero pela interface
 
