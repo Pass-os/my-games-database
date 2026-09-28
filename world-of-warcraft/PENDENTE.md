@@ -7,8 +7,9 @@ e macros salvas em `config/` pelo `salvar-config.ps1`.
 
 1. **NPC grande (custom1) esta com Afastar 1.5**, que nao faz nada. Voltar
    para 18? (Provavelmente mudou sem querer.)
-2. **Montaria no ar (situacao 102) sem Ocultar Interface**: copiar o da 100
-   (opacidade 0, Minimapa, vigor, `MainActionBar`)?
+2. **Montaria voando (situacao 102, "apenas montaria voadora + no ar") sem
+   Ocultar Interface**: copiar o da 100 (opacidade 0, Minimapa, vigor,
+   `MainActionBar`)?
 3. **Transformacao (historia)** (`custom2`): condicao em
    `dynamiccam/transformacao-condicao.lua`, prioridade 1001, zoom Definir 20.
    O Ocultar Interface dela deveria copiar o da montaria no ar - que hoje nao

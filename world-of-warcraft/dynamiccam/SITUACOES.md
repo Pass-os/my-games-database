@@ -50,7 +50,7 @@ maior. Tipo de Zoom: **Definir** (vai sempre para o valor), **Aproximar**
 | Arena | 050 | | | ombro 0, cabeca 0 | padrao |
 | Campo de Batalha | 060 | | | ombro 0, cabeca 0 | padrao |
 | Montaria (qualquer) | 100 | Definir 15 | Ocultar Interface: opacidade 0, mantem Minimapa, Quadro de Encontro (vigor) e quadros adicionais `MainActionBar` | distancia max 39 | 1.5 / 2.0 s |
-| Montaria (apenas no ar + pilotagem aerea) | 102 | Definir 20 | | | padrao |
+| Montaria (apenas montaria voadora + no ar) | 102 | Definir 20 | | | padrao |
 | Taxi | 160 | Definir 19 | Ocultar Interface: opacidade 0, mantem Chat | | padrao |
 | Pedra de Regresso/Teletransporte | 200 | Definir 8 | Rotacao continua 20; Ocultar Interface opacidade 0 | | padrao |
 | Interacao com NPC | 300 | Aproximar 3 | Rotacao: graus, inclinacao -5 (Ativar **desmarcado**); scripts de musica | ombro 0.6, foco de interacao 1.0 / 0.75 | 0.2 / 0.5 s |
@@ -62,6 +62,45 @@ maior. Tipo de Zoom: **Definir** (vai sempre para o valor), **Aproximar**
 Ocultar Interface fica **desligado** na Interacao com NPC de proposito: quem
 esconde a interface no dialogo e o Immersion (Opcoes > AddOns > Immersion >
 Ocultar interface). Com os dois, a caixa de dialogo nao some ao fechar.
+
+## Situacoes no padrao (desligadas)
+
+Nao aparecem no arquivo porque estao como vem do DynamicCam: desligadas.
+Ligar qualquer uma e so marcar **Ativar** nela.
+
+| ID | Situacao |
+| --- | --- |
+| 001 | Cidade |
+| 004 | Mundo |
+| 006 | Mundo (Combate) |
+| 021 | Masmorra/Cenario (Ao ar livre) |
+| 023 | Masmorra/Cenario (Combate, Chefe) |
+| 024 | Masmorra/Cenario (Combate, Lixo) |
+| 031 | Raide (Ao ar livre) |
+| 033 | Raide (Combate, Chefe) |
+| 034 | Raide (Combate, Lixo) |
+| 051 | Arena (Combate) |
+| 061 | Campo de Batalha (Combate) |
+| 101 | Montaria (apenas montaria voadora) |
+| 103 | Montaria (apenas montaria voadora + no ar + pilotagem aerea) |
+| 104 | Montaria (apenas montaria voadora + pilotagem aerea) |
+| 105 | Montaria (apenas no ar) |
+| 106 | Montaria (apenas no ar + pilotagem aerea) |
+| 107 | Montaria (apenas pilotagem aerea) |
+| 115 | Forma de Viagem de Druida |
+| 120 | Dracthyr Voar Alto |
+| 130 | Corrida de pilotagem aerea |
+| 170 | Veiculo |
+| 201 | Feiticos Irritantes |
+| 310 | Batalha de Mascote |
+| 320 | Coleta |
+| 323 | Nadando |
+| 325 | Acampamento (so no Forever; nao existe no Retail) |
+| 330 | Janela de Profissoes Aberta |
+
+Masmorra/Raide/Arena/BG com combate estao desligadas, entao em combate
+nessas instancias vale a situacao sem combate (020/030/050/060): sem ombro
+e sem balanco de cabeca.
 
 ## Scripts
 
@@ -95,11 +134,11 @@ Os arquivos desta pasta sao os mesmos textos que estao dentro do
 - **NPC grande com zoom 1.5 Afastar.** "Afastar 1.5" so afasta se a camera
   estiver a menos de 1.5 jardas, ou seja, na pratica nao faz nada. O valor
   pensado era 18. Parece ter mudado sem querer.
-- **Voando sem esconder a interface.** A montaria no ar usa a situacao 102
-  (so pilotagem aerea), que tem zoom 20 mas nao tem Ocultar Interface. Ao
-  decolar, a interface escondida pela "Montaria (qualquer)" volta. Para
-  manter igual, copiar na 102 o Ocultar Interface da 100. Voo normal (sem
-  pilotagem aerea) continua na 100, com zoom 15.
+- **Voando sem esconder a interface.** Ao decolar numa montaria voadora
+  (voo normal ou dinamico) vale a 102, prioridade 102 > 100: zoom 20, como
+  pedido. Mas a 102 nao tem Ocultar Interface, entao a interface escondida
+  pela "Montaria (qualquer)" volta no ar. Para manter igual, copiar na 102
+  o Ocultar Interface da 100.
 - **Ombro na Configuracoes Base voltou ao padrao** (era 1.2). Se foi de
   proposito, ignorar.
 - Ainda nao criadas: "Transformacao (historia)" e "Conjurando". Ver
