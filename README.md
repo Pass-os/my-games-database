@@ -6,6 +6,7 @@ propria solution, as proprias dependencias e o proprio guia.
 | Jogo | Pasta | Stack | Status |
 | --- | --- | --- | --- |
 | Valheim | [`valheim/`](valheim/) | BepInEx 5 + HarmonyX, C# `net472` | configurado |
+| World of Warcraft | [`world-of-warcraft/`](world-of-warcraft/) | addons do CurseForge + SavedVariables, PowerShell | configurado |
 
 ## Como adicionar um jogo novo
 

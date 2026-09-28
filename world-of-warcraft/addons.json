@@ -1,0 +1,132 @@
+{
+  "gameVersion": "12.1.0",
+  "interface": 120100,
+  "source": "https://www.curseforge.com/api/v1/mods/{projectId}/files/{fileId}/download",
+  "addons": [
+    {
+      "name": "BetterMacroIcons",
+      "projectId": 1603026,
+      "fileId": 8839058,
+      "version": "12.1.0-r2",
+      "size": 209297,
+      "folders": ["BetterMacroIcons"],
+      "note": "Busca de icones em macros, transmog, sets e banco. Depende de LibNAddOn."
+    },
+    {
+      "name": "LibNAddOn",
+      "projectId": 1339490,
+      "fileId": 8640726,
+      "version": "12.1.0-r1",
+      "size": 65462,
+      "folders": ["LibNAddOn"],
+      "note": "Biblioteca OBRIGATORIA do BetterMacroIcons (nao aparece na pagina do CurseForge, so no .toc)."
+    },
+    {
+      "name": "LibNUI",
+      "projectId": 1339496,
+      "fileId": 8983006,
+      "version": "12.1.0-r2",
+      "size": 178365,
+      "folders": ["LibNUI"],
+      "note": "Opcional do BetterMacroIcons: janelas copiaveis para /bmi coverage e changelog."
+    },
+    {
+      "name": "HandyNotes",
+      "projectId": 14154,
+      "fileId": 8629945,
+      "version": "v1.6.31",
+      "size": 172903,
+      "folders": ["HandyNotes"],
+      "note": "Anotacoes no mapa (Alt + clique direito). Base para plugins de tesouros/raros."
+    },
+    {
+      "name": "Map Pin Enhanced",
+      "projectId": 441677,
+      "fileId": 8626542,
+      "version": "3.2.2",
+      "size": 426018,
+      "folders": ["MapPinEnhanced"],
+      "note": "Varios waypoints (/mph, /pin, /way)."
+    },
+    {
+      "name": "Leatrix Plus",
+      "projectId": 94855,
+      "fileId": 8953664,
+      "version": "12.1.06",
+      "size": 596551,
+      "folders": ["Leatrix_Plus"],
+      "note": "Arquivo de Retail (os -classic, -mists, -forever etc. sao de outros clientes). /ltp."
+    },
+    {
+      "name": "Macro Toolkit",
+      "projectId": 47117,
+      "fileId": 8929448,
+      "version": "v2.3.51",
+      "size": 451650,
+      "folders": ["MacroToolkit", "MacroToolkitIcons"],
+      "note": "Editor de macros (/mt). Macro estendida (>255 chars) nao funciona desde The War Within."
+    },
+    {
+      "name": "DynamicCam",
+      "projectId": 101120,
+      "fileId": 8995535,
+      "version": "2.21.1",
+      "size": 517881,
+      "folders": ["DynamicCam"],
+      "note": "Camera por situacao. Configuracao em config/SavedVariables/DynamicCam.lua."
+    },
+    {
+      "name": "Immersion",
+      "projectId": 257550,
+      "fileId": 8940431,
+      "version": "1.4.60",
+      "size": 235736,
+      "folders": ["Immersion"],
+      "note": "FIXADO na 1.4.60: a 1.4.61 (painel de config novo) deixou a caixa de dialogo sem responder aos botoes/atalhos."
+    },
+    {
+      "name": "BtWQuests",
+      "projectId": 280369,
+      "fileId": 8717818,
+      "version": "v2.63.2",
+      "size": 1944147,
+      "folders": ["BtWQuests", "BtWQuestsMidnight"],
+      "note": "Diario de cadeias de missoes. Ja traz o modulo Midnight."
+    },
+    {
+      "name": "BtWQuests: The War Within",
+      "projectId": 1010391,
+      "fileId": 8654509,
+      "version": "v11.4",
+      "size": 2788948,
+      "folders": ["BtWQuestsTheWarWithin"],
+      "note": "Modulo da expansao anterior."
+    },
+    {
+      "name": "Narcissus",
+      "projectId": 311718,
+      "fileId": 8885124,
+      "version": "1.8.6-c",
+      "size": 91087505,
+      "folders": [
+        "Narcissus",
+        "Narcissus_Achievements",
+        "Narcissus_BagFilter",
+        "Narcissus_Barbershop",
+        "Narcissus_Database_Item",
+        "Narcissus_Database_NPC",
+        "Narcissus_GamePad"
+      ],
+      "note": "Tela de personagem e modo foto (/narcissus). ~91 MB por causa dos modelos."
+    }
+  ],
+  "disabled": [
+    {
+      "name": "Max Camera Distance",
+      "projectId": 911525,
+      "fileId": 8933364,
+      "version": "v10.3",
+      "reason": "Conflita com o DynamicCam (os dois mexem em cameraDistanceMaxZoomFactor e no zoom de montaria). O DynamicCam faz o mesmo."
+    }
+  ]
+}
