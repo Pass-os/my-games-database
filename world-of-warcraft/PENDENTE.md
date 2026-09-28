@@ -14,8 +14,10 @@ e macros salvas em `config/` pelo `salvar-config.ps1`.
    `dynamiccam/transformacao-condicao.lua`, prioridade 1001, zoom Definir 20.
    O Ocultar Interface dela deveria copiar o da montaria no ar - que hoje nao
    existe (item 2). Decidir junto.
-4. **Conjurando (fora de combate)** (`custom3`): so fora de combate? zoom
-   Aproximar 8? Proposta em `dynamiccam/conjuracao-condicao.lua`.
+4. **Conjurando**: criadas `custom3` "Conjurando (fora de combate)"
+   (Aproximar 8, 0.6 / 0.8 s) e `custom4` "Conjurando (em combate)" (sem
+   acoes), ambas prioridade 60. O usuario vai ajustar pela interface;
+   depois, `salvar-config.ps1`.
 5. Branch `world-of-warcraft`: juntar na `main` direto ou via Pull Request?
 
 ## Como aplicar

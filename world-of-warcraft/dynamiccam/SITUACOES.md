@@ -58,6 +58,13 @@ maior. Tipo de Zoom: **Definir** (vai sempre para o valor), **Aproximar**
 | Pesca | 302 | Aproximar 7 | | | padrao |
 | Ausente (AFK) | 303 | Definir 12 | Rotacao continua 5; Ocultar Interface opacidade 0 | | padrao |
 | NPC grande (dialogo) | custom1 | Afastar **1.5** (ver pendencias) | | ombro 0.6, foco de interacao 1.0 / 0.75 | 0.3 / 0.5 s |
+| Conjurando (fora de combate) | custom3 | Aproximar 8 | | | 0.6 / 0.8 s |
+| Conjurando (em combate) | custom4 | | (sem acoes, configurar pela interface) | | padrao |
+
+As duas "Conjurando" tem prioridade 60 e condicao em
+`conjuracao-condicao.lua` / `conjuracao-combate-condicao.lua`. A de combate
+ganha das situacoes de instancia (020/030/050/060): enquanto conjura, ombro
+e balanco voltam ao da base, a menos que se ponha ombro 0 e cabeca 0 nela.
 
 Ocultar Interface fica **desligado** na Interacao com NPC de proposito: quem
 esconde a interface no dialogo e o Immersion (Opcoes > AddOns > Immersion >
@@ -141,5 +148,4 @@ Os arquivos desta pasta sao os mesmos textos que estao dentro do
   o Ocultar Interface da 100.
 - **Ombro na Configuracoes Base voltou ao padrao** (era 1.2). Se foi de
   proposito, ignorar.
-- Ainda nao criadas: "Transformacao (historia)" e "Conjurando". Ver
-  `../PENDENTE.md`.
+- Ainda nao criada: "Transformacao (historia)". Ver `../PENDENTE.md`.

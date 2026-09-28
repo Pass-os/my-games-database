@@ -14,6 +14,49 @@ DynamicCamDB = {
 ["dcBigNPCs"] = {
 },
 ["situations"] = {
+["custom3"] = {
+["name"] = "Conjurando (fora de combate)",
+["enabled"] = true,
+["priority"] = 60,
+["events"] = {
+"UNIT_SPELLCAST_START",
+"UNIT_SPELLCAST_STOP",
+"UNIT_SPELLCAST_SUCCEEDED",
+"UNIT_SPELLCAST_INTERRUPTED",
+"UNIT_SPELLCAST_FAILED",
+"UNIT_SPELLCAST_CHANNEL_START",
+"UNIT_SPELLCAST_CHANNEL_STOP",
+"PLAYER_REGEN_DISABLED",
+"PLAYER_REGEN_ENABLED",
+},
+["condition"] = "if UnitAffectingCombat(\"player\") then return false end\nlocal c = UnitCastingInfo(\"player\")\nlocal ch = UnitChannelInfo(\"player\")\nlocal function tem(v) return (issecretvalue and issecretvalue(v)) or v ~= nil end\nreturn tem(c) or tem(ch)",
+["transitionTime"] = {
+["timeToEnter"] = 0.6,
+["timeToExit"] = 0.8,
+},
+["viewZoom"] = {
+["enabled"] = true,
+["zoomType"] = "in",
+["zoomValue"] = 8,
+},
+},
+["custom4"] = {
+["name"] = "Conjurando (em combate)",
+["enabled"] = true,
+["priority"] = 60,
+["events"] = {
+"UNIT_SPELLCAST_START",
+"UNIT_SPELLCAST_STOP",
+"UNIT_SPELLCAST_SUCCEEDED",
+"UNIT_SPELLCAST_INTERRUPTED",
+"UNIT_SPELLCAST_FAILED",
+"UNIT_SPELLCAST_CHANNEL_START",
+"UNIT_SPELLCAST_CHANNEL_STOP",
+"PLAYER_REGEN_DISABLED",
+"PLAYER_REGEN_ENABLED",
+},
+["condition"] = "if not UnitAffectingCombat(\"player\") then return false end\nlocal c = UnitCastingInfo(\"player\")\nlocal ch = UnitChannelInfo(\"player\")\nlocal function tem(v) return (issecretvalue and issecretvalue(v)) or v ~= nil end\nreturn tem(c) or tem(ch)",
+},
 ["050"] = {
 ["enabled"] = true,
 ["situationSettings"] = {
