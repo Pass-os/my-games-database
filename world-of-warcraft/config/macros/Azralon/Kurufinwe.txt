@@ -1,0 +1,10 @@
+VER 3 0100000000000001 "Disparo Marcado" "2058007"
+#showtooltip Disparo Farpado
+/castsequence reset=target Marca do Caçador, null
+/cast Disparo Farpado
+END
+VER 3 0100000000000002 "Escapar" "132294"
+#showtooltip Desvencilhar
+/cast Cortar Asas
+/cast Desvencilhar
+END

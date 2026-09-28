@@ -1,40 +1,25 @@
 # Pendente (28/09/2026)
 
-Parou aqui porque o WoW estava aberto: o jogo so grava SavedVariables e
-macros ao sair, e editar os arquivos com ele aberto seria desfeito.
+Feito: `/npcgrande` corrigido no arquivo do PC (`getfenv(0)`), configuracao
+e macros salvas em `config/` pelo `salvar-config.ps1`.
 
-## Com o WoW fechado
+## Decisoes do usuario
 
-1. **Corrigir o `/npcgrande` no arquivo do PC.**
-   `WTF\Account\<conta>\SavedVariables\DynamicCam.lua`, situacao `custom1`
-   ("NPC grande (dialogo)"), campo `executeOnInit`: trocar
-   `SLASH_DCNPCGRANDE1 = "/npcgrande"` por
-   `getfenv(0).SLASH_DCNPCGRANDE1 = "/npcgrande"`. So essa linha.
-   Versao completa e correta: `dynamiccam/npc-grande-inicializacao.lua`.
-   No arquivo salvo pelo WoW (AceDB) as aspas aparecem escapadas (`\"`).
+1. **NPC grande (custom1) esta com Afastar 1.5**, que nao faz nada. Voltar
+   para 18? (Provavelmente mudou sem querer.)
+2. **Montaria no ar (situacao 102) sem Ocultar Interface**: copiar o da 100
+   (opacidade 0, Minimapa, vigor, `MainActionBar`)?
+3. **Transformacao (historia)** (`custom2`): condicao em
+   `dynamiccam/transformacao-condicao.lua`, prioridade 1001, zoom Definir 20.
+   O Ocultar Interface dela deveria copiar o da montaria no ar - que hoje nao
+   existe (item 2). Decidir junto.
+4. **Conjurando (fora de combate)** (`custom3`): so fora de combate? zoom
+   Aproximar 8? Proposta em `dynamiccam/conjuracao-condicao.lua`.
+5. Branch `world-of-warcraft`: juntar na `main` direto ou via Pull Request?
 
-2. **Criar a situacao "Transformacao (historia)"** (`custom2`).
-   - Condicao e eventos: `dynamiccam/transformacao-condicao.lua`.
-   - Prioridade 1001. Zoom: Definir **20**. Transicao 1.0 / 1.0 s.
-   - Ocultar Interface: **copiar** o que estiver na "Montaria (apenas no ar)"
-     (`105`) do usuario e acrescentar `OverrideActionBar` aos quadros
-     mantidos (habilidades da transformacao ficam nela, nao na
-     `MainActionBar`).
+## Como aplicar
 
-3. **Situacao "Conjurando (fora de combate)"** (`custom3`) - esperando o
-   usuario confirmar: so fora de combate? zoom Aproximar 8?
-   Proposta: `dynamiccam/conjuracao-condicao.lua`.
-
-4. **Salvar a configuracao e as macros no repo:** `scripts\salvar-config.ps1`,
-   revisar o `git diff` (sem numero da conta, sem profileKeys) e commitar.
-   Nesta sessao o usuario mudou pela interface e ainda nao esta em disco:
-   - scripts de musica na NPC Interaction (`dynamiccam/musica-*.lua`);
-   - Montaria (qualquer) zoom 15; Montaria (apenas no ar) ativada, zoom 18;
-   - Ocultar Interface na montaria mantendo vigor e `MainActionBar`;
-   - perfil "MODO HISTORIA".
-   Conferir no arquivo salvo antes de mexer e **preservar** o que estiver la.
-
-## Decisoes em aberto
-
-- Nomes dos personagens nas pastas de macros (repo publico): ok?
-- Branch `world-of-warcraft`: juntar na `main` direto ou via Pull Request?
+Com o WoW **fechado**: ler o `DynamicCam.lua` do PC, preservar o que o
+usuario mudou pela interface, editar so o necessario, rodar o
+`salvar-config.ps1`, commitar. Os valores atuais estao em
+`dynamiccam/SITUACOES.md`.

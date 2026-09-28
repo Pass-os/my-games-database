@@ -1,0 +1,44 @@
+VER 3 0000000000000004 " " "7700743"
+# TIRAR FOTO
+/cheer
+/script C_Timer.After(1,function() Screenshot() PlaySound(5274) end)
+END
+VER 3 0000000000000008 " " "254291"
+# ABRE E FECHA A JANELA DE MACROS
+/run if MacroFrame and MacroFrame:IsShown() then HideUIPanel(MacroFrame) else ShowMacroFrame() end
+END
+VER 3 0000000000000009 " " "254294"
+# ABRE E FECHA O MODO DE EDICAO DA INTERFACE
+/run if EditModeManagerFrame:IsShown() then HideUIPanel(EditModeManagerFrame) else ShowUIPanel(EditModeManagerFrame) end
+END
+VER 3 0000000000000002 " " "413588"
+# CAMERA DINAMICA NA MONTARIA
+/cancelform
+/run if IsMounted() then CameraZoomIn(10) else CameraZoomOut(10) end
+/dismount [mounted]
+/run if not IsMounted() then C_MountJournal.SummonByID(0) end
+END
+VER 3 000000000000000A " " "4067372"
+# ICONE VAZIO PARA PREENCHER ESPAÇO
+END
+VER 3 0000000000000003 " " "1100023"
+# HUD
+/run local v=GetCVar("UnitNameNPC")=="1" and "0" or "1" for c in ("NPC FriendlyPlayerName EnemyPlayerName InteractiveNPC"):gmatch("%S+") do SetCVar("UnitName"..c,v) end UIParent:SetShown(v=="1")
+END
+VER 3 0000000000000006 " " "133215"
+# ABRE E FECHA O MODO RAPIDO DE ATALHOS
+/run QuickKeybindFrame:SetShown(not QuickKeybindFrame:IsShown())
+END
+VER 3 0000000000000005 " " "133467"
+# MOSTRA E ESCONDE O CHAT
+/run local s=not ChatFrame1:IsShown() for _,f in pairs({ChatFrame1,ChatFrame1Tab,ChatFrame2,ChatFrame2Tab,GeneralDockManager,ChatFrame1EditBox}) do f:SetShown(s) end
+END
+VER 3 000000000000000B " " "5145511"
+/dc
+END
+VER 3 000000000000000C " " "2531330"
+/immersion
+END
+VER 3 000000000000000D " " "4640475"
+/dismount [mounted]
+END

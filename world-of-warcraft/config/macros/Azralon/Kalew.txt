@@ -1,0 +1,14 @@
+VER 3 0100000000000002 "." "134400"
+#showtooltip
+/cast [@cursor] Totem de Prisão Terrena
+END
+VER 3 0100000000000003 "." "134400"
+#showtooltip
+/stopcasting
+/cast Ataque da Tempestade
+END
+VER 3 0100000000000001 "." "136048"
+#showtooltip Raio
+/castsequence reset=target Raio, Choque Flamejante, null
+/cast Raio
+END

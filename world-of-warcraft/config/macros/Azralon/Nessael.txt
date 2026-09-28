@@ -1,0 +1,9 @@
+VER 3 0100000000000002 "Desfocar" "1380372"
+#showtooltip Desfocar
+/stopcasting
+/castsequence reset=2 Desfocar, null
+END
+VER 3 0100000000000001 "Glaive Mouse" "1305159"
+#showtooltip
+/cast [@mouseover,exists,harm][] Arremessar Glaive
+END

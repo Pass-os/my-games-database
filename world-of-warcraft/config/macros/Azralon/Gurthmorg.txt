@@ -1,0 +1,44 @@
+VER 3 0100000000000001 " " "134400"
+#showtooltip
+/castsequence reset=target Maldição da Fraqueza, Seta Sombria, Seta Sombria, Seta Sombria, Seta Sombria, Seta Sombria, Seta Sombria
+END
+VER 3 0100000000000003 " " "607853"
+#INTERROMPER COM [ Espiral da Morte ]
+#showtooltip
+/stopcasting
+/cast [@mouseover,harm,nodead][] Espiral da Morte
+/cast Seta Sombria
+END
+VER 3 0100000000000002 " " "607853"
+#INTERROMPER COM PET [ Evocar Guarda Vil ]
+#showtooltip Arremesso de Machado(Habilidade Especial)
+/stopcasting
+/cast [@mouseover,harm,nodead][] Arremesso de Machado(Habilidade Especial)
+END
+VER 3 0100000000000009 " " "135230"
+#showtooltip
+# DIFERENCIA O ICONE DA PEDRA DE VIDA
+/cast Criar Pedra de Vida
+END
+VER 3 0100000000000006 " " "134400"
+#showtooltip
+/stopcasting
+/cast Mão de Gul'dan
+END
+VER 3 0100000000000007 " " "134400"
+#showtooltip
+/stopcasting
+/cast Evocar Espreitadores do Medo
+END
+VER 3 0100000000000008 " " "607853"
+#INTERROMPER COM [ Evocar Caçador Vil ]
+#showtooltip
+/stopcasting
+/cast Bloquear Feitiço(Habilidade de Comandar Demônio)
+/cast Devorar Magia(Habilidade Especial)
+END
+VER 3 0100000000000005 "+" "134400"
+#showtooltip
+/stopcasting
+/cast Seta Demoníaca
+END

@@ -1,0 +1,4 @@
+VER 3 0100000000000001 "INIT" "611425"
+#showtooltip Forma de Felino(Metamorfose)
+/castsequence reset=3 Fogo Lunar, Forma de Felino(Metamorfose)
+END

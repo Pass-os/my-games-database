@@ -75,21 +75,8 @@ Versoes exatas e IDs do CurseForge em [`addons.json`](addons.json).
 ## DynamicCam
 
 A configuracao inteira esta em `config/SavedVariables/DynamicCam.lua` e volta
-com o `restaurar-config.ps1`. Resumo do perfil `Default`:
-
-| Situacao | O que faz |
-| --- | --- |
-| Base (sempre) | camera levemente sobre o ombro (1.2), inclinacao dinamica, balanco de cabeca 0.5, zoom maximo 39 |
-| NPC Interaction | aproxima (zoom 3), foca no NPC, entra em 0.2 s; abaixa a musica |
-| NPC grande (dialogo) | NPCs marcados com `/npcgrande`: afasta (zoom 18) em vez de aproximar |
-| Correio | aproxima (6) e foca |
-| Interiores (cidade e mundo) | mantem entre 5 e 12, ombro quase centralizado |
-| Montaria (qualquer) | zoom 15.5 |
-| Taxi | zoom 19, esconde a interface (chat fica) |
-| Pedra de regresso / teleporte | aproxima e gira em volta do personagem |
-| Pescando | aproxima (7) |
-| AFK | gira devagar sem interface (ESC traz de volta) |
-| Masmorra, raide, arena, BG | sem ombro e sem balanco |
+com o `restaurar-config.ps1`. Situacao por situacao, com o caminho de cada
+opcao no `/dc` e as pendencias: [`dynamiccam/SITUACOES.md`](dynamiccam/SITUACOES.md).
 
 ### Scripts (para colar pela interface)
 

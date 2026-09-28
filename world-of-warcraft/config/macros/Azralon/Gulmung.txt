@@ -1,0 +1,16 @@
+VER 3 0100000000000003 "." "134400"
+#showtooltip Garra da Morte
+/castsequence reset=target/30 Garra da Morte, null
+/cast [@player] Morte e Decomposição
+/run PlaySound(8959)
+END
+VER 3 0100000000000001 "." "134400"
+#showtooltip
+/cast Transformação Negra
+/castsequence reset=target Eclosão, Ataque Supurante, Ataque Supurante, Ataque Supurante, Ataque Supurante, Ataque Supurante, Ataque Supurante, Ataque Supurante, Ataque Supurante
+END
+VER 3 0100000000000002 "." "136144"
+#showtooltip Morte e Decomposição
+/cast [mod:shift][@player] Morte e Decomposição
+/run PlaySound(8959)
+END
