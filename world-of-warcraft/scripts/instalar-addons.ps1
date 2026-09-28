@@ -8,6 +8,8 @@
     _retail_\Interface\AddOns. Pastas de addon ja existentes sao substituidas;
     as outras pastas de AddOns nao sao tocadas.
 
+    Depois copia os addons feitos neste repositorio (pasta addons-proprios).
+
 .PARAMETER WowPath
     Pasta do World of Warcraft (ou a _retail_). Se omitido, le do registro.
 
@@ -62,6 +64,15 @@ try {
     }
 } finally {
     Remove-Item $temp -Recurse -Force -ErrorAction SilentlyContinue
+}
+
+# Addons feitos neste repositorio: copiados direto da pasta addons-proprios.
+$proprios = Join-Path $PSScriptRoot '..\addons-proprios'
+Get-ChildItem $proprios -Directory -ErrorAction SilentlyContinue | ForEach-Object {
+    $destino = Join-Path $addonsDir $_.Name
+    if (Test-Path $destino) { Remove-Item $destino -Recurse -Force }
+    Copy-Item $_.FullName $destino -Recurse
+    Write-Host ("- {0} (proprio) ... ok" -f $_.Name)
 }
 
 Write-Host ''

@@ -1,0 +1,9 @@
+## Interface: 120100
+## Title: Fecha Dialogo em Combate
+## Notes: Fecha o dialogo com NPC (Immersion, missao, gossip, livros) ao entrar em combate.
+## Author: Pass-os
+## Version: 1.0.0
+## OptionalDeps: Immersion
+## X-License: MIT
+
+FechaDialogoEmCombate.lua

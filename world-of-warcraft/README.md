@@ -57,6 +57,15 @@ Versoes exatas e IDs do CurseForge em [`addons.json`](addons.json).
 | Better Wardrobe and Transmog | colecao de conjuntos, provador e transmog | abas na Colecao / Transmog |
 | Can I Mog It? | mostra se a aparencia do item ja foi aprendida | `/cimi` |
 
+### Addons proprios
+
+Feitos aqui, em [`addons-proprios/`](addons-proprios/). O `instalar-addons.ps1`
+copia cada pasta de la direto para `Interface\AddOns`.
+
+| Addon | Para que |
+| --- | --- |
+| FechaDialogoEmCombate | ao entrar em combate fecha o dialogo com NPC: a caixa do Immersion (mesmo caminho do ESC) ou, sem ela, gossip, missao e livro da Blizzard. Nao tem opcoes; desligar e desmarcar na lista de AddOns. |
+
 ### Decisoes que nao sao obvias
 
 - **Immersion fixado na 1.4.60.** A 1.4.61 (24/09/2026) trocou o painel de

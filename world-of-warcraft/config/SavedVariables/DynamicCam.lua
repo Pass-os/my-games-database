@@ -32,10 +32,27 @@ DynamicCamDB = {
 },
 ["executeOnInit"] = "",
 ["condition"] = [=[if UnitAffectingCombat("player") then return false end
-local c = UnitCastingInfo("player")
-local ch = UnitChannelInfo("player")
 local function tem(v) return (issecretvalue and issecretvalue(v)) or v ~= nil end
-return tem(c) or tem(ch)]=],
+local function secreto(v) return issecretvalue and issecretvalue(v) end
+
+-- Conjuracao: ignora magias que invocam montaria.
+local nome, _, _, _, _, _, _, _, spellID = UnitCastingInfo("player")
+if tem(nome) then
+  if spellID and not secreto(spellID) and C_MountJournal and C_MountJournal.GetMountFromSpell
+     and C_MountJournal.GetMountFromSpell(spellID) then
+    return false
+  end
+  return true
+end
+
+-- Canalizacao: ignora a pesca, que tem situacao propria (302). A pesca tem
+-- prioridade 20, menor que os 60 desta, entao sem isso esta ganharia dela.
+local canal = UnitChannelInfo("player")
+if not tem(canal) then return false end
+if not secreto(canal) and C_Spell and C_Spell.GetSpellName and canal == C_Spell.GetSpellName(7620) then
+  return false
+end
+return true]=],
 ["executeOnEnter"] = "",
 ["executeOnExit"] = "",
 ["transitionTime"] = {
