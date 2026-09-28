@@ -15,6 +15,8 @@ $SavedVariablesVersionados = @(
     'MacroToolkit'
     'BtWQuests'
     'Narcissus'
+    'BetterWardrobe'
+    'CanIMogIt'
 )
 
 function Get-WowRetailPath {

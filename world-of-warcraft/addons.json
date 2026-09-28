@@ -118,6 +118,24 @@
         "Narcissus_GamePad"
       ],
       "note": "Tela de personagem e modo foto (/narcissus). ~91 MB por causa dos modelos."
+    },
+    {
+      "name": "Better Wardrobe and Transmog",
+      "projectId": 401253,
+      "fileId": 8809353,
+      "version": "6.12.3",
+      "size": 2050932,
+      "folders": ["BetterWardrobe", "BetterWardrobe_SourceData"],
+      "note": "Colecao de conjuntos, provador e transmog (sets do WoWHead/MogIt, conjuntos incompletos). Dependencias so da Blizzard."
+    },
+    {
+      "name": "Can I Mog It?",
+      "projectId": 100617,
+      "fileId": 8937446,
+      "version": "12.1.0v2.8.13",
+      "size": 158210,
+      "folders": ["CanIMogIt"],
+      "note": "Icone nos itens (bolsa, tooltip, loot) dizendo se a aparencia ja foi aprendida."
     }
   ],
   "disabled": [

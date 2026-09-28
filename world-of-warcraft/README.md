@@ -54,6 +54,8 @@ Versoes exatas e IDs do CurseForge em [`addons.json`](addons.json).
 | Leatrix Plus | qualidade de vida (tudo desligado por padrao) | `/ltp` |
 | Macro Toolkit | editor de macros | `/mt` |
 | BetterMacroIcons (+ LibNAddOn, LibNUI) | busca de icones | `/bmi` |
+| Better Wardrobe and Transmog | colecao de conjuntos, provador e transmog | abas na Colecao / Transmog |
+| Can I Mog It? | mostra se a aparencia do item ja foi aprendida | `/cimi` |
 
 ### Decisoes que nao sao obvias
 
