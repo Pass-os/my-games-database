@@ -96,6 +96,14 @@ clique em "Reset to default", que apaga o resto da situacao.
 
 ### Armadilhas do DynamicCam
 
+- **Situacao personalizada escrita a mao precisa de todos os campos.**
+  Situacao padrao herda os valores de fabrica; personalizada nao herda nada.
+  O DynamicCam usa `transitionTime`, `delay`, `hideUI` e
+  `situationSettings.cvars` sem checar se existem (Core.lua 807,
+  SituationManager.lua 815/848/1096): faltando um, da erro de Lua quando a
+  situacao entra ou sai. Copie a estrutura completa de uma que ja funciona
+  (ex.: `custom3` em `config/SavedVariables/DynamicCam.lua`). Pela interface
+  ("criar situacao") ele ja cria completa.
 - **Scripts rodam num ambiente isolado.** Ler global funciona; escrever
   global (`SLASH_X1 = ...`) grava so dentro do ambiente e o WoW nunca ve.
   Use `getfenv(0).NOME = valor`.

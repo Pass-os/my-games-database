@@ -18,6 +18,7 @@ DynamicCamDB = {
 ["name"] = "Conjurando (fora de combate)",
 ["enabled"] = true,
 ["priority"] = 60,
+["delay"] = 0,
 ["events"] = {
 "UNIT_SPELLCAST_START",
 "UNIT_SPELLCAST_STOP",
@@ -29,21 +30,52 @@ DynamicCamDB = {
 "PLAYER_REGEN_DISABLED",
 "PLAYER_REGEN_ENABLED",
 },
-["condition"] = "if UnitAffectingCombat(\"player\") then return false end\nlocal c = UnitCastingInfo(\"player\")\nlocal ch = UnitChannelInfo(\"player\")\nlocal function tem(v) return (issecretvalue and issecretvalue(v)) or v ~= nil end\nreturn tem(c) or tem(ch)",
+["executeOnInit"] = "",
+["condition"] = [=[if UnitAffectingCombat("player") then return false end
+local c = UnitCastingInfo("player")
+local ch = UnitChannelInfo("player")
+local function tem(v) return (issecretvalue and issecretvalue(v)) or v ~= nil end
+return tem(c) or tem(ch)]=],
+["executeOnEnter"] = "",
+["executeOnExit"] = "",
 ["transitionTime"] = {
 ["timeToEnter"] = 0.6,
 ["timeToExit"] = 0.8,
 },
 ["viewZoom"] = {
 ["enabled"] = true,
+["viewZoomType"] = "zoom",
 ["zoomType"] = "in",
 ["zoomValue"] = 8,
+["zoomMin"] = 5,
+["zoomMax"] = 15,
+["zoomTimeIsMax"] = false,
+["viewNumber"] = 2,
+["viewRestore"] = true,
+["viewInstant"] = false,
+["restoreDefaultViewNumber"] = 1,
+},
+["rotation"] = {
+["enabled"] = false,
+["rotationType"] = "continuous",
+["rotationSpeed"] = 10,
+["yawDegrees"] = 0,
+["pitchDegrees"] = 0,
+["rotateBack"] = true,
+},
+["hideUI"] = {
+["enabled"] = false,
+},
+["situationSettings"] = {
+["cvars"] = {
+},
 },
 },
 ["custom4"] = {
 ["name"] = "Conjurando (em combate)",
 ["enabled"] = true,
 ["priority"] = 60,
+["delay"] = 0,
 ["events"] = {
 "UNIT_SPELLCAST_START",
 "UNIT_SPELLCAST_STOP",
@@ -55,7 +87,46 @@ DynamicCamDB = {
 "PLAYER_REGEN_DISABLED",
 "PLAYER_REGEN_ENABLED",
 },
-["condition"] = "if not UnitAffectingCombat(\"player\") then return false end\nlocal c = UnitCastingInfo(\"player\")\nlocal ch = UnitChannelInfo(\"player\")\nlocal function tem(v) return (issecretvalue and issecretvalue(v)) or v ~= nil end\nreturn tem(c) or tem(ch)",
+["executeOnInit"] = "",
+["condition"] = [=[if not UnitAffectingCombat("player") then return false end
+local c = UnitCastingInfo("player")
+local ch = UnitChannelInfo("player")
+local function tem(v) return (issecretvalue and issecretvalue(v)) or v ~= nil end
+return tem(c) or tem(ch)]=],
+["executeOnEnter"] = "",
+["executeOnExit"] = "",
+["transitionTime"] = {
+["timeToEnter"] = 1,
+["timeToExit"] = 1,
+},
+["viewZoom"] = {
+["enabled"] = false,
+["viewZoomType"] = "zoom",
+["zoomType"] = "set",
+["zoomValue"] = 10,
+["zoomMin"] = 5,
+["zoomMax"] = 15,
+["zoomTimeIsMax"] = false,
+["viewNumber"] = 2,
+["viewRestore"] = true,
+["viewInstant"] = false,
+["restoreDefaultViewNumber"] = 1,
+},
+["rotation"] = {
+["enabled"] = false,
+["rotationType"] = "continuous",
+["rotationSpeed"] = 10,
+["yawDegrees"] = 0,
+["pitchDegrees"] = 0,
+["rotateBack"] = true,
+},
+["hideUI"] = {
+["enabled"] = false,
+},
+["situationSettings"] = {
+["cvars"] = {
+},
+},
 },
 ["050"] = {
 ["enabled"] = true,
