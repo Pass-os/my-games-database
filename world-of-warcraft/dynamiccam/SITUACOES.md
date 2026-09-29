@@ -138,6 +138,10 @@ Os arquivos desta pasta sao os mesmos textos que estao dentro do
 4. Configuracoes de Situacao: ombro 0.6, Foco no Alvo de interacao 1.0 / 0.75.
 5. No jogo, com o dialogo aberto: `/npcgrande` marca/desmarca o NPC.
 
+Com o addon proprio **NpcAltura** instalado, NPC com altura medida >= limite
+tambem conta como grande, sem precisar de `/npcgrande`. Calibrar no jogo:
+`/altura` num NPC normal e num grande, e `/altura limite N` entre os dois.
+
 ## Pendencias (decidir)
 
 - **NPC grande com zoom 1.5 Afastar.** "Afastar 1.5" so afasta se a camera

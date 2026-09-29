@@ -65,6 +65,7 @@ copia cada pasta de la direto para `Interface\AddOns`.
 | Addon | Para que |
 | --- | --- |
 | FechaDialogoEmCombate | ao entrar em combate fecha o dialogo com NPC: a caixa do Immersion (mesmo caminho do ESC) ou, sem ela, gossip, missao e livro da Blizzard. Nao tem opcoes; desligar e desmarcar na lista de AddOns. |
+| NpcAltura | mede a altura do modelo do NPC do dialogo (ModelScene + GetActiveBoundingBox) e guarda por NPC; a situacao "NPC grande" do DynamicCam usa isso para afastar a camera sozinha. `/altura` mostra a medida, `/altura limite N` calibra (padrao 4), `/altura limpar` esquece as medidas. |
 
 ### Decisoes que nao sao obvias
 

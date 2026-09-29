@@ -1,0 +1,10 @@
+## Interface: 120100
+## Title: NPC Altura
+## Notes: Mede a altura do modelo do NPC do dialogo para o DynamicCam afastar a camera em NPCs grandes. /altura
+## Author: Pass-os
+## Version: 1.0.0
+## SavedVariables: NpcAlturaDB
+## OptionalDeps: DynamicCam
+## X-License: MIT
+
+NpcAltura.lua

@@ -195,7 +195,21 @@ return tem(c) or tem(ch)]=],
 ["timeToExit"] = 0.5,
 },
 ["executeOnInit"] = "this.frames = {\"AuctionHouseFrame\", \"BankFrame\", \"ClassTrainerFrame\", \"GossipFrame\", \"ImmersionFrame\", \"MerchantFrame\", \"QuestFrame\"}\n\nDynamicCam.db.profile.dcBigNPCs = DynamicCam.db.profile.dcBigNPCs or {}\n\nthis.GetNpcId = function(unit)\n  local guid = UnitGUID(unit)\n  if not guid or (issecretvalue and issecretvalue(guid)) then return nil end\n  local unitType, _, _, _, _, npcId = strsplit(\"-\", guid)\n  if unitType == \"Creature\" or unitType == \"Vehicle\" then return npcId end\n  return nil\nend\n\ngetfenv(0).SLASH_DCNPCGRANDE1 = \"/npcgrande\"\nSlashCmdList[\"DCNPCGRANDE\"] = function()\n  local list = DynamicCam.db.profile.dcBigNPCs\n  local unit = UnitExists(\"npc\") and \"npc\" or \"target\"\n  local npcId = this.GetNpcId(unit)\n  if not npcId then\n    print(\"|cff33ccffDynamicCam:|r fale com o NPC (ou selecione-o) antes de usar /npcgrande\")\n    return\n  end\n  local name = UnitName(unit)\n  if issecretvalue and issecretvalue(name) then name = nil end\n  if list[npcId] then\n    list[npcId] = nil\n    print(\"|cff33ccffDynamicCam:|r \" .. (name or npcId) .. \" removido da lista de NPCs grandes\")\n  else\n    list[npcId] = name or true\n    print(\"|cff33ccffDynamicCam:|r \" .. (name or npcId) .. \" marcado como NPC grande - a camera vai afastar nele\")\n  end\n  DynamicCam:EvaluateSituations()\nend\n",
-["condition"] = "local list = DynamicCam.db.profile.dcBigNPCs\nif not list or not UnitExists(\"npc\") then return false end\nlocal npcId = this.GetNpcId(\"npc\")\nif not npcId or not list[npcId] then return false end\n\nfor _, v in pairs(this.frames) do\n  if _G[v] and _G[v]:IsShown() then return true end\nend\nreturn false",
+["condition"] = [=[if not UnitExists("npc") then return false end
+local npcId = this.GetNpcId("npc")
+if not npcId then return false end
+
+local list = DynamicCam.db.profile.dcBigNPCs
+local grande = list and list[npcId]
+if not grande and NpcAltura and NpcAltura.EhGrande then
+  grande = NpcAltura.EhGrande(npcId)
+end
+if not grande then return false end
+
+for _, v in pairs(this.frames) do
+  if _G[v] and _G[v]:IsShown() then return true end
+end
+return false]=],
 ["viewZoom"] = {
 ["enabled"] = true,
 ["zoomMax"] = 15,
