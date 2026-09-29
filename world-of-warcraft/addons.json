@@ -136,6 +136,15 @@
       "size": 158210,
       "folders": ["CanIMogIt"],
       "note": "Icone nos itens (bolsa, tooltip, loot) dizendo se a aparencia ja foi aprendida."
+    },
+    {
+      "name": "BarberShop Profiles",
+      "projectId": 419188,
+      "fileId": 8490434,
+      "version": "1.2.7",
+      "size": 29782,
+      "folders": ["BarberShopProfiles"],
+      "note": "Salva/carrega aparencias na barbearia, por raca, para toda a conta. TOC 120007: no 12.1 precisa 'Carregar addons desatualizados' (APIs conferidas no codigo do 12.1.0)."
     }
   ],
   "disabled": [

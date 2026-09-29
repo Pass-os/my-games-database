@@ -17,6 +17,7 @@ $SavedVariablesVersionados = @(
     'Narcissus'
     'BetterWardrobe'
     'CanIMogIt'
+    'BarberShopProfiles'
 )
 
 function Get-WowRetailPath {
