@@ -91,7 +91,7 @@ return true]=],
 ["custom4"] = {
 ["name"] = "Conjurando (em combate)",
 ["enabled"] = true,
-["priority"] = 60,
+["priority"] = 65,
 ["delay"] = 0,
 ["events"] = {
 "UNIT_SPELLCAST_START",

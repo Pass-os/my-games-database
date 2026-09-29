@@ -61,7 +61,9 @@ maior. Tipo de Zoom: **Definir** (vai sempre para o valor), **Aproximar**
 | Conjurando (fora de combate) | custom3 | Aproximar 8 | ignora montaria e pesca | | 0.6 / 0.8 s |
 | Conjurando (em combate) | custom4 | | (sem acoes, configurar pela interface) | | padrao |
 
-As duas "Conjurando" tem prioridade 60 e condicao em
+"Conjurando (fora de combate)" tem prioridade 60 e "Conjurando (em combate)"
+**65** (a de combate vence se as duas valerem no mesmo instante, ex.: ao
+entrar em combate no meio de um lancamento). Condicoes em
 `conjuracao-condicao.lua` / `conjuracao-combate-condicao.lua`. A de combate
 ganha das situacoes de instancia (020/030/050/060): enquanto conjura, ombro
 e balanco voltam ao da base, a menos que se ponha ombro 0 e cabeca 0 nela.
