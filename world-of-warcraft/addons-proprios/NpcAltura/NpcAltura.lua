@@ -67,7 +67,7 @@ end
 local function concluir()
     if not pendente then return end
     local h = alturaDoAtor()
-    if not h then return end -- ainda nao carregou; OnModelLoaded chama de novo
+    if not h then return end -- ainda nao carregou; o ticker de medir() tenta de novo
     local p = pendente
     pendente = nil
     db().cache[p.id] = h
@@ -77,7 +77,17 @@ local function concluir()
     end
 end
 
-actor:SetScript("OnModelLoaded", concluir)
+-- Ator criado sem template nao tem SetScript("OnModelLoaded"); em vez disso
+-- confere a cada 0,05 s, por ate 2 s, se o modelo ja carregou.
+local ticker
+local function esperarCarregar()
+    if ticker then ticker:Cancel() end
+    ticker = C_Timer.NewTicker(0.05, function(t)
+        if not pendente then t:Cancel() return end
+        if actor:IsLoaded() then concluir() end
+        if not pendente then t:Cancel() end
+    end, 40)
+end
 
 local function medir(unit, mostrar)
     if not UnitExists(unit) then return false end
@@ -96,6 +106,7 @@ local function medir(unit, mostrar)
         return false
     end
     if actor:IsLoaded() then concluir() end
+    if pendente then esperarCarregar() end
     if mostrar then
         C_Timer.After(2, function()
             if pendente and pendente.id == id then
