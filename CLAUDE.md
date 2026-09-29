@@ -83,6 +83,9 @@ configuracao salva (SavedVariables + macros). Leia `world-of-warcraft/README.md`
 - Addon novo: conferir no `.toc` a linha `## Interface` (tem que incluir a
   versao atual) e `## Dependencies`/`RequiredDeps` antes de por no `addons.json`.
 - Scripts do DynamicCam rodam em ambiente isolado: global so com `getfenv(0)`.
+- Nome de janela da Blizzard: conferir no codigo da versao atual
+  (github.com/Gethe/wow-ui-source, branch `live` = build do Retail). Nomes
+  mudam entre expansoes (ex.: WardrobeFrame -> TransmogFrame).
 - Situacao custom do DynamicCam escrita no arquivo: sempre com todos os
   campos (transitionTime, delay, hideUI, situationSettings.cvars...). Sem
   valores de fabrica, campo faltando = erro de Lua no jogo.

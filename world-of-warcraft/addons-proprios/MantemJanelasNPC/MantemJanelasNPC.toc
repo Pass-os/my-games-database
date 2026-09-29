@@ -1,0 +1,9 @@
+## Interface: 120100
+## Title: Mantem Janelas de NPC
+## Notes: Mantem visiveis as janelas de interacao com NPC (loja, treinador, salao de classe, escolhas...) quando o DynamicCam ou o Immersion escondem a interface.
+## Author: Pass-os
+## Version: 1.0.0
+## OptionalDeps: DynamicCam, Immersion
+## X-License: MIT
+
+MantemJanelasNPC.lua

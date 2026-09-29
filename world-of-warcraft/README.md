@@ -66,6 +66,7 @@ copia cada pasta de la direto para `Interface\AddOns`.
 | --- | --- |
 | FechaDialogoEmCombate | ao entrar em combate fecha o dialogo com NPC: a caixa do Immersion (mesmo caminho do ESC) ou, sem ela, gossip, missao e livro da Blizzard. Nao tem opcoes; desligar e desmarcar na lista de AddOns. |
 | NpcAltura | mede a altura do modelo do NPC do dialogo (ModelScene + GetActiveBoundingBox) e guarda por NPC; a situacao "NPC grande" do DynamicCam usa isso para afastar a camera sozinha. `/altura` mostra a medida, `/altura limite N` calibra (padrao 4), `/altura limpar` esquece as medidas. |
+| MantemJanelasNPC | mantem visiveis as janelas que um NPC abre (loja, treinador, bolsas, provador, escolhas de historia, salao de classe/guarnicao/pacto...) quando o DynamicCam ou o Immersion escondem a interface. Cobre a janela que abre depois de a interface sumir, que a lista "quadros para manter" do DynamicCam nao pega (ela so tenta de novo uma vez, 0,3 s depois). Com Immersion ativo nao mexe em GossipFrame/QuestFrame/ItemTextFrame, que ele substitui. Nomes conferidos no codigo da Blizzard 12.1.0 (wow-ui-source, branch live). |
 
 ### Decisoes que nao sao obvias
 
@@ -106,6 +107,9 @@ clique em "Reset to default", que apaga o resto da situacao.
 
 ### Armadilhas do DynamicCam
 
+- **Janela de transmog e `TransmogFrame` na 12.x.** A lista padrao de
+  "quadros para manter" do DynamicCam ainda traz `WardrobeFrame`, que nao
+  existe mais. Com o MantemJanelasNPC instalado a lista vira reserva.
 - **Situacao personalizada escrita a mao precisa de todos os campos.**
   Situacao padrao herda os valores de fabrica; personalizada nao herda nada.
   O DynamicCam usa `transitionTime`, `delay`, `hideUI` e
