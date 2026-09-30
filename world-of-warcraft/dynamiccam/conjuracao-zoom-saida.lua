@@ -18,6 +18,10 @@ C_Timer.After(0.05, function()
 
   estado.aproximado = false
   local zoomDestino = GetCameraZoom() + estado.quantoAproximou
+  -- Anota para onde esta voltando: se conjurar de novo antes de chegar,
+  -- o Script de Entrada parte daqui e nao do meio do caminho.
+  estado.zoomDoRetorno = zoomDestino
+  estado.fimDoRetorno = GetTime() + segundosParaAfastar
   DynamicCam:ResetReactiveZoomTarget()
   LibStub("LibCamera-1.0"):SetZoom(zoomDestino, segundosParaAfastar)
 end)
