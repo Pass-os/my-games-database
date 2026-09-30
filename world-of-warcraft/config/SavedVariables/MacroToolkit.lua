@@ -2,47 +2,45 @@
 MacroToolkitDB = {
 ["char"] = {
 ["Gurthmorg - Azralon"] = {
-["classFile"] = "WARLOCK",
-["lastbackup"] = "27/09/26 21:38:39",
 ["macros"] = {
 [127] = {
-["icon"] = "607853",
 ["name"] = " ",
+["icon"] = "607853",
 ["body"] = "#INTERROMPER COM [ Evocar Caçador Vil ]\n#showtooltip\n/stopcasting\n/cast Bloquear Feitiço(Habilidade de Comandar Demônio)\n/cast Devorar Magia(Habilidade Especial)\n",
 },
 [122] = {
-["icon"] = "607853",
 ["name"] = " ",
+["icon"] = "607853",
 ["body"] = "#INTERROMPER COM [ Espiral da Morte ]\n#showtooltip\n/stopcasting\n/cast [@mouseover,harm,nodead][] Espiral da Morte\n/cast Seta Sombria\n",
 },
 [124] = {
-["icon"] = "135230",
 ["name"] = " ",
+["icon"] = "135230",
 ["body"] = "#showtooltip\n# DIFERENCIA O ICONE DA PEDRA DE VIDA\n/cast Criar Pedra de Vida\n",
 },
 [126] = {
-["icon"] = "1378282",
 ["name"] = " ",
+["icon"] = "1378282",
 ["body"] = "#showtooltip\n/stopcasting\n/cast Evocar Espreitadores do Medo\n",
 },
 [121] = {
-["icon"] = "136197",
 ["name"] = " ",
+["icon"] = "136197",
 ["body"] = "#showtooltip\n/petattack\n/cast Seta Sombria\n",
 },
 [123] = {
-["icon"] = "607853",
 ["name"] = " ",
+["icon"] = "607853",
 ["body"] = "#INTERROMPER COM PET [ Evocar Guarda Vil ]\n#showtooltip Arremesso de Machado(Habilidade Especial)\n/stopcasting\n/cast [@mouseover,harm,nodead][] Arremesso de Machado(Habilidade Especial)\n",
 },
 [125] = {
-["icon"] = "535592",
 ["name"] = " ",
+["icon"] = "535592",
 ["body"] = "#showtooltip\n/stopcasting\n/cast Mão de Gul'dan\n",
 },
 [128] = {
-["icon"] = "2032588",
 ["name"] = "+",
+["icon"] = "2032588",
 ["body"] = "#showtooltip\n/stopcasting\n/cast Seta Demoníaca\n",
 },
 },
@@ -102,12 +100,17 @@ MacroToolkitDB = {
 ["n"] = "WOW RETAIL 1",
 },
 },
+["classFile"] = "WARLOCK",
+["lastbackup"] = "27/09/26 21:38:39",
+},
+["Deane - Azralon"] = {
+["classFile"] = "MAGE",
 },
 },
 ["global"] = {
-["backups"] = {
-},
 ["ebackups"] = {
+},
+["backups"] = {
 },
 },
 ["profiles"] = {

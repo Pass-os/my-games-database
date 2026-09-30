@@ -53,34 +53,24 @@ NarcissusDB = {
 ["RealmNames"] = {
 [3209] = "Azralon",
 },
-["FontHeightItemName"] = 10,
+["ConduitTooltip"] = false,
 ["TooltipLanguages"] = {
 },
-["Version"] = 10000,
 ["DressingRoomShowSlot"] = true,
+["installTime"] = 1790563880,
 ["EnableDoubleTap"] = false,
-["Tutorials"] = {
-["ExitConfirmation"] = true,
-["Movement"] = false,
-["SpellVisualBrowser"] = true,
-["NPCBrowserEntance"] = true,
-["WeaponBrowser"] = true,
-["NPCBrowser"] = true,
-},
+["SpeedyScreenshotAlert"] = true,
 ["AutoPlayAnimation"] = false,
 ["AFKScreen"] = false,
-["Favorites"] = {
-["FavoriteAnimationIDs"] = {
-},
-},
+["IndependentMinimapButton"] = false,
 ["AKFScreenDelay"] = false,
-["GlobalScale"] = 0.8,
-["WardrobeCollectionSetsCheckbox"] = true,
-["UseWoWQualityColor"] = false,
+["TalentTreeAnchor"] = 1,
+["TalentTreeForPaperDoll"] = false,
+["NameTranslationPosition"] = 1,
 ["PaperDollWidget_ClassSet"] = true,
 ["TalentTreeForEquipmentManager"] = true,
-["CameraOrbit"] = true,
-["NamePlateNameOffset"] = 0,
+["HideTextsWithUI"] = false,
+["AnchorToMinimap"] = true,
 ["PerksProgramDB"] = {
 ["MonthNames"] = {
 },
@@ -89,23 +79,33 @@ NarcissusDB = {
 ["CurrentMonthData"] = {
 },
 },
-["AutoDisplayQuestItem"] = false,
+["TooltipTheme"] = "Bright",
 ["OnlyShowOwnedUpgradeItem"] = true,
 ["GemManager"] = true,
 ["ModelPanelScale"] = 1,
-["TooltipTheme"] = "Bright",
-["AnchorToMinimap"] = true,
-["HideTextsWithUI"] = false,
+["AutoDisplayQuestItem"] = false,
+["NamePlateNameOffset"] = 0,
+["CameraOrbit"] = true,
 ["TalentTreeForInspection"] = true,
-["NameTranslationPosition"] = 1,
-["TalentTreeForPaperDoll"] = false,
-["TalentTreeAnchor"] = 1,
-["IndependentMinimapButton"] = false,
-["SpeedyScreenshotAlert"] = true,
+["UseWoWQualityColor"] = false,
+["WardrobeCollectionSetsCheckbox"] = true,
+["GlobalScale"] = 0.8,
+["Favorites"] = {
+["FavoriteAnimationIDs"] = {
+},
+},
+["Tutorials"] = {
+["ExitConfirmation"] = true,
+["Movement"] = false,
+["SpellVisualBrowser"] = true,
+["NPCBrowserEntance"] = true,
+["NPCBrowser"] = true,
+["WeaponBrowser"] = true,
+},
 ["TradingPostChangePost"] = true,
-["installTime"] = 1790563880,
+["Version"] = 10000,
 ["SearchSuggestEnable"] = false,
-["ConduitTooltip"] = false,
+["FontHeightItemName"] = 10,
 ["DressingRoomUseTargetModel"] = true,
 }
 NarciAchievementOptions = {
@@ -114,12 +114,12 @@ NarciAchievementOptions = {
 ["UseAsDefault"] = false,
 ["DIY"] = {
 },
-["BookmarkedAchievements"] = {
-},
 ["pinnedStatistics"] = {
 },
-["ReplaceToast"] = true,
 ["Theme"] = 1,
+["ReplaceToast"] = true,
+["BookmarkedAchievements"] = {
+},
 ["ShowRedMark"] = false,
 }
 NarciStatisticsDB = {
@@ -130,6 +130,16 @@ NarciStatisticsDB = {
 }
 NarciTurntableOptions = nil
 NarciCharacterProfiles = {
+["0C23F44E"] = {
+["race"] = 1,
+["name"] = "Deane",
+["birth"] = 1790742332,
+["serverID"] = 3209,
+["lastVisit"] = 1790745821,
+["outfits"] = {
+},
+["class"] = 8,
+},
 ["0C23ADFC"] = {
 ["race"] = 5,
 ["name"] = "Gurthmorg",

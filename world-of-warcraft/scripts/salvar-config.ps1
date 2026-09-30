@@ -3,8 +3,8 @@
     Copia configuracao de addons e macros do WoW deste PC para o repositorio.
 
 .DESCRIPTION
-    Rode depois de mudar algo no jogo, com o WoW FECHADO (o jogo so grava
-    SavedVariables e macros ao sair). Depois e so revisar e commitar.
+    Rode depois de mudar algo no jogo e de sair ou dar /reload (o jogo so grava
+    SavedVariables e macros nessas horas). Depois e so revisar e commitar.
 
     O que vai para o repositorio:
       config\SavedVariables\<addon>.lua   - so os addons de $SavedVariablesVersionados
@@ -24,7 +24,11 @@ param([string]$WowPath)
 . "$PSScriptRoot\wow-comum.ps1"
 
 $retail = Get-WowRetailPath $WowPath
-Assert-WowFechado
+# So le os arquivos do jogo, entao pode rodar com o WoW aberto; mas o que foi
+# mudado depois do ultimo /reload (ou login) ainda nao esta no disco.
+if (Get-Process -Name 'Wow' -ErrorAction SilentlyContinue) {
+    Write-Warning 'O WoW esta aberto: sera salvo o que o jogo gravou no ultimo /reload ou login.'
+}
 
 $contas = @(Get-WowAccountDirs $retail)
 if ($contas.Count -ne 1) {

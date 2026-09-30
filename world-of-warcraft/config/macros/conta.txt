@@ -11,13 +11,6 @@ VER 3 0000000000000009 " " "254294"
 # ABRE E FECHA O MODO DE EDICAO DA INTERFACE
 /run if EditModeManagerFrame:IsShown() then HideUIPanel(EditModeManagerFrame) else ShowUIPanel(EditModeManagerFrame) end
 END
-VER 3 0000000000000002 " " "413588"
-# CAMERA DINAMICA NA MONTARIA
-/cancelform
-/run if IsMounted() then CameraZoomIn(10) else CameraZoomOut(10) end
-/dismount [mounted]
-/run if not IsMounted() then C_MountJournal.SummonByID(0) end
-END
 VER 3 000000000000000A " " "4067372"
 # ICONE VAZIO PARA PREENCHER ESPAÇO
 END
@@ -41,4 +34,7 @@ VER 3 000000000000000C " " "2531330"
 END
 VER 3 000000000000000D " " "4640475"
 /dismount [mounted]
+END
+VER 3 000000000000000E " " "136010"
+/reload
 END
