@@ -4,8 +4,8 @@ DynamicCamDB = {
 ["popOutFrame"] = {
 ["height"] = 499.9999084472656,
 ["opacity"] = 0,
-["left"] = 506.0000915527344,
-["top"] = 730,
+["left"] = 522.8893432617188,
+["top"] = 734.4443969726562,
 },
 },
 ["profiles"] = {
@@ -14,83 +14,51 @@ DynamicCamDB = {
 ["dcBigNPCs"] = {
 },
 ["situations"] = {
-["custom3"] = {
-["name"] = "Conjurando (fora de combate)",
+["custom4"] = {
 ["enabled"] = true,
-["priority"] = 60,
-["delay"] = 0,
-["events"] = {
-"UNIT_SPELLCAST_START",
-"UNIT_SPELLCAST_STOP",
-"UNIT_SPELLCAST_SUCCEEDED",
-"UNIT_SPELLCAST_INTERRUPTED",
-"UNIT_SPELLCAST_FAILED",
-"UNIT_SPELLCAST_CHANNEL_START",
-"UNIT_SPELLCAST_CHANNEL_STOP",
-"PLAYER_REGEN_DISABLED",
-"PLAYER_REGEN_ENABLED",
-},
-["executeOnInit"] = "",
-["condition"] = [=[if UnitAffectingCombat("player") then return false end
-local function tem(v) return (issecretvalue and issecretvalue(v)) or v ~= nil end
-local function secreto(v) return issecretvalue and issecretvalue(v) end
-
--- Conjuracao: ignora magias que invocam montaria.
-local nome, _, _, _, _, _, _, _, spellID = UnitCastingInfo("player")
-if tem(nome) then
-  if spellID and not secreto(spellID) and C_MountJournal and C_MountJournal.GetMountFromSpell
-     and C_MountJournal.GetMountFromSpell(spellID) then
-    return false
-  end
-  return true
-end
-
--- Canalizacao: ignora a pesca, que tem situacao propria (302). A pesca tem
--- prioridade 20, menor que os 60 desta, entao sem isso esta ganharia dela.
-local canal = UnitChannelInfo("player")
-if not tem(canal) then return false end
-if not secreto(canal) and C_Spell and C_Spell.GetSpellName and canal == C_Spell.GetSpellName(7620) then
-  return false
-end
-return true]=],
-["executeOnEnter"] = "",
-["executeOnExit"] = "",
 ["transitionTime"] = {
-["timeToEnter"] = 0.6,
-["timeToExit"] = 0.8,
+["timeToEnter"] = 0.5,
+["timeToExit"] = 0.5,
 },
+["executeOnExit"] = "-- ===== AJUSTE AQUI =====\nlocal segundosParaAfastar = 0.8   -- duracao do movimento de voltar\n-- =======================\n\nlocal estado = DynamicCam.zoomConjurar\nif not estado then return end\n\nC_Timer.After(0.05, function()\n  -- Passou direto para a outra situacao de conjuracao: continua aproximado.\n  local situacaoAtual = DynamicCam.currentSituationID\n  local aindaConjurando = situacaoAtual == \"custom3\" or situacaoAtual == \"custom4\"\n  if aindaConjurando or not estado.aproximado then return end\n\n  estado.aproximado = false\n  local zoomDestino = GetCameraZoom() + estado.quantoAproximou\n  DynamicCam:ResetReactiveZoomTarget()\n  LibStub(\"LibCamera-1.0\"):SetZoom(zoomDestino, segundosParaAfastar)\nend)",
+["executeOnInit"] = "",
+["condition"] = "if not UnitAffectingCombat(\"player\") then return false end\nlocal c = UnitCastingInfo(\"player\")\nlocal ch = UnitChannelInfo(\"player\")\nlocal function tem(v) return (issecretvalue and issecretvalue(v)) or v ~= nil end\nreturn tem(c) or tem(ch)",
 ["viewZoom"] = {
-["enabled"] = true,
-["viewZoomType"] = "zoom",
-["zoomType"] = "in",
-["zoomValue"] = 8,
-["zoomMin"] = 5,
+["enabled"] = false,
 ["zoomMax"] = 15,
-["zoomTimeIsMax"] = false,
-["viewNumber"] = 2,
-["viewRestore"] = true,
+["zoomMin"] = 5,
 ["viewInstant"] = false,
+["zoomType"] = "set",
+["viewNumber"] = 2,
+["zoomValue"] = 4,
+["viewRestore"] = true,
 ["restoreDefaultViewNumber"] = 1,
-},
-["rotation"] = {
-["enabled"] = false,
-["rotationType"] = "continuous",
-["rotationSpeed"] = 10,
-["yawDegrees"] = 0,
-["pitchDegrees"] = 0,
-["rotateBack"] = true,
-},
-["hideUI"] = {
-["enabled"] = false,
+["zoomTimeIsMax"] = false,
+["viewZoomType"] = "zoom",
 },
 ["situationSettings"] = {
 ["cvars"] = {
+["test_cameraTargetFocusEnemyStrengthPitch"] = 0.5,
+["test_cameraTargetFocusInteractEnable"] = 1,
+["test_cameraTargetFocusInteractStrengthPitch"] = 0.75,
+["test_cameraTargetFocusEnemyEnable"] = 1,
+["test_cameraTargetFocusInteractStrengthYaw"] = 1,
+["test_cameraTargetFocusEnemyStrengthYaw"] = 1,
 },
 },
-},
-["custom4"] = {
+["executeOnEnter"] = "-- ===== AJUSTE AQUI =====\nlocal distanciaParaAproximar = 3      -- quanto a camera chega mais perto ao conjurar\nlocal distanciaMinimaDaCamera = 1.5   -- a camera nunca fica mais perto que isso\nlocal segundosParaAproximar = 0.6     -- duracao do movimento de aproximar\n-- =======================\n\nlocal estado = DynamicCam.zoomConjurar or {}\nDynamicCam.zoomConjurar = estado\n\nC_Timer.After(0, function()\n  if estado.aproximado then return end -- ja aproximou (ex.: entrou em combate no meio da magia)\n\n  local zoomAtual = GetCameraZoom()\n  local zoomDestino = math.max(zoomAtual - distanciaParaAproximar, distanciaMinimaDaCamera)\n  if zoomDestino >= zoomAtual then return end\n\n  estado.aproximado = true\n  estado.quantoAproximou = zoomAtual - zoomDestino\n  DynamicCam:ResetReactiveZoomTarget()\n  LibStub(\"LibCamera-1.0\"):SetZoom(zoomDestino, segundosParaAproximar)\nend)",
 ["name"] = "Conjurando (em combate)",
-["enabled"] = true,
+["hideUI"] = {
+["enabled"] = false,
+},
+["rotation"] = {
+["enabled"] = false,
+["pitchDegrees"] = 0,
+["rotationType"] = "degrees",
+["rotationSpeed"] = 3,
+["yawDegrees"] = 5,
+["rotateBack"] = true,
+},
 ["priority"] = 65,
 ["delay"] = 0,
 ["events"] = {
@@ -104,45 +72,64 @@ return true]=],
 "PLAYER_REGEN_DISABLED",
 "PLAYER_REGEN_ENABLED",
 },
-["executeOnInit"] = "",
-["condition"] = [=[if not UnitAffectingCombat("player") then return false end
-local c = UnitCastingInfo("player")
-local ch = UnitChannelInfo("player")
-local function tem(v) return (issecretvalue and issecretvalue(v)) or v ~= nil end
-return tem(c) or tem(ch)]=],
-["executeOnEnter"] = "",
-["executeOnExit"] = "",
+},
+["custom3"] = {
+["enabled"] = true,
+["executeOnExit"] = "-- ===== AJUSTE AQUI =====\nlocal segundosParaAfastar = 0.8   -- duracao do movimento de voltar\n-- =======================\n\nlocal estado = DynamicCam.zoomConjurar\nif not estado then return end\n\nC_Timer.After(0.05, function()\n  -- Passou direto para a outra situacao de conjuracao: continua aproximado.\n  local situacaoAtual = DynamicCam.currentSituationID\n  local aindaConjurando = situacaoAtual == \"custom3\" or situacaoAtual == \"custom4\"\n  if aindaConjurando or not estado.aproximado then return end\n\n  estado.aproximado = false\n  local zoomDestino = GetCameraZoom() + estado.quantoAproximou\n  DynamicCam:ResetReactiveZoomTarget()\n  LibStub(\"LibCamera-1.0\"):SetZoom(zoomDestino, segundosParaAfastar)\nend)",
 ["transitionTime"] = {
-["timeToEnter"] = 1,
+["timeToEnter"] = 1.5,
 ["timeToExit"] = 1,
 },
+["executeOnInit"] = "",
+["condition"] = "if UnitAffectingCombat(\"player\") then return false end\nlocal function tem(v) return (issecretvalue and issecretvalue(v)) or v ~= nil end\nlocal function secreto(v) return issecretvalue and issecretvalue(v) end\n\nlocal nome, _, _, _, _, _, _, _, spellID = UnitCastingInfo(\"player\")\nif tem(nome) then\n  if spellID and not secreto(spellID) and C_MountJournal and C_MountJournal.GetMountFromSpell\n     and C_MountJournal.GetMountFromSpell(spellID) then\n    return false\n  end\n  return true\nend\n\nlocal canal = UnitChannelInfo(\"player\")\nif not tem(canal) then return false end\nif not secreto(canal) and C_Spell and C_Spell.GetSpellName and canal == C_Spell.GetSpellName(7620) then\n  return false\nend\nreturn true",
 ["viewZoom"] = {
 ["enabled"] = false,
-["viewZoomType"] = "zoom",
-["zoomType"] = "set",
-["zoomValue"] = 10,
-["zoomMin"] = 5,
 ["zoomMax"] = 15,
-["zoomTimeIsMax"] = false,
-["viewNumber"] = 2,
-["viewRestore"] = true,
+["zoomMin"] = 5,
 ["viewInstant"] = false,
+["zoomType"] = "in",
+["viewNumber"] = 2,
+["zoomValue"] = 2,
+["viewRestore"] = true,
 ["restoreDefaultViewNumber"] = 1,
+["zoomTimeIsMax"] = false,
+["viewZoomType"] = "zoom",
 },
 ["rotation"] = {
-["enabled"] = false,
-["rotationType"] = "continuous",
+["enabled"] = true,
+["pitchDegrees"] = -5,
+["rotationType"] = "degrees",
 ["rotationSpeed"] = 10,
-["yawDegrees"] = 0,
-["pitchDegrees"] = 0,
+["yawDegrees"] = 10,
 ["rotateBack"] = true,
 },
+["executeOnEnter"] = "-- ===== AJUSTE AQUI =====\nlocal distanciaParaAproximar = 3      -- quanto a camera chega mais perto ao conjurar\nlocal distanciaMinimaDaCamera = 1.5   -- a camera nunca fica mais perto que isso\nlocal segundosParaAproximar = 0.6     -- duracao do movimento de aproximar\n-- =======================\n\nlocal estado = DynamicCam.zoomConjurar or {}\nDynamicCam.zoomConjurar = estado\n\nC_Timer.After(0, function()\n  if estado.aproximado then return end -- ja aproximou (ex.: entrou em combate no meio da magia)\n\n  local zoomAtual = GetCameraZoom()\n  local zoomDestino = math.max(zoomAtual - distanciaParaAproximar, distanciaMinimaDaCamera)\n  if zoomDestino >= zoomAtual then return end\n\n  estado.aproximado = true\n  estado.quantoAproximou = zoomAtual - zoomDestino\n  DynamicCam:ResetReactiveZoomTarget()\n  LibStub(\"LibCamera-1.0\"):SetZoom(zoomDestino, segundosParaAproximar)\nend)",
+["name"] = "Conjurando (fora de combate)",
 ["hideUI"] = {
 ["enabled"] = false,
 },
 ["situationSettings"] = {
 ["cvars"] = {
+["test_cameraTargetFocusEnemyStrengthPitch"] = 0.5,
+["test_cameraTargetFocusInteractEnable"] = 1,
+["test_cameraTargetFocusInteractStrengthPitch"] = 0.75,
+["test_cameraTargetFocusEnemyEnable"] = 1,
+["test_cameraTargetFocusInteractStrengthYaw"] = 1,
+["test_cameraTargetFocusEnemyStrengthYaw"] = 1,
 },
+},
+["priority"] = 60,
+["delay"] = 0,
+["events"] = {
+"UNIT_SPELLCAST_START",
+"UNIT_SPELLCAST_STOP",
+"UNIT_SPELLCAST_SUCCEEDED",
+"UNIT_SPELLCAST_INTERRUPTED",
+"UNIT_SPELLCAST_FAILED",
+"UNIT_SPELLCAST_CHANNEL_START",
+"UNIT_SPELLCAST_CHANNEL_STOP",
+"PLAYER_REGEN_DISABLED",
+"PLAYER_REGEN_ENABLED",
 },
 },
 ["050"] = {
@@ -163,82 +150,21 @@ return tem(c) or tem(ch)]=],
 },
 },
 },
-["020"] = {
+["005"] = {
 ["enabled"] = true,
 ["situationSettings"] = {
 ["cvars"] = {
-["test_cameraHeadMovementStrength"] = 0,
-["test_cameraOverShoulder"] = 0,
+["test_cameraOverShoulder"] = 0.3,
 },
 },
-},
-["302"] = {
-["enabled"] = true,
 ["viewZoom"] = {
 ["enabled"] = true,
-["zoomType"] = "in",
-["zoomValue"] = 7,
+["zoomMax"] = 12,
+["zoomType"] = "range",
 },
 },
 ["custom1"] = {
 ["enabled"] = true,
-["situationSettings"] = {
-["cvars"] = {
-["test_cameraOverShoulder"] = 0.6,
-["test_cameraTargetFocusInteractEnable"] = 1,
-["test_cameraTargetFocusInteractStrengthPitch"] = 0.75,
-["test_cameraTargetFocusInteractStrengthYaw"] = 1,
-},
-},
-["transitionTime"] = {
-["timeToEnter"] = 0.3,
-["timeToExit"] = 0.5,
-},
-["executeOnInit"] = "this.frames = {\"AuctionHouseFrame\", \"BankFrame\", \"ClassTrainerFrame\", \"GossipFrame\", \"ImmersionFrame\", \"MerchantFrame\", \"QuestFrame\"}\n\nDynamicCam.db.profile.dcBigNPCs = DynamicCam.db.profile.dcBigNPCs or {}\n\nthis.GetNpcId = function(unit)\n  local guid = UnitGUID(unit)\n  if not guid or (issecretvalue and issecretvalue(guid)) then return nil end\n  local unitType, _, _, _, _, npcId = strsplit(\"-\", guid)\n  if unitType == \"Creature\" or unitType == \"Vehicle\" then return npcId end\n  return nil\nend\n\ngetfenv(0).SLASH_DCNPCGRANDE1 = \"/npcgrande\"\nSlashCmdList[\"DCNPCGRANDE\"] = function()\n  local list = DynamicCam.db.profile.dcBigNPCs\n  local unit = UnitExists(\"npc\") and \"npc\" or \"target\"\n  local npcId = this.GetNpcId(unit)\n  if not npcId then\n    print(\"|cff33ccffDynamicCam:|r fale com o NPC (ou selecione-o) antes de usar /npcgrande\")\n    return\n  end\n  local name = UnitName(unit)\n  if issecretvalue and issecretvalue(name) then name = nil end\n  if list[npcId] then\n    list[npcId] = nil\n    print(\"|cff33ccffDynamicCam:|r \" .. (name or npcId) .. \" removido da lista de NPCs grandes\")\n  else\n    list[npcId] = name or true\n    print(\"|cff33ccffDynamicCam:|r \" .. (name or npcId) .. \" marcado como NPC grande - a camera vai afastar nele\")\n  end\n  DynamicCam:EvaluateSituations()\nend\n",
-["condition"] = [=[if not UnitExists("npc") then return false end
-local npcId = this.GetNpcId("npc")
-if not npcId then return false end
-
-local list = DynamicCam.db.profile.dcBigNPCs
-local grande = list and list[npcId]
-if not grande and NpcAltura and NpcAltura.EhGrande then
-  grande = NpcAltura.EhGrande(npcId)
-end
-if not grande then return false end
-
-for _, v in pairs(this.frames) do
-  if _G[v] and _G[v]:IsShown() then return true end
-end
-return false]=],
-["viewZoom"] = {
-["enabled"] = true,
-["zoomMax"] = 15,
-["zoomMin"] = 5,
-["viewNumber"] = 2,
-["zoomType"] = "out",
-["viewInstant"] = false,
-["zoomValue"] = 1.5,
-["viewRestore"] = true,
-["restoreDefaultViewNumber"] = 1,
-["zoomTimeIsMax"] = false,
-["viewZoomType"] = "zoom",
-},
-["rotation"] = {
-["enabled"] = false,
-["pitchDegrees"] = 0,
-["rotationType"] = "continuous",
-["rotationSpeed"] = 10,
-["yawDegrees"] = 0,
-["rotateBack"] = true,
-},
-["executeOnEnter"] = "",
-["name"] = "NPC grande (dialogo)",
-["hideUI"] = {
-["enabled"] = false,
-},
-["executeOnExit"] = "",
-["priority"] = 115,
-["delay"] = 0,
 ["events"] = {
 "AUCTION_HOUSE_CLOSED",
 "AUCTION_HOUSE_SHOW",
@@ -259,100 +185,70 @@ return false]=],
 "TRAINER_CLOSED",
 "TRAINER_SHOW",
 },
-},
-["002"] = {
-["enabled"] = true,
+["executeOnEnter"] = "",
+["executeOnInit"] = "this.frames = {\"AuctionHouseFrame\", \"BankFrame\", \"ClassTrainerFrame\", \"GossipFrame\", \"ImmersionFrame\", \"MerchantFrame\", \"QuestFrame\"}\n\nDynamicCam.db.profile.dcBigNPCs = DynamicCam.db.profile.dcBigNPCs or {}\n\nthis.GetNpcId = function(unit)\n  local guid = UnitGUID(unit)\n  if not guid or (issecretvalue and issecretvalue(guid)) then return nil end\n  local unitType, _, _, _, _, npcId = strsplit(\"-\", guid)\n  if unitType == \"Creature\" or unitType == \"Vehicle\" then return npcId end\n  return nil\nend\n\ngetfenv(0).SLASH_DCNPCGRANDE1 = \"/npcgrande\"\nSlashCmdList[\"DCNPCGRANDE\"] = function()\n  local list = DynamicCam.db.profile.dcBigNPCs\n  local unit = UnitExists(\"npc\") and \"npc\" or \"target\"\n  local npcId = this.GetNpcId(unit)\n  if not npcId then\n    print(\"|cff33ccffDynamicCam:|r fale com o NPC (ou selecione-o) antes de usar /npcgrande\")\n    return\n  end\n  local name = UnitName(unit)\n  if issecretvalue and issecretvalue(name) then name = nil end\n  if list[npcId] then\n    list[npcId] = nil\n    print(\"|cff33ccffDynamicCam:|r \" .. (name or npcId) .. \" removido da lista de NPCs grandes\")\n  else\n    list[npcId] = name or true\n    print(\"|cff33ccffDynamicCam:|r \" .. (name or npcId) .. \" marcado como NPC grande - a camera vai afastar nele\")\n  end\n  DynamicCam:EvaluateSituations()\nend\n",
+["condition"] = [=[if not UnitExists("npc") then return false end
+local npcId = this.GetNpcId("npc")
+if not npcId then return false end
+
+local list = DynamicCam.db.profile.dcBigNPCs
+local grande = list and list[npcId]
+if not grande and NpcAltura and NpcAltura.EhGrande then
+  grande = NpcAltura.EhGrande(npcId)
+end
+if not grande then return false end
+
+for _, v in pairs(this.frames) do
+  if _G[v] and _G[v]:IsShown() then return true end
+end
+return false]=],
+["name"] = "NPC grande (dialogo)",
 ["situationSettings"] = {
 ["cvars"] = {
-["test_cameraOverShoulder"] = 0.3,
-},
-},
-["viewZoom"] = {
-["zoomMax"] = 12,
-["zoomType"] = "range",
-["enabled"] = true,
-},
-},
-["005"] = {
-["enabled"] = true,
-["situationSettings"] = {
-["cvars"] = {
-["test_cameraOverShoulder"] = 0.3,
-},
-},
-["viewZoom"] = {
-["zoomMax"] = 12,
-["zoomType"] = "range",
-["enabled"] = true,
-},
-},
-["102"] = {
-["enabled"] = true,
-["viewZoom"] = {
-["enabled"] = true,
-["zoomValue"] = 20,
-},
-},
-["303"] = {
-["enabled"] = true,
-["rotation"] = {
-["enabled"] = true,
-["rotationSpeed"] = 5,
-},
-["viewZoom"] = {
-["enabled"] = true,
-["zoomValue"] = 12,
-},
-["hideUI"] = {
-["fadeOpacity"] = 0,
-["enabled"] = true,
-},
-},
-["160"] = {
-["enabled"] = true,
-["viewZoom"] = {
-["enabled"] = true,
-["zoomValue"] = 19,
-},
-["hideUI"] = {
-["enabled"] = true,
-["fadeOpacity"] = 0,
-["keepChatFrame"] = true,
-},
-},
-["060"] = {
-["enabled"] = true,
-["situationSettings"] = {
-["cvars"] = {
-["test_cameraHeadMovementStrength"] = 0,
-["test_cameraOverShoulder"] = 0,
-},
-},
-},
-["300"] = {
-["enabled"] = true,
-["transitionTime"] = {
-["timeToEnter"] = 0.2,
-["timeToExit"] = 0.5,
-},
-["executeOnEnter"] = "this.vol = this.vol or tonumber(GetCVar(\"Sound_MusicVolume\")) or 0.4\nthis.t = (this.t or 0) + 1\nlocal t, from, to = this.t, tonumber(GetCVar(\"Sound_MusicVolume\")) or this.vol, 0.03\nlocal steps, dur = 30, 2.5\nfor i = 1, steps do\n  C_Timer.After(i * dur / steps, function()\n    if this.t == t then\n      local p = i / steps\n      p = p * p * (3 - 2 * p)\n      SetCVar(\"Sound_MusicVolume\", from + (to - from) * p)\n    end\n  end)\nend",
-["rotation"] = {
-["pitchDegrees"] = -5,
-["rotationType"] = "degrees",
-},
-["executeOnExit"] = "if not this.vol then return end\nthis.t = (this.t or 0) + 1\nlocal t, from, to = this.t, tonumber(GetCVar(\"Sound_MusicVolume\")) or 0, this.vol\nlocal steps, dur = 40, 3.5\nfor i = 1, steps do\n  C_Timer.After(i * dur / steps, function()\n    if this.t == t then\n      local p = i / steps\n      p = p * p * (3 - 2 * p)\n      SetCVar(\"Sound_MusicVolume\", from + (to - from) * p)\n      if i == steps then this.vol = nil end\n    end\n  end)\nend",
-["viewZoom"] = {
-["enabled"] = true,
-["zoomType"] = "in",
-["zoomValue"] = 3,
-},
-["situationSettings"] = {
-["cvars"] = {
-["test_cameraOverShoulder"] = 0.6,
 ["test_cameraTargetFocusInteractEnable"] = 1,
+["test_cameraOverShoulder"] = 0.6,
 ["test_cameraTargetFocusInteractStrengthPitch"] = 0.75,
 ["test_cameraTargetFocusInteractStrengthYaw"] = 1,
 },
+},
+["transitionTime"] = {
+["timeToEnter"] = 0.3,
+["timeToExit"] = 0.5,
+},
+["viewZoom"] = {
+["enabled"] = true,
+["zoomMax"] = 15,
+["zoomMin"] = 5,
+["viewZoomType"] = "zoom",
+["zoomType"] = "out",
+["zoomTimeIsMax"] = false,
+["viewInstant"] = false,
+["viewRestore"] = true,
+["restoreDefaultViewNumber"] = 1,
+["viewNumber"] = 2,
+["zoomValue"] = 1.5,
+},
+["hideUI"] = {
+["enabled"] = false,
+},
+["executeOnExit"] = "",
+["priority"] = 115,
+["delay"] = 0,
+["rotation"] = {
+["enabled"] = false,
+["pitchDegrees"] = 0,
+["rotationType"] = "continuous",
+["rotationSpeed"] = 10,
+["yawDegrees"] = 0,
+["rotateBack"] = true,
+},
+},
+["302"] = {
+["enabled"] = true,
+["viewZoom"] = {
+["enabled"] = true,
+["zoomType"] = "in",
+["zoomValue"] = 7,
 },
 },
 ["200"] = {
@@ -370,20 +266,24 @@ return false]=],
 ["enabled"] = true,
 },
 },
-["100"] = {
+["002"] = {
 ["enabled"] = true,
-["transitionTime"] = {
-["timeToEnter"] = 1.5,
-["timeToExit"] = 2,
-},
 ["situationSettings"] = {
 ["cvars"] = {
-["cameraDistanceMaxZoomFactor"] = 2.6,
+["test_cameraOverShoulder"] = 0.3,
 },
 },
 ["viewZoom"] = {
 ["enabled"] = true,
-["zoomValue"] = 15,
+["zoomMax"] = 12,
+["zoomType"] = "range",
+},
+},
+["102"] = {
+["enabled"] = true,
+["viewZoom"] = {
+["enabled"] = true,
+["zoomValue"] = 20,
 },
 ["hideUI"] = {
 ["customFramesToKeep"] = {
@@ -393,18 +293,17 @@ return false]=],
 ["StaticPopup1"] = false,
 ["BankFrame"] = false,
 ["WardrobeFrame"] = false,
-["BuffFrame"] = false,
+["BagnonBankFrame1"] = false,
 ["DebuffFrame"] = false,
-["AuctionHouseFrame"] = false,
+["PetStableFrame"] = false,
 ["QuestFrame"] = false,
 ["GossipFrame"] = false,
-["PetStableFrame"] = false,
-["BagnonBankFrame1"] = false,
+["AuctionHouseFrame"] = false,
+["BuffFrame"] = false,
 },
-["keepCustomFrames"] = true,
 ["enabled"] = true,
+["keepCustomFrames"] = true,
 ["fadeOpacity"] = 0,
-["keepEncounterBar"] = true,
 ["keepMinimap"] = true,
 },
 },
@@ -425,13 +324,154 @@ return false]=],
 ["zoomValue"] = 6,
 },
 },
+["060"] = {
+["enabled"] = true,
+["situationSettings"] = {
+["cvars"] = {
+["test_cameraHeadMovementStrength"] = 0,
+["test_cameraOverShoulder"] = 0,
 },
-["standardSettings"] = {
+},
+},
+["303"] = {
+["enabled"] = true,
+["rotation"] = {
+["enabled"] = true,
+["rotationSpeed"] = 5,
+},
+["viewZoom"] = {
+["enabled"] = true,
+["zoomValue"] = 12,
+},
+["hideUI"] = {
+["fadeOpacity"] = 0,
+["enabled"] = true,
+},
+},
+["300"] = {
+["enabled"] = true,
+["executeOnEnter"] = "this.vol = this.vol or tonumber(GetCVar(\"Sound_MusicVolume\")) or 0.4\nthis.t = (this.t or 0) + 1\nlocal t, from, to = this.t, tonumber(GetCVar(\"Sound_MusicVolume\")) or this.vol, 0.03\nlocal steps, dur = 30, 2.5\nfor i = 1, steps do\n  C_Timer.After(i * dur / steps, function()\n    if this.t == t then\n      local p = i / steps\n      p = p * p * (3 - 2 * p)\n      SetCVar(\"Sound_MusicVolume\", from + (to - from) * p)\n    end\n  end)\nend",
+["executeOnExit"] = "if not this.vol then return end\nthis.t = (this.t or 0) + 1\nlocal t, from, to = this.t, tonumber(GetCVar(\"Sound_MusicVolume\")) or 0, this.vol\nlocal steps, dur = 40, 3.5\nfor i = 1, steps do\n  C_Timer.After(i * dur / steps, function()\n    if this.t == t then\n      local p = i / steps\n      p = p * p * (3 - 2 * p)\n      SetCVar(\"Sound_MusicVolume\", from + (to - from) * p)\n      if i == steps then this.vol = nil end\n    end\n  end)\nend",
+["rotation"] = {
+["pitchDegrees"] = -5,
+["rotationType"] = "degrees",
+},
+["transitionTime"] = {
+["timeToEnter"] = 0.2,
+["timeToExit"] = 0.5,
+},
+["viewZoom"] = {
+["enabled"] = true,
+["zoomType"] = "in",
+["zoomValue"] = 3,
+},
+["hideUI"] = {
+["customFramesToKeep"] = {
+["ContainerFrame4"] = true,
+["SideDressUpFrame"] = true,
+["ContainerFrame6"] = true,
+["OverlayPlayerCastingBarFrame"] = true,
+["ContainerFrameCombinedBags"] = true,
+["ContainerFrame3"] = true,
+["DressUpFrame"] = true,
+["PlayerCastingBarFrame"] = true,
+["ContainerFrame5"] = true,
+["ContainerFrame2"] = true,
+["ContainerFrame1"] = true,
+},
+["enabled"] = true,
+["keepCustomFrames"] = true,
+["fadeOpacity"] = 0,
+["keepMinimap"] = true,
+},
+["situationSettings"] = {
 ["cvars"] = {
 ["test_cameraTargetFocusInteractEnable"] = 1,
+["test_cameraOverShoulder"] = 0.6,
+["test_cameraTargetFocusInteractStrengthPitch"] = 0.75,
+["test_cameraTargetFocusInteractStrengthYaw"] = 1,
+},
+},
+},
+["020"] = {
+["enabled"] = true,
+["situationSettings"] = {
+["cvars"] = {
+["test_cameraDynamicPitchBaseFovPad"] = 0.09,
 ["test_cameraDynamicPitch"] = 1,
-["test_cameraHeadMovementStrength"] = 0.5,
+["test_cameraHeadMovementStrength"] = 0,
+["test_cameraDynamicPitchBaseFovPadDownScale"] = 0.25,
+["test_cameraDynamicPitchBaseFovPadFlying"] = 0.75,
+["test_cameraOverShoulder"] = 0,
+["test_cameraDynamicPitchSmartPivotCutoffDist"] = 10,
+},
+},
+["viewZoom"] = {
+["zoomValue"] = 7.5,
+},
+},
+["100"] = {
+["enabled"] = true,
+["situationSettings"] = {
+["cvars"] = {
 ["cameraDistanceMaxZoomFactor"] = 2.6,
+},
+},
+["viewZoom"] = {
+["enabled"] = true,
+["zoomValue"] = 15,
+},
+["hideUI"] = {
+["enabled"] = true,
+["customFramesToKeep"] = {
+["MerchantFrame"] = false,
+["MainActionBar"] = true,
+["ClassTrainerFrame"] = false,
+["StaticPopup1"] = false,
+["BankFrame"] = false,
+["WardrobeFrame"] = false,
+["BagnonBankFrame1"] = false,
+["DebuffFrame"] = false,
+["PetStableFrame"] = false,
+["QuestFrame"] = false,
+["GossipFrame"] = false,
+["AuctionHouseFrame"] = false,
+["BuffFrame"] = false,
+},
+["keepCustomFrames"] = true,
+["keepEncounterBar"] = true,
+["fadeOpacity"] = 0,
+["keepMinimap"] = true,
+},
+["transitionTime"] = {
+["timeToEnter"] = 1.5,
+["timeToExit"] = 2,
+},
+},
+["160"] = {
+["enabled"] = true,
+["viewZoom"] = {
+["enabled"] = true,
+["zoomValue"] = 19.5,
+},
+["hideUI"] = {
+["enabled"] = true,
+["fadeOpacity"] = 0,
+["keepChatFrame"] = true,
+},
+},
+},
+["zoomRestoreSetting"] = "adaptive",
+["standardSettings"] = {
+["reactiveZoomAddIncrements"] = 0,
+["reactiveZoomAddIncrementsAlways"] = 3,
+["cvars"] = {
+["test_cameraTargetFocusInteractEnable"] = 1,
+["cameraZoomSpeed"] = 15,
+["test_cameraHeadMovementStrength"] = 0.5,
+["test_cameraDynamicPitch"] = 1,
+["cameraDistanceMaxZoomFactor"] = 1,
+["test_cameraOverShoulder"] = 0.8000000000000007,
 },
 },
 },
