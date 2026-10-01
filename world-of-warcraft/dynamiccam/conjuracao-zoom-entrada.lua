@@ -1,7 +1,7 @@
 -- DynamicCam > Situacoes > "Conjurando (fora de combate)" e "Conjurando (em combate)"
 -- > Controles de Situacao > Script de Entrada
--- Zoom RELATIVO: aproxima a partir de onde a camera esta (nao usa valor fixo).
--- O "Script de Saida" afasta de volta o mesmo tanto.
+-- Zoom RELATIVO: aproxima a partir de onde a camera esta (nao usa valor fixo)
+-- e anota esse ponto de partida; o "Script de Saida" volta exatamente para ele.
 -- Na secao Zoom/Visao das duas situacoes o zoom tem que ficar DESLIGADO.
 
 -- ===== AJUSTE AQUI =====
@@ -17,14 +17,14 @@ C_Timer.After(0, function()
   if estado.aproximado then return end -- ja aproximou (ex.: entrou em combate no meio da magia)
 
   -- Se a camera ainda esta voltando da magia anterior (conjurou de novo rapido),
-  -- a base e o ponto para onde ela estava voltando, nao o meio do caminho.
+  -- o ponto de partida e o destino dessa volta, nao o meio do caminho.
   local aindaVoltando = estado.fimDoRetorno and GetTime() < estado.fimDoRetorno
-  local zoomAtual = aindaVoltando and estado.zoomDoRetorno or GetCameraZoom()
-  local zoomDestino = math.max(zoomAtual - distanciaParaAproximar, distanciaMinimaDaCamera)
-  if zoomDestino >= zoomAtual then return end
+  local pontoDePartida = aindaVoltando and estado.pontoDePartida or GetCameraZoom()
+  local zoomDestino = math.max(pontoDePartida - distanciaParaAproximar, distanciaMinimaDaCamera)
+  if zoomDestino >= pontoDePartida then return end
 
   estado.aproximado = true
-  estado.quantoAproximou = zoomAtual - zoomDestino
+  estado.pontoDePartida = pontoDePartida
   estado.fimDoRetorno = nil
   DynamicCam:ResetReactiveZoomTarget()
   LibStub("LibCamera-1.0"):SetZoom(zoomDestino, segundosParaAproximar)

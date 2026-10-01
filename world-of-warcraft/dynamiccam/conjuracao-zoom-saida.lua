@@ -1,7 +1,9 @@
 -- DynamicCam > Situacoes > "Conjurando (fora de combate)" e "Conjurando (em combate)"
 -- > Controles de Situacao > Script de Saida
--- Afasta o mesmo tanto que o Script de Entrada aproximou, a partir de onde a
--- camera estiver (se voce mexeu no zoom durante a magia, respeita isso).
+-- Volta exatamente para o ponto de partida anotado pelo Script de Entrada.
+-- (Nao faz "posicao atual + o que aproximou": com magia rapida a camera ainda
+-- nao terminou de aproximar quando a magia acaba, e a conta fazia a camera
+-- terminar cada vez mais longe.)
 
 -- ===== AJUSTE AQUI =====
 local segundosParaAfastar = 0.8   -- duracao do movimento de voltar
@@ -17,11 +19,9 @@ C_Timer.After(0.05, function()
   if aindaConjurando or not estado.aproximado then return end
 
   estado.aproximado = false
-  local zoomDestino = GetCameraZoom() + estado.quantoAproximou
-  -- Anota para onde esta voltando: se conjurar de novo antes de chegar,
-  -- o Script de Entrada parte daqui e nao do meio do caminho.
-  estado.zoomDoRetorno = zoomDestino
+  -- Anota quando a volta termina: se conjurar de novo antes, o Script de
+  -- Entrada parte do mesmo ponto de partida, nao do meio do caminho.
   estado.fimDoRetorno = GetTime() + segundosParaAfastar
   DynamicCam:ResetReactiveZoomTarget()
-  LibStub("LibCamera-1.0"):SetZoom(zoomDestino, segundosParaAfastar)
+  LibStub("LibCamera-1.0"):SetZoom(estado.pontoDePartida, segundosParaAfastar)
 end)
