@@ -48,13 +48,25 @@ return false
 ["330"] = {
 ["enabled"] = true,
 ["transitionTime"] = {
-["timeToEnter"] = 0.8,
-["timeToExit"] = 0.8,
+["timeToEnter"] = 1.2,
+["timeToExit"] = 1,
 },
 ["viewZoom"] = {
 ["enabled"] = true,
-["zoomType"] = "in",
-["zoomValue"] = 6,
+["zoomType"] = "set",
+["zoomValue"] = 3.5,
+},
+["rotation"] = {
+["enabled"] = true,
+["rotationType"] = "degrees",
+["yawDegrees"] = 180,
+["pitchDegrees"] = 0,
+["rotateBack"] = true,
+},
+["situationSettings"] = {
+["cvars"] = {
+["test_cameraOverShoulder"] = -1.2,
+},
 },
 },
 ["custom4"] = {
