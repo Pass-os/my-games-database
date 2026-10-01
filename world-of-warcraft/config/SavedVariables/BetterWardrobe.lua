@@ -10,7 +10,9 @@ BetterWardrobe_CharacterData = {
 BetterWardrobe_SavedSetData = {
 ["global"] = {
 ["characterClass"] = {
+["Guillgalad - Azralon"] = "PALADIN",
 ["Deane - Azralon"] = "MAGE",
+["Kurufinwe - Azralon"] = "HUNTER",
 },
 },
 }
@@ -19,7 +21,11 @@ BetterWardrobe_SubstituteItemData = {
 BetterWardrobe_ListData = {
 ["favoritesDB"] = {
 ["profiles"] = {
+["Guillgalad - Azralon"] = {
+},
 ["Deane - Azralon"] = {
+},
+["Kurufinwe - Azralon"] = {
 },
 },
 },
@@ -27,17 +33,23 @@ BetterWardrobe_ListData = {
 },
 ["collectionListDB"] = {
 ["profiles"] = {
+["Guillgalad - Azralon"] = {
+},
 ["Deane - Azralon"] = {
 },
+["Kurufinwe - Azralon"] = {
 },
 },
-["SituationPresetsDB"] = {
 },
 ["OutfitDB"] = {
+},
+["SituationPresetsDB"] = {
 },
 ["HiddenAppearanceDB"] = {
 ["profiles"] = {
 ["Deane - Azralon"] = {
+},
+["Guillgalad - Azralon"] = {
 },
 },
 },

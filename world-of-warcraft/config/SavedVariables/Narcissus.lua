@@ -46,41 +46,37 @@ NarcissusDB = {
 ["UseAddonCompartment"] = true,
 ["DressingRoom"] = true,
 ["UseBustShot"] = true,
-["TooltipLanguages"] = {
-},
+["UseEntranceVisual"] = true,
 ["DressingRoomItemSetListHideDupes"] = true,
 ["TranslateName"] = false,
 ["TalentTreeUseClassBackground"] = false,
-["UseEntranceVisual"] = true,
-["FontHeightItemName"] = 10,
 ["RealmNames"] = {
 [3209] = "Azralon",
 },
-["Version"] = 10000,
+["ConduitTooltip"] = false,
+["TooltipLanguages"] = {
+},
+["installTime"] = 1790563880,
 ["DressingRoomShowSlot"] = true,
 ["EnableDoubleTap"] = false,
-["Tutorials"] = {
-["ExitConfirmation"] = true,
-["Movement"] = false,
-["SpellVisualBrowser"] = true,
-["NPCBrowserEntance"] = true,
-["WeaponBrowser"] = true,
-["NPCBrowser"] = true,
-},
+["SpeedyScreenshotAlert"] = true,
 ["AutoPlayAnimation"] = false,
 ["AFKScreen"] = false,
-["Favorites"] = {
-["FavoriteAnimationIDs"] = {
-},
-},
+["IndependentMinimapButton"] = false,
 ["AKFScreenDelay"] = false,
-["GlobalScale"] = 0.8,
-["WardrobeCollectionSetsCheckbox"] = true,
-["UseWoWQualityColor"] = false,
+["TalentTreeAnchor"] = 1,
+["TalentTreeForPaperDoll"] = false,
+["NameTranslationPosition"] = 1,
 ["PaperDollWidget_ClassSet"] = true,
 ["TalentTreeForEquipmentManager"] = true,
-["CameraOrbit"] = true,
+["HideTextsWithUI"] = false,
+["AnchorToMinimap"] = true,
 ["NamePlateNameOffset"] = 0,
+["TooltipTheme"] = "Bright",
+["OnlyShowOwnedUpgradeItem"] = true,
+["GemManager"] = true,
+["ModelPanelScale"] = 1,
+["AutoDisplayQuestItem"] = false,
 ["PerksProgramDB"] = {
 ["MonthNames"] = {
 {
@@ -126,7 +122,7 @@ NarcissusDB = {
 [1190] = "::description::A lenda dos Martelo Feroz diz que a plumagem alaranjada dos grifos é um traço hereditário, passado de ancestrais elementais.::price::650::transmogSetID::0::mountTypeName::Voador::quality::4::perksVendorCategoryID::2::invType::INVTYPE_NON_EQUIP_IGNORE::mountID::2628::itemModifiedAppearanceID::0::speciesID::0::name::Grifo do Planalto Candente::itemID::247793::addedDate::2026/45::",
 [1572] = "::description::A roupa perfeita para todas as suas necessidades mágicas misteriosas! Vem com bolsos que podem levar você a dimensões diferentes, ou não.::price::100::transmogSetID::5356::quality::1::perksVendorCategoryID::8::invType::INVTYPE_NON_EQUIP_IGNORE::mountID::0::itemModifiedAppearanceID::0::speciesID::0::name::Indumentária: Induto Aquático de Feiticeiro::itemID::258019::addedDate::2026/45::",
 [1576] = "::description::Os vermeloques de Gummi têm vários predadores naturais e são conhecidos por sua textura borrachuda e sabor adocicado.::price::250::transmogSetID::0::quality::3::perksVendorCategoryID::3::invType::INVTYPE_NON_EQUIP_IGNORE::mountID::0::itemModifiedAppearanceID::0::speciesID::4616::name::Gummi::itemID::228765::addedDate::2026/45::",
-[1568] = "::description::De beleza perigosa e peso devastador.::price::150::transmogSetID::0::quality::3::perksVendorCategoryID::1::invType::INVTYPE_2HWEAPON::mountID::0::itemModifiedAppearanceID::309687::speciesID::0::name::Malho de Guerra de Lumepedra Calejado::itemID::276421::addedDate::2026/45::",
+[1539] = "::description::O laço é puramente estético. O resto é coisa séria.::price::50::transmogSetID::0::quality::1::perksVendorCategoryID::1::invType::INVTYPE_HEAD::mountID::0::itemModifiedAppearanceID::308929::speciesID::0::name::Tampa Tijolo do Pistoleiro::itemID::274627::addedDate::2026/45::",
 [1191] = "::description::Este talbuque é uma montaria teimosa e obstinada, mesmo depois que se acostuma com o dono. Cavalgue com cuidado.::price::325::transmogSetID::0::mountTypeName::Terrestre::quality::4::perksVendorCategoryID::2::invType::INVTYPE_NON_EQUIP_IGNORE::mountID::2630::itemModifiedAppearanceID::0::speciesID::0::name::Pé-de-brisa Turrão::itemID::247795::addedDate::2026/45::",
 [1575] = "::description::Um tabardo básico para muitas ocasiões.::price::100::transmogSetID::0::quality::2::perksVendorCategoryID::1::invType::INVTYPE_TABARD::mountID::0::itemModifiedAppearanceID::224732::speciesID::0::name::Tabardo Vivaz Clássico::itemID::228762::addedDate::2026/45::",
 [1537] = "::description::Ideal para um concerto extravagante na floresta.::price::50::transmogSetID::0::quality::1::perksVendorCategoryID::1::invType::INVTYPE_HEAD::mountID::0::itemModifiedAppearanceID::311083::speciesID::0::name::Soturmelo Atijolado::itemID::279435::addedDate::2026/45::",
@@ -137,7 +133,7 @@ NarcissusDB = {
 [1557] = "::description::Entalhada em talassita e outros cristais de depósitos encontrados na Mata Terokkar.::price::150::transmogSetID::0::quality::3::perksVendorCategoryID::1::invType::INVTYPE_2HWEAPON::mountID::0::itemModifiedAppearanceID::309676::speciesID::0::name::Machado de Guerra de Talassita Grandioso::itemID::276410::addedDate::2026/45::",
 [1561] = "::description::Como uma lua crescente iluminada, vívida e bela tal qual as estrelas lá no céu.::price::150::transmogSetID::0::quality::3::perksVendorCategoryID::1::invType::INVTYPE_WEAPON::mountID::0::itemModifiedAppearanceID::309671::speciesID::0::name::Picador de Draenita Elegante::itemID::276405::addedDate::2026/45::",
 [1565] = "::description::As propriedades regenerativas mágicas da talassita fizeram crescer a popularidade desta arma ornamental entre sacerdotes e curandeiros.::price::150::transmogSetID::0::quality::3::perksVendorCategoryID::1::invType::INVTYPE_WEAPON::mountID::0::itemModifiedAppearanceID::309680::speciesID::0::name::Malho de Guerra de Talassita Cerimonial::itemID::276414::addedDate::2026/45::",
-[1539] = "::description::O laço é puramente estético. O resto é coisa séria.::price::50::transmogSetID::0::quality::1::perksVendorCategoryID::1::invType::INVTYPE_HEAD::mountID::0::itemModifiedAppearanceID::308929::speciesID::0::name::Tampa Tijolo do Pistoleiro::itemID::274627::addedDate::2026/45::",
+[1568] = "::description::De beleza perigosa e peso devastador.::price::150::transmogSetID::0::quality::3::perksVendorCategoryID::1::invType::INVTYPE_2HWEAPON::mountID::0::itemModifiedAppearanceID::309687::speciesID::0::name::Malho de Guerra de Lumepedra Calejado::itemID::276421::addedDate::2026/45::",
 },
 ["CurrentMonthData"] = {
 ["items"] = {
@@ -193,23 +189,27 @@ NarcissusDB = {
 ["month"] = 45,
 },
 },
-["AutoDisplayQuestItem"] = false,
-["OnlyShowOwnedUpgradeItem"] = true,
-["GemManager"] = true,
-["ModelPanelScale"] = 1,
-["TooltipTheme"] = "Bright",
-["AnchorToMinimap"] = true,
-["HideTextsWithUI"] = false,
+["CameraOrbit"] = true,
 ["TalentTreeForInspection"] = true,
-["NameTranslationPosition"] = 1,
-["TalentTreeForPaperDoll"] = false,
-["TalentTreeAnchor"] = 1,
-["IndependentMinimapButton"] = false,
-["SpeedyScreenshotAlert"] = true,
+["UseWoWQualityColor"] = false,
+["WardrobeCollectionSetsCheckbox"] = true,
+["GlobalScale"] = 0.8,
+["Favorites"] = {
+["FavoriteAnimationIDs"] = {
+},
+},
+["Tutorials"] = {
+["ExitConfirmation"] = true,
+["Movement"] = false,
+["SpellVisualBrowser"] = true,
+["NPCBrowserEntance"] = true,
+["NPCBrowser"] = true,
+["WeaponBrowser"] = true,
+},
 ["TradingPostChangePost"] = true,
-["installTime"] = 1790563880,
+["Version"] = 10000,
 ["SearchSuggestEnable"] = false,
-["ConduitTooltip"] = false,
+["FontHeightItemName"] = 10,
 ["DressingRoomUseTargetModel"] = true,
 }
 NarciAchievementOptions = {
@@ -220,10 +220,10 @@ NarciAchievementOptions = {
 },
 ["pinnedStatistics"] = {
 },
+["Theme"] = 1,
+["ReplaceToast"] = true,
 ["BookmarkedAchievements"] = {
 },
-["ReplaceToast"] = true,
-["Theme"] = 1,
 ["ShowRedMark"] = false,
 }
 NarciStatisticsDB = {
@@ -234,6 +234,26 @@ NarciStatisticsDB = {
 }
 NarciTurntableOptions = nil
 NarciCharacterProfiles = {
+["0C2375DD"] = {
+["race"] = 10,
+["name"] = "Guillgalad",
+["birth"] = 1790815725,
+["serverID"] = 3209,
+["lastVisit"] = 1790815725,
+["outfits"] = {
+},
+["class"] = 2,
+},
+["0C23F44E"] = {
+["race"] = 1,
+["name"] = "Deane",
+["birth"] = 1790742332,
+["serverID"] = 3209,
+["lastVisit"] = 1790815132,
+["outfits"] = {
+},
+["class"] = 8,
+},
 ["0C23ADFC"] = {
 ["race"] = 5,
 ["name"] = "Gurthmorg",
@@ -244,15 +264,15 @@ NarciCharacterProfiles = {
 },
 ["class"] = 9,
 },
-["0C23F44E"] = {
-["race"] = 1,
-["name"] = "Deane",
-["birth"] = 1790742332,
+["0C2362F1"] = {
+["race"] = 10,
+["name"] = "Kurufinwe",
+["birth"] = 1790815587,
 ["serverID"] = 3209,
-["lastVisit"] = 1790804072,
+["lastVisit"] = 1790815587,
 ["outfits"] = {
 },
-["class"] = 8,
+["class"] = 3,
 },
 }
 NarciPhotoModeDB = {
