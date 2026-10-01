@@ -15,6 +15,7 @@ DynamicCamDB = {
 },
 ["situations"] = {
 ["320"] = {
+["name"] = [=[|TInterface\Icons\Trade_Herbalism:16|t Coleta]=],
 ["enabled"] = true,
 ["condition"] = [=[local MAGIAS_BASE_DE_COLETA = {
   2575,  -- Mineracao
@@ -46,6 +47,7 @@ return false
 },
 },
 ["330"] = {
+["name"] = [=[|TInterface\Icons\Trade_BlackSmithing:16|t Janela de Profissões Aberta]=],
 ["enabled"] = true,
 ["transitionTime"] = {
 ["timeToEnter"] = 1.2,
@@ -181,7 +183,7 @@ C_Timer.After(0, function()
   LibStub("LibCamera-1.0"):SetZoom(zoomDestino, segundosParaAproximar)
 end)
 ]=],
-["name"] = "Conjurando (em combate)",
+["name"] = [=[|TInterface\Icons\Spell_Fire_FlameBolt:16|t Conjurando (em combate)]=],
 ["hideUI"] = {
 ["enabled"] = false,
 },
@@ -323,7 +325,7 @@ C_Timer.After(0, function()
   LibStub("LibCamera-1.0"):SetZoom(zoomDestino, segundosParaAproximar)
 end)
 ]=],
-["name"] = "Conjurando (fora de combate)",
+["name"] = [=[|TInterface\Icons\Spell_Holy_MagicalSentry:16|t Conjurando (fora de combate)]=],
 ["hideUI"] = {
 ["enabled"] = false,
 },
@@ -352,6 +354,7 @@ end)
 },
 },
 ["050"] = {
+["name"] = [=[|TInterface\Icons\Ability_DualWield:16|t Arena]=],
 ["enabled"] = true,
 ["situationSettings"] = {
 ["cvars"] = {
@@ -361,6 +364,7 @@ end)
 },
 },
 ["030"] = {
+["name"] = [=[|TInterface\Icons\INV_Misc_Head_Dragon_01:16|t Raide]=],
 ["enabled"] = true,
 ["situationSettings"] = {
 ["cvars"] = {
@@ -370,6 +374,7 @@ end)
 },
 },
 ["005"] = {
+["name"] = [=[|TInterface\Icons\INV_Misc_Lantern_01:16|t Mundo (Interiores)]=],
 ["enabled"] = true,
 ["situationSettings"] = {
 ["cvars"] = {
@@ -407,7 +412,7 @@ end)
 ["executeOnEnter"] = "",
 ["executeOnInit"] = "this.frames = {\"AuctionHouseFrame\", \"BankFrame\", \"ClassTrainerFrame\", \"GossipFrame\", \"ImmersionFrame\", \"MerchantFrame\", \"QuestFrame\"}\n\nDynamicCam.db.profile.dcBigNPCs = DynamicCam.db.profile.dcBigNPCs or {}\n\nthis.GetNpcId = function(unit)\n  local guid = UnitGUID(unit)\n  if not guid or (issecretvalue and issecretvalue(guid)) then return nil end\n  local unitType, _, _, _, _, npcId = strsplit(\"-\", guid)\n  if unitType == \"Creature\" or unitType == \"Vehicle\" then return npcId end\n  return nil\nend\n\ngetfenv(0).SLASH_DCNPCGRANDE1 = \"/npcgrande\"\nSlashCmdList[\"DCNPCGRANDE\"] = function()\n  local list = DynamicCam.db.profile.dcBigNPCs\n  local unit = UnitExists(\"npc\") and \"npc\" or \"target\"\n  local npcId = this.GetNpcId(unit)\n  if not npcId then\n    print(\"|cff33ccffDynamicCam:|r fale com o NPC (ou selecione-o) antes de usar /npcgrande\")\n    return\n  end\n  local name = UnitName(unit)\n  if issecretvalue and issecretvalue(name) then name = nil end\n  if list[npcId] then\n    list[npcId] = nil\n    print(\"|cff33ccffDynamicCam:|r \" .. (name or npcId) .. \" removido da lista de NPCs grandes\")\n  else\n    list[npcId] = name or true\n    print(\"|cff33ccffDynamicCam:|r \" .. (name or npcId) .. \" marcado como NPC grande - a camera vai afastar nele\")\n  end\n  DynamicCam:EvaluateSituations()\nend\n",
 ["condition"] = "if not UnitExists(\"npc\") then return false end\nlocal npcId = this.GetNpcId(\"npc\")\nif not npcId then return false end\n\nlocal list = DynamicCam.db.profile.dcBigNPCs\nlocal grande = list and list[npcId]\nif not grande and NpcAltura and NpcAltura.EhGrande then\n  grande = NpcAltura.EhGrande(npcId)\nend\nif not grande then return false end\n\nfor _, v in pairs(this.frames) do\n  if _G[v] and _G[v]:IsShown() then return true end\nend\nreturn false",
-["name"] = "NPC grande (dialogo)",
+["name"] = [=[|TInterface\Icons\Spell_Nature_Strength:16|t NPC grande (dialogo)]=],
 ["situationSettings"] = {
 ["cvars"] = {
 ["test_cameraTargetFocusInteractEnable"] = 1,
@@ -449,6 +454,7 @@ end)
 },
 },
 ["302"] = {
+["name"] = [=[|TInterface\Icons\Trade_Fishing:16|t Pesca]=],
 ["enabled"] = true,
 ["viewZoom"] = {
 ["enabled"] = true,
@@ -457,6 +463,7 @@ end)
 },
 },
 ["200"] = {
+["name"] = [=[|TInterface\Icons\INV_Misc_Rune_01:16|t Pedra de Regresso/Teletransporte]=],
 ["enabled"] = true,
 ["rotation"] = {
 ["enabled"] = true,
@@ -472,6 +479,7 @@ end)
 },
 },
 ["002"] = {
+["name"] = [=[|TInterface\Icons\INV_Misc_Lantern_01:16|t Cidade (Interiores)]=],
 ["enabled"] = true,
 ["situationSettings"] = {
 ["cvars"] = {
@@ -485,6 +493,7 @@ end)
 },
 },
 ["102"] = {
+["name"] = [=[|TInterface\Icons\Ability_Mount_Wyvern_01:16|t Montaria (apenas montaria voadora + no ar)]=],
 ["enabled"] = true,
 ["viewZoom"] = {
 ["enabled"] = true,
@@ -513,6 +522,7 @@ end)
 },
 },
 ["301"] = {
+["name"] = [=[|TInterface\Icons\INV_Letter_15:16|t Caixa de Correio]=],
 ["enabled"] = true,
 ["transitionTime"] = {
 ["timeToEnter"] = 0.3,
@@ -530,6 +540,7 @@ end)
 },
 },
 ["060"] = {
+["name"] = [=[|TInterface\Icons\INV_BannerPVP_02:16|t Campo de Batalha]=],
 ["enabled"] = true,
 ["situationSettings"] = {
 ["cvars"] = {
@@ -539,6 +550,7 @@ end)
 },
 },
 ["303"] = {
+["name"] = [=[|TInterface\Icons\Spell_Nature_Sleep:16|t Ausente (AFK)]=],
 ["enabled"] = true,
 ["rotation"] = {
 ["enabled"] = true,
@@ -554,6 +566,7 @@ end)
 },
 },
 ["300"] = {
+["name"] = [=[|TInterface\Icons\INV_Misc_Note_01:16|t Interação com NPC]=],
 ["enabled"] = true,
 ["executeOnExit"] = "if not this.vol then return end\nthis.t = (this.t or 0) + 1\nlocal t, from, to = this.t, tonumber(GetCVar(\"Sound_MusicVolume\")) or 0, this.vol\nlocal steps, dur = 40, 3.5\nfor i = 1, steps do\n  C_Timer.After(i * dur / steps, function()\n    if this.t == t then\n      local p = i / steps\n      p = p * p * (3 - 2 * p)\n      SetCVar(\"Sound_MusicVolume\", from + (to - from) * p)\n      if i == steps then this.vol = nil end\n    end\n  end)\nend",
 ["transitionTime"] = {
@@ -599,6 +612,7 @@ end)
 },
 },
 ["020"] = {
+["name"] = [=[|TInterface\Icons\INV_Misc_Key_03:16|t Masmorra/Cenário]=],
 ["enabled"] = true,
 ["situationSettings"] = {
 ["cvars"] = {
@@ -616,6 +630,7 @@ end)
 },
 },
 ["100"] = {
+["name"] = [=[|TInterface\Icons\Ability_Mount_RidingHorse:16|t Montaria (qualquer)]=],
 ["enabled"] = true,
 ["situationSettings"] = {
 ["cvars"] = {
@@ -654,6 +669,7 @@ end)
 },
 },
 ["160"] = {
+["name"] = [=[|TInterface\Icons\Ability_Mount_Gryphon_01:16|t Táxi]=],
 ["enabled"] = true,
 ["viewZoom"] = {
 ["enabled"] = true,

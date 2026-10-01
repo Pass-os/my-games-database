@@ -172,3 +172,10 @@ tambem conta como grande, sem precisar de `/npcgrande`. Calibrar no jogo:
 - **Ombro na Configuracoes Base voltou ao padrao** (era 1.2). Se foi de
   proposito, ignorar.
 - Ainda nao criada: "Transformacao (historia)". Ver `../PENDENTE.md`.
+
+## Icones nos nomes
+
+As situacoes ligadas tem um icone do jogo no nome (`|TInterface\Icons\<icone>:16|t Nome`),
+so para achar mais rapido na lista. Emoji nao funciona: a fonte do WoW nao tem.
+As cores da lista sao do proprio DynamicCam: verde ativa, branco ligada esperando,
+azul condicao valendo mas perdendo por prioridade, cinza desligada, vermelho erro.
