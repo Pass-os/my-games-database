@@ -501,6 +501,9 @@ end)
 },
 ["hideUI"] = {
 ["customFramesToKeep"] = {
+["ZoneTextFrame"] = true,
+["SubZoneTextFrame"] = true,
+["EventToastManagerFrame"] = true,
 ["MerchantFrame"] = false,
 ["MainActionBar"] = true,
 ["ClassTrainerFrame"] = false,
@@ -644,6 +647,9 @@ end)
 ["hideUI"] = {
 ["enabled"] = true,
 ["customFramesToKeep"] = {
+["ZoneTextFrame"] = true,
+["SubZoneTextFrame"] = true,
+["EventToastManagerFrame"] = true,
 ["MerchantFrame"] = false,
 ["MainActionBar"] = true,
 ["ClassTrainerFrame"] = false,
@@ -676,6 +682,12 @@ end)
 ["zoomValue"] = 19.5,
 },
 ["hideUI"] = {
+["keepCustomFrames"] = true,
+["customFramesToKeep"] = {
+["ZoneTextFrame"] = true,
+["SubZoneTextFrame"] = true,
+["EventToastManagerFrame"] = true,
+},
 ["enabled"] = true,
 ["fadeOpacity"] = 0,
 ["keepChatFrame"] = true,

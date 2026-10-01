@@ -49,7 +49,7 @@ maior. Tipo de Zoom: **Definir** (vai sempre para o valor), **Aproximar**
 | Raide | 030 | | | ombro 0, cabeca 0 | padrao |
 | Arena | 050 | | | ombro 0, cabeca 0 | padrao |
 | Campo de Batalha | 060 | | | ombro 0, cabeca 0 | padrao |
-| Montaria (qualquer) | 100 | Definir 15 | Ocultar Interface: opacidade 0, mantem Minimapa, Quadro de Encontro (vigor) e quadros adicionais `MainActionBar` | distancia max 39 | 1.5 / 2.0 s |
+| Montaria (qualquer) | 100 | Definir 15 | Ocultar Interface: opacidade 0, mantem Minimapa, Quadro de Encontro (vigor) e quadros adicionais `MainActionBar`, `ZoneTextFrame`, `SubZoneTextFrame`, `EventToastManagerFrame` (nomes de lugar e avisos de descoberta) | distancia max 39 | 1.5 / 2.0 s |
 | Montaria (apenas montaria voadora + no ar) | 102 | Definir 20 | | | padrao |
 | Taxi | 160 | Definir 19 | Ocultar Interface: opacidade 0, mantem Chat | | padrao |
 | Pedra de Regresso/Teletransporte | 200 | Definir 8 | Rotacao continua 20; Ocultar Interface opacidade 0 | | padrao |
