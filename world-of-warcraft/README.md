@@ -68,6 +68,7 @@ copia cada pasta de la direto para `Interface\AddOns`.
 | FechaDialogoEmCombate | ao entrar em combate fecha o dialogo com NPC: a caixa do Immersion (mesmo caminho do ESC) ou, sem ela, gossip, missao e livro da Blizzard. Nao tem opcoes; desligar e desmarcar na lista de AddOns. |
 | NpcAltura | mede a altura do modelo do NPC do dialogo (ModelScene + GetActiveBoundingBox) e guarda por NPC; a situacao "NPC grande" do DynamicCam usa isso para afastar a camera sozinha. `/altura` mostra a medida, `/altura limite N` calibra (padrao 4), `/altura limpar` esquece as medidas. |
 | MantemJanelasNPC | mantem visiveis as janelas que um NPC abre (loja, treinador, bolsas, provador, escolhas de historia, salao de classe/guarnicao/pacto...) quando o DynamicCam ou o Immersion escondem a interface. Cobre a janela que abre depois de a interface sumir, que a lista "quadros para manter" do DynamicCam nao pega (ela so tenta de novo uma vez, 0,3 s depois). Com Immersion ativo nao mexe em GossipFrame/QuestFrame/ItemTextFrame, que ele substitui. Nomes conferidos no codigo da Blizzard 12.1.0 (wow-ui-source, branch live). |
+| ZoomLivreEstavel | corrige o DynamicCam: ao sair de uma situacao (montaria, NPC, correio...) a camera volta sempre para a distancia que voce escolheu, mesmo se entrou na situacao com a camera ainda voltando da anterior (o DynamicCam anotava o meio do caminho e a camera ia "andando"). `/zoomlivre` mostra a distancia anotada. |
 
 ### Decisoes que nao sao obvias
 

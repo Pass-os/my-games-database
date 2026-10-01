@@ -1,0 +1,9 @@
+## Interface: 120100
+## Title: Zoom Livre Estavel
+## Notes: Faz o DynamicCam devolver a camera sempre para a distancia que voce escolheu, mesmo entrando numa situacao enquanto a camera ainda esta voltando da anterior.
+## Author: Pass-os
+## Version: 1.0.0
+## Dependencies: DynamicCam
+## X-License: MIT
+
+ZoomLivreEstavel.lua
