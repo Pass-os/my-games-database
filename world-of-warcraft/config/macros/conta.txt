@@ -33,7 +33,9 @@ VER 3 000000000000000C " " "2531330"
 /immersion
 END
 VER 3 000000000000000D " " "4640475"
-/dismount [mounted]
+# PARADA AEREA E DEPOIS DESMONTA
+/cast Parada Aérea
+/run C_Timer.After(1.5,function() Dismount() end)
 END
 VER 3 000000000000000E " " "136010"
 /reload

@@ -41,9 +41,9 @@ BetterWardrobe_ListData = {
 },
 },
 },
-["OutfitDB"] = {
-},
 ["SituationPresetsDB"] = {
+},
+["OutfitDB"] = {
 },
 ["HiddenAppearanceDB"] = {
 ["profiles"] = {
