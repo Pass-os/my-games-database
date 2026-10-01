@@ -308,16 +308,14 @@ end)
 ["timeToExit"] = 1,
 },
 ["rotation"] = {
-["enabled"] = true,
-["rotationType"] = "degrees",
-["yawDegrees"] = 180,
-["pitchDegrees"] = 15,
-["rotateBack"] = true,
+["enabled"] = false,
 },
 ["viewZoom"] = {
 ["enabled"] = true,
-["zoomType"] = "set",
-["zoomValue"] = 3.5,
+["viewZoomType"] = "view",
+["viewNumber"] = 3,
+["viewRestore"] = true,
+["viewInstant"] = false,
 },
 ["situationSettings"] = {
 ["cvars"] = {
