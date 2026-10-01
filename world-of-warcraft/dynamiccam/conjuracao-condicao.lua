@@ -22,11 +22,6 @@ local function ehMontaria(magia)
   return C_MountJournal and C_MountJournal.GetMountFromSpell and C_MountJournal.GetMountFromSpell(magia) ~= nil
 end
 
-local function ehReceitaDeProfissao(magia)
-  if not (C_TradeSkillUI and C_TradeSkillUI.GetRecipeInfo) then return false end
-  local ok, receita = pcall(C_TradeSkillUI.GetRecipeInfo, magia)
-  return ok and receita ~= nil
-end
 
 -- Janela de profissoes aberta: quem cuida da camera e a situacao 330.
 if ProfessionsFrame and ProfessionsFrame:IsShown() then return false end
@@ -34,18 +29,17 @@ if ProfessionsFrame and ProfessionsFrame:IsShown() then return false end
 local nomeConjuracao, _, _, _, _, conjuracaoDeProfissao, _, _, magiaConjurada = UnitCastingInfo("player")
 if existe(nomeConjuracao) then
   if legivel(conjuracaoDeProfissao) and conjuracaoDeProfissao then return false end
-  if legivel(magiaConjurada) and (ehMontaria(magiaConjurada) or ehReceitaDeProfissao(magiaConjurada)) then
+  if legivel(magiaConjurada) and ehMontaria(magiaConjurada) then
     return false
   end
   return true
 end
 
-local nomeCanalizacao, _, _, _, _, canalizacaoDeProfissao, _, magiaCanalizada = UnitChannelInfo("player")
+local nomeCanalizacao, _, _, _, _, canalizacaoDeProfissao = UnitChannelInfo("player")
 if not existe(nomeCanalizacao) then return false end
 if legivel(canalizacaoDeProfissao) and canalizacaoDeProfissao then return false end
 local PESCA = 7620
 if legivel(nomeCanalizacao) and C_Spell and C_Spell.GetSpellName and nomeCanalizacao == C_Spell.GetSpellName(PESCA) then
   return false
 end
-if legivel(magiaCanalizada) and ehReceitaDeProfissao(magiaCanalizada) then return false end
 return true
