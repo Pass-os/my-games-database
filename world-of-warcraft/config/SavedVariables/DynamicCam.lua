@@ -14,6 +14,49 @@ DynamicCamDB = {
 ["dcBigNPCs"] = {
 },
 ["situations"] = {
+["320"] = {
+["enabled"] = true,
+["condition"] = [=[local MAGIAS_BASE_DE_COLETA = {
+  2575,  -- Mineracao
+  2366,  -- Herborismo
+  8613,  -- Esfolar
+}
+
+local function legivel(valor) return valor ~= nil and not (issecretvalue and issecretvalue(valor)) end
+
+local nomeDaMagia = UnitCastingInfo("player")
+if not legivel(nomeDaMagia) then
+  nomeDaMagia = UnitChannelInfo("player")
+end
+if not legivel(nomeDaMagia) then return false end
+
+for _, magia in ipairs(MAGIAS_BASE_DE_COLETA) do
+  if C_Spell.GetSpellName(magia) == nomeDaMagia then return true end
+end
+return false
+]=],
+["transitionTime"] = {
+["timeToEnter"] = 0.5,
+["timeToExit"] = 0.8,
+},
+["viewZoom"] = {
+["enabled"] = true,
+["zoomType"] = "in",
+["zoomValue"] = 5,
+},
+},
+["330"] = {
+["enabled"] = true,
+["transitionTime"] = {
+["timeToEnter"] = 0.8,
+["timeToExit"] = 0.8,
+},
+["viewZoom"] = {
+["enabled"] = true,
+["zoomType"] = "in",
+["zoomValue"] = 6,
+},
+},
 ["custom4"] = {
 ["enabled"] = true,
 ["executeOnExit"] = [=[-- ===== AJUSTE AQUI =====
@@ -184,7 +227,43 @@ end)
 ["timeToExit"] = 1,
 },
 ["executeOnInit"] = "",
-["condition"] = "if UnitAffectingCombat(\"player\") then return false end\nlocal function tem(v) return (issecretvalue and issecretvalue(v)) or v ~= nil end\nlocal function secreto(v) return issecretvalue and issecretvalue(v) end\n\nlocal nome, _, _, _, _, _, _, _, spellID = UnitCastingInfo(\"player\")\nif tem(nome) then\n  if spellID and not secreto(spellID) and C_MountJournal and C_MountJournal.GetMountFromSpell\n     and C_MountJournal.GetMountFromSpell(spellID) then\n    return false\n  end\n  return true\nend\n\nlocal canal = UnitChannelInfo(\"player\")\nif not tem(canal) then return false end\nif not secreto(canal) and C_Spell and C_Spell.GetSpellName and canal == C_Spell.GetSpellName(7620) then\n  return false\nend\nreturn true",
+["condition"] = [=[if UnitAffectingCombat("player") then return false end
+
+local function existe(valor) return (issecretvalue and issecretvalue(valor)) or valor ~= nil end
+local function legivel(valor) return valor ~= nil and not (issecretvalue and issecretvalue(valor)) end
+
+local function ehMontaria(magia)
+  return C_MountJournal and C_MountJournal.GetMountFromSpell and C_MountJournal.GetMountFromSpell(magia) ~= nil
+end
+
+local function ehReceitaDeProfissao(magia)
+  if not (C_TradeSkillUI and C_TradeSkillUI.GetRecipeInfo) then return false end
+  local ok, receita = pcall(C_TradeSkillUI.GetRecipeInfo, magia)
+  return ok and receita ~= nil
+end
+
+-- Janela de profissoes aberta: quem cuida da camera e a situacao 330.
+if ProfessionsFrame and ProfessionsFrame:IsShown() then return false end
+
+local nomeConjuracao, _, _, _, _, conjuracaoDeProfissao, _, _, magiaConjurada = UnitCastingInfo("player")
+if existe(nomeConjuracao) then
+  if legivel(conjuracaoDeProfissao) and conjuracaoDeProfissao then return false end
+  if legivel(magiaConjurada) and (ehMontaria(magiaConjurada) or ehReceitaDeProfissao(magiaConjurada)) then
+    return false
+  end
+  return true
+end
+
+local nomeCanalizacao, _, _, _, _, canalizacaoDeProfissao, _, magiaCanalizada = UnitChannelInfo("player")
+if not existe(nomeCanalizacao) then return false end
+if legivel(canalizacaoDeProfissao) and canalizacaoDeProfissao then return false end
+local PESCA = 7620
+if legivel(nomeCanalizacao) and C_Spell and C_Spell.GetSpellName and nomeCanalizacao == C_Spell.GetSpellName(PESCA) then
+  return false
+end
+if legivel(magiaCanalizada) and ehReceitaDeProfissao(magiaCanalizada) then return false end
+return true
+]=],
 ["viewZoom"] = {
 ["enabled"] = false,
 ["zoomMax"] = 15,

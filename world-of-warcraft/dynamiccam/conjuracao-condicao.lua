@@ -1,45 +1,51 @@
 -- DynamicCam > Situacoes > "Conjurando (fora de combate)" > Controles de Situacao > Condicao
--- Aproxima a camera enquanto voce conjura ou
--- canaliza uma magia: profissoes, magias de historia, invocacoes, rituais.
+-- Verdadeira fora de combate enquanto voce conjura ou canaliza uma magia
+-- "comum" (historia, invocacao, ritual...). Ficam de fora, porque tem
+-- situacao propria:
+--   - criar item de profissao   -> "Janela de Profissoes Aberta" (330)
+--   - coletar (minerar, herborismo, esfolar) -> "Coleta" (320, prioridade 120 vence esta)
+--   - pescar                    -> "Pesca" (302)
+--   - pedra de regresso/teleporte -> "Pedra de Regresso/Teleporte" (200, prioridade 130 vence esta)
+--   - invocar montaria          -> nada (nao faz sentido aproximar)
 --
--- Fora de combate de proposito: magias de combate tem 1-2 s de conjuracao e a
--- camera ficaria indo e voltando a cada uma. Tirar a primeira linha libera
--- em combate tambem.
---
--- Eventos (campo "Eventos"):
---   UNIT_SPELLCAST_START, UNIT_SPELLCAST_STOP, UNIT_SPELLCAST_SUCCEEDED,
---   UNIT_SPELLCAST_INTERRUPTED, UNIT_SPELLCAST_FAILED,
---   UNIT_SPELLCAST_CHANNEL_START, UNIT_SPELLCAST_CHANNEL_STOP,
---   PLAYER_REGEN_DISABLED, PLAYER_REGEN_ENABLED
---
--- Prioridade sugerida: 60 (abaixo de Pedra de regresso/teleporte, NPC,
--- montaria e taxi). Zoom sugerido: Aproximar 8. Transicao 0.6 / 0.8 s.
---
--- No 12.x algumas informacoes de conjuracao podem vir como "valor secreto";
--- um valor secreto so existe se ha conjuracao, entao conta como verdadeiro.
---
--- Ignora invocacao de montaria (C_MountJournal.GetMountFromSpell) e a pesca,
--- que tem situacao propria de prioridade menor (20) e perderia para esta.
+-- Eventos: UNIT_SPELLCAST_START, UNIT_SPELLCAST_STOP, UNIT_SPELLCAST_SUCCEEDED,
+--   UNIT_SPELLCAST_INTERRUPTED, UNIT_SPELLCAST_FAILED, UNIT_SPELLCAST_CHANNEL_START,
+--   UNIT_SPELLCAST_CHANNEL_STOP, PLAYER_REGEN_DISABLED, PLAYER_REGEN_ENABLED
+-- Prioridade 60. Zoom/Visao DESLIGADO: o zoom e relativo, pelos scripts de entrada/saida.
 
 if UnitAffectingCombat("player") then return false end
-local function tem(v) return (issecretvalue and issecretvalue(v)) or v ~= nil end
-local function secreto(v) return issecretvalue and issecretvalue(v) end
 
--- Conjuracao: ignora magias que invocam montaria.
-local nome, _, _, _, _, _, _, _, spellID = UnitCastingInfo("player")
-if tem(nome) then
-  if spellID and not secreto(spellID) and C_MountJournal and C_MountJournal.GetMountFromSpell
-     and C_MountJournal.GetMountFromSpell(spellID) then
+local function existe(valor) return (issecretvalue and issecretvalue(valor)) or valor ~= nil end
+local function legivel(valor) return valor ~= nil and not (issecretvalue and issecretvalue(valor)) end
+
+local function ehMontaria(magia)
+  return C_MountJournal and C_MountJournal.GetMountFromSpell and C_MountJournal.GetMountFromSpell(magia) ~= nil
+end
+
+local function ehReceitaDeProfissao(magia)
+  if not (C_TradeSkillUI and C_TradeSkillUI.GetRecipeInfo) then return false end
+  local ok, receita = pcall(C_TradeSkillUI.GetRecipeInfo, magia)
+  return ok and receita ~= nil
+end
+
+-- Janela de profissoes aberta: quem cuida da camera e a situacao 330.
+if ProfessionsFrame and ProfessionsFrame:IsShown() then return false end
+
+local nomeConjuracao, _, _, _, _, conjuracaoDeProfissao, _, _, magiaConjurada = UnitCastingInfo("player")
+if existe(nomeConjuracao) then
+  if legivel(conjuracaoDeProfissao) and conjuracaoDeProfissao then return false end
+  if legivel(magiaConjurada) and (ehMontaria(magiaConjurada) or ehReceitaDeProfissao(magiaConjurada)) then
     return false
   end
   return true
 end
 
--- Canalizacao: ignora a pesca, que tem situacao propria (302). A pesca tem
--- prioridade 20, menor que os 60 desta, entao sem isso esta ganharia dela.
-local canal = UnitChannelInfo("player")
-if not tem(canal) then return false end
-if not secreto(canal) and C_Spell and C_Spell.GetSpellName and canal == C_Spell.GetSpellName(7620) then
+local nomeCanalizacao, _, _, _, _, canalizacaoDeProfissao, _, magiaCanalizada = UnitChannelInfo("player")
+if not existe(nomeCanalizacao) then return false end
+if legivel(canalizacaoDeProfissao) and canalizacaoDeProfissao then return false end
+local PESCA = 7620
+if legivel(nomeCanalizacao) and C_Spell and C_Spell.GetSpellName and nomeCanalizacao == C_Spell.GetSpellName(PESCA) then
   return false
 end
+if legivel(magiaCanalizada) and ehReceitaDeProfissao(magiaCanalizada) then return false end
 return true

@@ -58,8 +58,21 @@ maior. Tipo de Zoom: **Definir** (vai sempre para o valor), **Aproximar**
 | Pesca | 302 | Aproximar 7 | | | padrao |
 | Ausente (AFK) | 303 | Definir 12 | Rotacao continua 5; Ocultar Interface opacidade 0 | | padrao |
 | NPC grande (dialogo) | custom1 | Afastar **1.5** (ver pendencias) | | ombro 0.6, foco de interacao 1.0 / 0.75 | 0.3 / 0.5 s |
-| Conjurando (fora de combate) | custom3 | Aproximar 8 | ignora montaria e pesca | | 0.6 / 0.8 s |
-| Conjurando (em combate) | custom4 | | (sem acoes, configurar pela interface) | | padrao |
+| Coleta | 320 | Aproximar 5 | condicao propria: reconhece pelo nome da magia (Midnight incluso) | | 0.5 / 0.8 s |
+| Janela de Profissoes Aberta | 330 | Aproximar 6 | | | 0.8 / 0.8 s |
+| Conjurando (fora de combate) | custom3 | zoom fixo desligado; **relativo** pelos scripts (aproxima 3 e devolve) | ignora profissao, coleta, pesca e montaria | foco no alvo | 1.5 / 1.0 s |
+| Conjurando (em combate) | custom4 | zoom fixo desligado; **relativo** pelos scripts | detecta inicio/fim por eventos | foco no alvo inimigo 1.0 / 0.5 | 0.5 / 0.5 s |
+
+Categorias de conjuracao, cada uma com sua camera:
+
+| O que voce esta fazendo | Situacao que vale | Prioridade |
+| --- | --- | --- |
+| Criando item com a janela de profissoes aberta | Janela de Profissoes Aberta (330) | 1100 |
+| Pedra de regresso / teleporte | Pedra de Regresso/Teletransporte (200) | 130 |
+| Minerando, herborismo, esfolando | Coleta (320) | 120 |
+| Pescando | Pesca (302) | 20 (a de conjuracao ignora a pesca) |
+| Qualquer outra magia em combate | Conjurando (em combate) | 65 |
+| Qualquer outra magia fora de combate | Conjurando (fora de combate) | 60 |
 
 "Conjurando (fora de combate)" tem prioridade 60 e "Conjurando (em combate)"
 **65** (a de combate vence se as duas valerem no mesmo instante, ex.: ao
@@ -102,10 +115,8 @@ Ligar qualquer uma e so marcar **Ativar** nela.
 | 170 | Veiculo |
 | 201 | Feiticos Irritantes |
 | 310 | Batalha de Mascote |
-| 320 | Coleta |
 | 323 | Nadando |
 | 325 | Acampamento (so no Forever; nao existe no Retail) |
-| 330 | Janela de Profissoes Aberta |
 
 Masmorra/Raide/Arena/BG com combate estao desligadas, entao em combate
 nessas instancias vale a situacao sem combate (020/030/050/060): sem ombro
@@ -123,7 +134,11 @@ Os arquivos desta pasta sao os mesmos textos que estao dentro do
 | `npc-grande-inicializacao.lua` | NPC grande (dialogo) > Script de Inicializacao |
 | `npc-grande-condicao.lua` | NPC grande (dialogo) > Condicao |
 | `conjuracao-condicao.lua` | Conjurando (fora de combate) > Condicao |
+| `conjuracao-combate-inicializacao.lua` | Conjurando (em combate) > Script de Inicializacao |
 | `conjuracao-combate-condicao.lua` | Conjurando (em combate) > Condicao |
+| `conjuracao-zoom-entrada.lua` | as duas Conjurando > Script de Entrada |
+| `conjuracao-zoom-saida.lua` | as duas Conjurando > Script de Saida |
+| `coleta-condicao.lua` | Coleta > Condicao |
 
 ### Criar a "NPC grande" do zero pela interface
 
