@@ -67,6 +67,25 @@ Get-ChildItem $macrosDir -Directory -ErrorAction SilentlyContinue | ForEach-Obje
     }
 }
 
+# Opcoes do jogo que valem em qualquer PC (escala da interface etc.). Ficam no
+# WTF\Config.wtf, que e por maquina e nao e versionado inteiro: so as linhas
+# de config\cvars.wtf sao aplicadas, o resto do arquivo fica como esta.
+$cvars = Join-Path $config 'cvars.wtf'
+$configWtf = Join-Path $retail 'WTF\Config.wtf'
+if ((Test-Path $cvars) -and (Test-Path $configWtf)) {
+    New-Item -ItemType Directory -Force $backup | Out-Null
+    Copy-Item $configWtf (Join-Path $backup 'Config.wtf') -Force
+    $linhas = [Collections.Generic.List[string]](Get-Content $configWtf)
+    foreach ($novo in Get-Content $cvars) {
+        if ($novo -notmatch '^SET (\S+) ".*"$') { continue }
+        $nome = $Matches[1]
+        $i = $linhas.FindIndex({ param($l) $l -match ('^SET ' + [regex]::Escape($nome) + ' "') })
+        if ($i -ge 0) { $linhas[$i] = $novo } else { $linhas.Add($novo) }
+    }
+    [IO.File]::WriteAllLines($configWtf, $linhas, (New-Object Text.UTF8Encoding $false))
+    Write-Host '- opcoes do jogo (config\cvars.wtf)'
+}
+
 Write-Host ''
 if (Test-Path $backup) { Write-Host "Arquivos anteriores guardados em: $backup" }
 Write-Host 'Pronto. Pode abrir o WoW.'

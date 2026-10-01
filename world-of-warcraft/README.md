@@ -137,6 +137,19 @@ clique em "Reset to default", que apaga o resto da situacao.
   so com o jogo fechado, e rode o `salvar-config.ps1` depois de mexer pela
   interface.
 
+## Opcoes do jogo (`config/cvars.wtf`)
+
+O `WTF\Config.wtf` e por maquina (resolucao, graficos, placa de video) e nao
+vai inteiro para o repo. As opcoes que tem de ser iguais em todo PC ficam em
+`config/cvars.wtf`, uma linha `SET nome "valor"` cada, e o
+`restaurar-config.ps1` aplica so essas linhas no `Config.wtf`:
+
+- **Usar escala de interface: 80%** (`useUiScale 1`, `uiScale 0.8`). Sem
+  isso as barras de acao ficam desalinhadas.
+
+Mudou uma dessas opcoes no jogo? Atualize o `cvars.wtf` a mao (o
+`salvar-config.ps1` nao le o `Config.wtf`).
+
 ## Macros
 
 `config/macros/conta.txt` sao as macros de conta; `config/macros/<reino>/<personagem>.txt`
