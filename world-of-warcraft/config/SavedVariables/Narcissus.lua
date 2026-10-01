@@ -46,18 +46,18 @@ NarcissusDB = {
 ["UseAddonCompartment"] = true,
 ["DressingRoom"] = true,
 ["UseBustShot"] = true,
-["RealmNames"] = {
-[3209] = "Azralon",
-},
+["UseEntranceVisual"] = true,
 ["DressingRoomItemSetListHideDupes"] = true,
 ["TranslateName"] = false,
 ["TalentTreeUseClassBackground"] = false,
-["TooltipLanguages"] = {
+["RealmNames"] = {
+[3209] = "Azralon",
 },
 ["ConduitTooltip"] = false,
-["UseEntranceVisual"] = true,
-["installTime"] = 1790563880,
+["TooltipLanguages"] = {
+},
 ["DressingRoomShowSlot"] = true,
+["installTime"] = 1790563880,
 ["EnableDoubleTap"] = false,
 ["SpeedyScreenshotAlert"] = true,
 ["AutoPlayAnimation"] = false,
@@ -71,12 +71,6 @@ NarcissusDB = {
 ["TalentTreeForEquipmentManager"] = true,
 ["HideTextsWithUI"] = false,
 ["AnchorToMinimap"] = true,
-["NamePlateNameOffset"] = 0,
-["TooltipTheme"] = "Bright",
-["OnlyShowOwnedUpgradeItem"] = true,
-["GemManager"] = true,
-["ModelPanelScale"] = 1,
-["AutoDisplayQuestItem"] = false,
 ["PerksProgramDB"] = {
 ["MonthNames"] = {
 {
@@ -189,6 +183,12 @@ NarcissusDB = {
 ["month"] = 45,
 },
 },
+["TooltipTheme"] = "Bright",
+["OnlyShowOwnedUpgradeItem"] = true,
+["GemManager"] = true,
+["ModelPanelScale"] = 1,
+["AutoDisplayQuestItem"] = false,
+["NamePlateNameOffset"] = 0,
 ["CameraOrbit"] = true,
 ["TalentTreeForInspection"] = true,
 ["UseWoWQualityColor"] = false,
@@ -249,7 +249,7 @@ NarciCharacterProfiles = {
 ["name"] = "Deane",
 ["birth"] = 1790742332,
 ["serverID"] = 3209,
-["lastVisit"] = 1790820132,
+["lastVisit"] = 1790820975,
 ["outfits"] = {
 },
 ["class"] = 8,

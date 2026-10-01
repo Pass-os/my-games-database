@@ -4,8 +4,8 @@ DynamicCamDB = {
 ["popOutFrame"] = {
 ["height"] = 499.9999084472656,
 ["opacity"] = 0,
-["left"] = 528.8882446289062,
-["top"] = 730.5552978515625,
+["left"] = 306.6658020019531,
+["top"] = 772.3331909179688,
 },
 },
 ["profiles"] = {
@@ -16,17 +16,7 @@ DynamicCamDB = {
 ["situations"] = {
 ["custom4"] = {
 ["enabled"] = true,
-["events"] = {
-"UNIT_SPELLCAST_START",
-"UNIT_SPELLCAST_STOP",
-"UNIT_SPELLCAST_SUCCEEDED",
-"UNIT_SPELLCAST_INTERRUPTED",
-"UNIT_SPELLCAST_FAILED",
-"UNIT_SPELLCAST_CHANNEL_START",
-"UNIT_SPELLCAST_CHANNEL_STOP",
-"PLAYER_REGEN_DISABLED",
-"PLAYER_REGEN_ENABLED",
-},
+["name"] = "|TInterface\\Icons\\Spell_Fire_FlameBolt:16|t Conjurando (em combate)",
 ["executeOnEnter"] = [=[-- ===== AJUSTE AQUI =====
 local distanciaParaAproximar = 3      -- quanto a camera chega mais perto ao conjurar
 local distanciaMinimaDaCamera = 1.5   -- a camera nunca fica mais perto que isso
@@ -89,7 +79,17 @@ end
 local conjuracao = DynamicCam.conjuracaoEmCombate
 return conjuracao ~= nil and conjuracao.conjurando == true
 ]=],
-["name"] = "|TInterface\\Icons\\Spell_Fire_FlameBolt:16|t Conjurando (em combate)",
+["events"] = {
+"UNIT_SPELLCAST_START",
+"UNIT_SPELLCAST_STOP",
+"UNIT_SPELLCAST_SUCCEEDED",
+"UNIT_SPELLCAST_INTERRUPTED",
+"UNIT_SPELLCAST_FAILED",
+"UNIT_SPELLCAST_CHANNEL_START",
+"UNIT_SPELLCAST_CHANNEL_STOP",
+"PLAYER_REGEN_DISABLED",
+"PLAYER_REGEN_ENABLED",
+},
 ["rotation"] = {
 ["enabled"] = false,
 ["pitchDegrees"] = 0,
@@ -98,6 +98,40 @@ return conjuracao ~= nil and conjuracao.conjurando == true
 ["yawDegrees"] = 5,
 ["rotateBack"] = true,
 },
+["transitionTime"] = {
+["timeToEnter"] = 0.5,
+["timeToExit"] = 0.5,
+},
+["viewZoom"] = {
+["enabled"] = false,
+["zoomMax"] = 15,
+["zoomMin"] = 5,
+["viewZoomType"] = "zoom",
+["zoomType"] = "set",
+["zoomTimeIsMax"] = false,
+["zoomValue"] = 4,
+["viewRestore"] = true,
+["restoreDefaultViewNumber"] = 1,
+["viewNumber"] = 2,
+["viewInstant"] = false,
+},
+["hideUI"] = {
+["enabled"] = false,
+["customFramesToKeep"] = {
+},
+},
+["situationSettings"] = {
+["cvars"] = {
+["test_cameraTargetFocusEnemyStrengthPitch"] = 0.4,
+["test_cameraTargetFocusInteractEnable"] = 1,
+["test_cameraTargetFocusInteractStrengthPitch"] = 0.75,
+["test_cameraTargetFocusEnemyEnable"] = 1,
+["test_cameraTargetFocusEnemyStrengthYaw"] = 0.6000000000000001,
+["test_cameraTargetFocusInteractStrengthYaw"] = 1,
+},
+},
+["priority"] = 65,
+["delay"] = 0,
 ["executeOnExit"] = [=[-- ===== AJUSTE AQUI =====
 local segundosParaAfastar = 0.8   -- duracao do movimento de voltar
 -- =======================
@@ -119,44 +153,20 @@ C_Timer.After(0.05, function()
   LibStub("LibCamera-1.0"):SetZoom(estado.pontoDePartida, segundosParaAfastar)
 end)
 ]=],
-["viewZoom"] = {
-["enabled"] = false,
-["zoomMax"] = 15,
-["zoomMin"] = 5,
-["viewZoomType"] = "zoom",
-["zoomType"] = "set",
-["zoomTimeIsMax"] = false,
-["viewInstant"] = false,
-["viewRestore"] = true,
-["restoreDefaultViewNumber"] = 1,
-["viewNumber"] = 2,
-["zoomValue"] = 4,
-},
-["hideUI"] = {
-["customFramesToKeep"] = {
-},
-["enabled"] = false,
-},
-["situationSettings"] = {
-["cvars"] = {
-["test_cameraTargetFocusEnemyStrengthPitch"] = 0.4,
-["test_cameraTargetFocusInteractEnable"] = 1,
-["test_cameraTargetFocusInteractStrengthPitch"] = 0.75,
-["test_cameraTargetFocusEnemyEnable"] = 1,
-["test_cameraTargetFocusEnemyStrengthYaw"] = 0.6000000000000001,
-["test_cameraTargetFocusInteractStrengthYaw"] = 1,
-},
-},
-["priority"] = 65,
-["delay"] = 0,
-["transitionTime"] = {
-["timeToEnter"] = 0.5,
-["timeToExit"] = 0.5,
-},
 },
 ["custom3"] = {
 ["enabled"] = true,
-["name"] = "|TInterface\\Icons\\Spell_Holy_MagicalSentry:16|t Conjurando (fora de combate)",
+["events"] = {
+"UNIT_SPELLCAST_START",
+"UNIT_SPELLCAST_STOP",
+"UNIT_SPELLCAST_SUCCEEDED",
+"UNIT_SPELLCAST_INTERRUPTED",
+"UNIT_SPELLCAST_FAILED",
+"UNIT_SPELLCAST_CHANNEL_START",
+"UNIT_SPELLCAST_CHANNEL_STOP",
+"PLAYER_REGEN_DISABLED",
+"PLAYER_REGEN_ENABLED",
+},
 ["executeOnEnter"] = [=[-- ===== AJUSTE AQUI =====
 local distanciaParaAproximar = 3      -- quanto a camera chega mais perto ao conjurar
 local distanciaMinimaDaCamera = 1.5   -- a camera nunca fica mais perto que isso
@@ -215,17 +225,7 @@ if legivel(nomeCanalizacao) and C_Spell and C_Spell.GetSpellName and nomeCanaliz
 end
 return true
 ]=],
-["events"] = {
-"UNIT_SPELLCAST_START",
-"UNIT_SPELLCAST_STOP",
-"UNIT_SPELLCAST_SUCCEEDED",
-"UNIT_SPELLCAST_INTERRUPTED",
-"UNIT_SPELLCAST_FAILED",
-"UNIT_SPELLCAST_CHANNEL_START",
-"UNIT_SPELLCAST_CHANNEL_STOP",
-"PLAYER_REGEN_DISABLED",
-"PLAYER_REGEN_ENABLED",
-},
+["name"] = "|TInterface\\Icons\\Spell_Holy_MagicalSentry:16|t Conjurando (fora de combate)",
 ["situationSettings"] = {
 ["cvars"] = {
 ["test_cameraTargetFocusEnemyStrengthPitch"] = 0.5,
@@ -236,6 +236,38 @@ return true
 ["test_cameraTargetFocusInteractStrengthYaw"] = 1,
 },
 },
+["transitionTime"] = {
+["timeToEnter"] = 1.5,
+["timeToExit"] = 1,
+},
+["viewZoom"] = {
+["enabled"] = false,
+["zoomMax"] = 15,
+["zoomMin"] = 5,
+["viewZoomType"] = "zoom",
+["zoomType"] = "in",
+["zoomTimeIsMax"] = false,
+["zoomValue"] = 2,
+["viewRestore"] = true,
+["restoreDefaultViewNumber"] = 1,
+["viewNumber"] = 2,
+["viewInstant"] = false,
+},
+["hideUI"] = {
+["enabled"] = false,
+["customFramesToKeep"] = {
+},
+},
+["rotation"] = {
+["enabled"] = false,
+["pitchDegrees"] = -5,
+["rotationType"] = "degrees",
+["rotationSpeed"] = 10,
+["yawDegrees"] = 10,
+["rotateBack"] = true,
+},
+["priority"] = 60,
+["delay"] = 0,
 ["executeOnExit"] = [=[-- ===== AJUSTE AQUI =====
 local segundosParaAfastar = 0.8   -- duracao do movimento de voltar
 -- =======================
@@ -257,38 +289,6 @@ C_Timer.After(0.05, function()
   LibStub("LibCamera-1.0"):SetZoom(estado.pontoDePartida, segundosParaAfastar)
 end)
 ]=],
-["viewZoom"] = {
-["enabled"] = false,
-["zoomMax"] = 15,
-["zoomMin"] = 5,
-["viewZoomType"] = "zoom",
-["zoomType"] = "in",
-["zoomTimeIsMax"] = false,
-["viewInstant"] = false,
-["viewRestore"] = true,
-["restoreDefaultViewNumber"] = 1,
-["viewNumber"] = 2,
-["zoomValue"] = 2,
-},
-["hideUI"] = {
-["customFramesToKeep"] = {
-},
-["enabled"] = false,
-},
-["rotation"] = {
-["enabled"] = false,
-["pitchDegrees"] = -5,
-["rotationType"] = "degrees",
-["rotationSpeed"] = 10,
-["yawDegrees"] = 10,
-["rotateBack"] = true,
-},
-["priority"] = 60,
-["delay"] = 0,
-["transitionTime"] = {
-["timeToEnter"] = 1.5,
-["timeToExit"] = 1,
-},
 },
 ["050"] = {
 ["enabled"] = true,
@@ -350,13 +350,13 @@ end)
 },
 ["custom1"] = {
 ["enabled"] = true,
-["rotation"] = {
-["enabled"] = false,
-["pitchDegrees"] = 0,
-["rotationType"] = "continuous",
-["rotationSpeed"] = 10,
-["yawDegrees"] = 0,
-["rotateBack"] = true,
+["situationSettings"] = {
+["cvars"] = {
+["test_cameraOverShoulder"] = 0.6,
+["test_cameraTargetFocusInteractEnable"] = 1,
+["test_cameraTargetFocusInteractStrengthPitch"] = 0.75,
+["test_cameraTargetFocusInteractStrengthYaw"] = 1,
+},
 },
 ["transitionTime"] = {
 ["timeToEnter"] = 0.3,
@@ -368,24 +368,33 @@ end)
 ["enabled"] = true,
 ["zoomMax"] = 15,
 ["zoomMin"] = 5,
-["zoomValue"] = 1.5,
+["viewInstant"] = false,
 ["zoomType"] = "out",
 ["viewNumber"] = 2,
-["viewInstant"] = false,
+["zoomValue"] = 1.5,
 ["viewRestore"] = true,
 ["restoreDefaultViewNumber"] = 1,
 ["zoomTimeIsMax"] = false,
 ["viewZoomType"] = "zoom",
 },
-["situationSettings"] = {
-["cvars"] = {
-["test_cameraOverShoulder"] = 0.6,
-["test_cameraTargetFocusInteractEnable"] = 1,
-["test_cameraTargetFocusInteractStrengthPitch"] = 0.75,
-["test_cameraTargetFocusInteractStrengthYaw"] = 1,
-},
+["rotation"] = {
+["enabled"] = false,
+["pitchDegrees"] = 0,
+["rotationType"] = "continuous",
+["rotationSpeed"] = 10,
+["yawDegrees"] = 0,
+["rotateBack"] = true,
 },
 ["executeOnEnter"] = "",
+["name"] = "|TInterface\\Icons\\Spell_Nature_Strength:16|t NPC grande (dialogo)",
+["hideUI"] = {
+["enabled"] = false,
+["customFramesToKeep"] = {
+},
+},
+["executeOnExit"] = "",
+["priority"] = 115,
+["delay"] = 0,
 ["events"] = {
 "AUCTION_HOUSE_CLOSED",
 "AUCTION_HOUSE_SHOW",
@@ -406,15 +415,6 @@ end)
 "TRAINER_CLOSED",
 "TRAINER_SHOW",
 },
-["hideUI"] = {
-["customFramesToKeep"] = {
-},
-["enabled"] = false,
-},
-["executeOnExit"] = "",
-["priority"] = 115,
-["delay"] = 0,
-["name"] = "|TInterface\\Icons\\Spell_Nature_Strength:16|t NPC grande (dialogo)",
 },
 ["302"] = {
 ["enabled"] = true,
@@ -549,10 +549,7 @@ end)
 ["zoomType"] = "in",
 ["zoomValue"] = 3,
 },
-["rotation"] = {
-["pitchDegrees"] = -5,
-["rotationType"] = "degrees",
-},
+["executeOnEnter"] = "this.vol = this.vol or tonumber(GetCVar(\"Sound_MusicVolume\")) or 0.4\nthis.t = (this.t or 0) + 1\nlocal t, from, to = this.t, tonumber(GetCVar(\"Sound_MusicVolume\")) or this.vol, 0.03\nlocal steps, dur = 30, 2.5\nfor i = 1, steps do\n  C_Timer.After(i * dur / steps, function()\n    if this.t == t then\n      local p = i / steps\n      p = p * p * (3 - 2 * p)\n      SetCVar(\"Sound_MusicVolume\", from + (to - from) * p)\n    end\n  end)\nend",
 ["situationSettings"] = {
 ["cvars"] = {
 ["test_cameraOverShoulder"] = 0.6,
@@ -582,10 +579,13 @@ end)
 ["fadeOpacity"] = 0,
 ["keepMinimap"] = true,
 },
-["executeOnEnter"] = "this.vol = this.vol or tonumber(GetCVar(\"Sound_MusicVolume\")) or 0.4\nthis.t = (this.t or 0) + 1\nlocal t, from, to = this.t, tonumber(GetCVar(\"Sound_MusicVolume\")) or this.vol, 0.03\nlocal steps, dur = 30, 2.5\nfor i = 1, steps do\n  C_Timer.After(i * dur / steps, function()\n    if this.t == t then\n      local p = i / steps\n      p = p * p * (3 - 2 * p)\n      SetCVar(\"Sound_MusicVolume\", from + (to - from) * p)\n    end\n  end)\nend",
 ["transitionTime"] = {
 ["timeToEnter"] = 0.2,
 ["timeToExit"] = 0.5,
+},
+["rotation"] = {
+["pitchDegrees"] = -5,
+["rotationType"] = "degrees",
 },
 },
 ["200"] = {
