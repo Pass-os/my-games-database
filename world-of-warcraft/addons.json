@@ -76,13 +76,13 @@
       "note": "Camera por situacao. Configuracao em config/SavedVariables/DynamicCam.lua."
     },
     {
-      "name": "Immersion",
-      "projectId": 257550,
-      "fileId": 8940431,
-      "version": "1.4.60",
-      "size": 235736,
-      "folders": ["Immersion"],
-      "note": "FIXADO na 1.4.60: a 1.4.61 (painel de config novo) deixou a caixa de dialogo sem responder aos botoes/atalhos."
+      "name": "Dialogue UI",
+      "projectId": 989270,
+      "fileId": 8865218,
+      "version": "1.0.5",
+      "size": 9625726,
+      "folders": ["DialogueUI"],
+      "note": "Dialogo com NPC (substitui o Immersion), narracao propria por TTS (vozes masculina/feminina/narrador) e janela de livros. Do autor do Narcissus. Ele move a camera no dialogo: as situacoes 300 e custom1 do DynamicCam ficam desativadas. F1 abre as opcoes."
     },
     {
       "name": "BtWQuests",
@@ -145,6 +145,17 @@
       "size": 29782,
       "folders": ["BarberShopProfiles"],
       "note": "Salva/carrega aparencias na barbearia, por raca, para toda a conta. TOC 120007: no 12.1 precisa 'Carregar addons desatualizados' (APIs conferidas no codigo do 12.1.0)."
+    }
+  ],
+  "disabled": [
+    {
+      "name": "Immersion",
+      "projectId": 257550,
+      "fileId": 8940431,
+      "version": "1.4.60",
+      "size": 235736,
+      "folders": ["Immersion"],
+      "reason": "Trocado pelo Dialogue UI (out/2026). Estava FIXADO na 1.4.60: a 1.4.61 deixou a caixa de dialogo sem responder aos botoes/atalhos. Para voltar: mover para addons e reativar as situacoes 300 e custom1 do DynamicCam."
     },
     {
       "name": "QuestSpeaker",
@@ -153,10 +164,8 @@
       "version": "2.2.3",
       "size": 15065,
       "folders": ["QuestSpeaker"],
-      "note": "Le missoes, dialogos, livros e cartas em voz alta pelo TTS do WoW (vozes do Windows: Daniel/Maria pt-BR). TOC 120007: precisa 'Carregar addons desatualizados'. duckVolume desligado na config: o DynamicCam ja abaixa a musica no dialogo e os dois brigariam pelo volume."
-    }
-  ],
-  "disabled": [
+      "reason": "A narracao do Dialogue UI faz o mesmo sem trechos fixos em ingles e sem precisar de 'Carregar addons desatualizados'. Os dois juntos leriam o mesmo texto duas vezes."
+    },
     {
       "name": "Max Camera Distance",
       "projectId": 911525,

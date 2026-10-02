@@ -66,6 +66,19 @@ try {
     Remove-Item $temp -Recurse -Force -ErrorAction SilentlyContinue
 }
 
+# Addons tirados de uso ("disabled" no addons.json): apaga a pasta, senao o
+# WoW continua carregando o que ja estava instalado.
+foreach ($a in $manifesto.disabled) {
+    foreach ($pasta in @($a.folders)) {
+        if (-not $pasta) { continue }
+        $destino = Join-Path $addonsDir $pasta
+        if (Test-Path $destino) {
+            Remove-Item $destino -Recurse -Force
+            Write-Host ("- {0} removido (desativado no addons.json)" -f $a.name)
+        }
+    }
+}
+
 # Addons feitos neste repositorio: copiados direto da pasta addons-proprios.
 $proprios = Join-Path $PSScriptRoot '..\addons-proprios'
 Get-ChildItem $proprios -Directory -ErrorAction SilentlyContinue | ForEach-Object {

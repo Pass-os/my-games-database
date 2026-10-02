@@ -189,7 +189,7 @@ DynamicCamDB = {
 },
 },
 ["custom1"] = {
-["enabled"] = true,
+["enabled"] = false,
 ["events"] = {
 "AUCTION_HOUSE_CLOSED",
 "AUCTION_HOUSE_SHOW",
@@ -386,7 +386,7 @@ DynamicCamDB = {
 },
 },
 ["300"] = {
-["enabled"] = true,
+["enabled"] = false,
 ["name"] = "|TInterface\\Icons\\INV_Misc_Note_01:16|t Interação com NPC",
 ["transitionTime"] = {
 ["timeToEnter"] = 0.2,

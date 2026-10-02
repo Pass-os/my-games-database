@@ -46,7 +46,7 @@ Versoes exatas e IDs do CurseForge em [`addons.json`](addons.json).
 | Addon | Para que | Comando |
 | --- | --- | --- |
 | DynamicCam | camera por situacao (NPC, montaria, taxi, interiores...) | `/dc` |
-| Immersion | dialogo de NPC em estilo legenda de cinema | `/immersion` |
+| Dialogue UI | dialogo de NPC, narracao por voz e janela de livros (substitui o Immersion) | F1 no dialogo |
 | BtWQuests (+ Midnight, The War Within) | diario de cadeias de missao da historia | aba no mapa |
 | Narcissus | tela de personagem e modo foto | `/narcissus` |
 | HandyNotes | anotacoes no mapa | Alt + clique direito no mapa |
@@ -57,14 +57,27 @@ Versoes exatas e IDs do CurseForge em [`addons.json`](addons.json).
 | Better Wardrobe and Transmog | colecao de conjuntos, provador e transmog | abas na Colecao / Transmog |
 | Can I Mog It? | mostra se a aparencia do item ja foi aprendida | `/cimi` |
 | BarberShop Profiles | salva aparencias da barbearia por raca (conta toda) | botoes na barbearia |
-| QuestSpeaker | le missoes, dialogos, livros e cartas em voz alta (TTS do WoW, vozes pt-BR do Windows) | `/qs` |
+**Dialogue UI:**
 
-**QuestSpeaker, por PC:** precisa de "Ler texto do chat em voz alta" ligado
-(Sistema > Acessibilidade > Assistencia de Audio), com os canais de chat
-desmarcados na configuracao de TTS para o jogo nao ler o chat junto. As vozes
-(feminina/masculina) se escolhem no `/qs`; o ID delas e do PC, entao confira
-de novo depois de restaurar em outra maquina. O "Volume Ducking" fica
-desligado de proposito: o DynamicCam ja abaixa a musica no dialogo.
+- Teclado: `1`-`9` escolhe a opcao, Espaco aceita, `R` le/para a narracao,
+  Tab alterna recompensas, F1 abre as opcoes. Setas so com controle (gamepad).
+- **Camera no dialogo e dele.** Por isso as situacoes do DynamicCam
+  "Interacao com NPC" (300) e "NPC grande" (custom1) ficam **desativadas**
+  (e com elas os scripts que abaixam a musica). Nao reativar com o Dialogue
+  UI movendo a camera: os dois brigam. Ele ja se integra ao DynamicCam (pausa
+  o ombro durante o dialogo e devolve depois).
+- **Narracao (por PC):** ligada na config (`TTSEnabled`, leitura automatica
+  com atraso para nao falar por cima da dublagem). Le o texto do jogo, entao
+  sai em portugues com voz pt-BR. Precisa de "Ler texto do chat em voz alta"
+  (Sistema > Acessibilidade > Assistencia de Audio), com os canais de chat
+  desmarcados na configuracao de TTS. As vozes (masculina, feminina e, se
+  quiser, narrador para titulo e descricoes entre `< >`) se escolhem no F1 >
+  Narracao; o ID delas e do PC, confira depois de restaurar em outra maquina.
+- Interface durante o dialogo: visivel (`HideUI = false`), como estava no
+  Immersion. Muda em F1.
+- Immersion e QuestSpeaker ficaram em `disabled` no `addons.json` (o
+  `instalar-addons.ps1` apaga as pastas deles); a config dos dois continua em
+  `config/` para poder voltar.
 
 **Vozes (por PC):** `scripts\instalar-vozes.ps1` (pede administrador).
 O WoW so enxerga vozes do SAPI classico, entao o script:
@@ -94,10 +107,11 @@ copia cada pasta de la direto para `Interface\AddOns`.
 
 ### Decisoes que nao sao obvias
 
-- **Immersion fixado na 1.4.60.** A 1.4.61 (24/09/2026) trocou o painel de
-  config do Ace pelo nativo e, aqui, a caixa de dialogo parou de responder
-  ao X, ESC e Espaco. Voltando para a 1.4.60 resolveu. Antes de subir a
-  versao em `addons.json`, testar se fecha.
+- **Immersion trocado pelo Dialogue UI (out/2026).** Estava preso na 1.4.60
+  (a 1.4.61 deixou a caixa de dialogo sem responder ao X, ESC e Espaco), e o
+  Dialogue UI ja esta no 12.1 e traz narracao propria. Para voltar: mover o
+  Immersion de `disabled` para `addons` e reativar as situacoes 300 e
+  custom1 do DynamicCam.
 - **Max Camera Distance nao e usado.** Conflita com o DynamicCam: os dois
   mexem em `cameraDistanceMaxZoomFactor` e no zoom de montaria, e a camera
   fica dando tranco. O DynamicCam cobre o que ele fazia.
