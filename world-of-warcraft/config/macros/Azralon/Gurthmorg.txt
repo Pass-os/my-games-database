@@ -37,6 +37,16 @@ VER 3 0100000000000008 " " "607853"
 /cast Bloquear Feitiço(Habilidade de Comandar Demônio)
 /cast Devorar Magia(Habilidade Especial)
 END
+VER 3 010000000000000A " " "134400"
+#showtooltip
+/castsequence reset=8 Bravura Calcinante, null
+/run C_Timer.After(0.5,function() SpellStopCasting() CastSpellByName("Protodraco Renovado") end)
+END
+VER 3 010000000000000B " " "134400"
+#showtooltip
+/cast [mod:shift] Círculo Demoníaco
+/castsequence [nomod] reset=900 Círculo Demoníaco, Círculo Demoníaco: Teleporte, Círculo Demoníaco: Teleporte, Círculo Demoníaco: Teleporte, Círculo Demoníaco: Teleporte
+END
 VER 3 0100000000000005 "+" "134400"
 #showtooltip
 /stopcasting

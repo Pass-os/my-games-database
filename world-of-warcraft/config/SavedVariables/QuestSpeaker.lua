@@ -1,4 +1,26 @@
 
 QuestSpeakerDB = {
+["voiceFemale"] = 2,
+["autoStop"] = true,
+["voice"] = 0,
+["readNpcChat"] = true,
+["showMiniPlayer"] = false,
+["volume"] = 100,
+["textPacing"] = true,
+["duckAmount"] = 30,
+["enabled"] = true,
+["voDelay"] = 2,
+["readObjectives"] = true,
+["readTitle"] = true,
+["rate"] = 0,
+["readMail"] = true,
 ["duckVolume"] = false,
+["voiceMale"] = 0,
+["debug"] = false,
+["readTalkingHead"] = true,
+["readBooks"] = true,
+["skipHeard"] = false,
+["genderVoices"] = true,
+["heardQuests"] = {
+},
 }

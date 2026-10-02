@@ -14,7 +14,7 @@ MapPinEnhancedDB = {
 ["lock"] = false,
 },
 ["version"] = 322,
-["superTrackingOther"] = true,
+["superTrackingOther"] = false,
 ["general"] = {
 ["autoTrackNearestPin"] = true,
 },

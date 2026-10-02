@@ -40,3 +40,10 @@ END
 VER 3 000000000000000E " " "136010"
 /reload
 END
+VER 3 000000000000000F " " "4631357"
+# LIGA E DESLIGA A ACTIONCAM
+/run local a=GetCVar("test_cameraDynamicPitch")=="1" if a then ConsoleExec("ActionCam off") else ConsoleExec("ActionCam full") end
+END
+VER 3 0000000000000010 " " "132278"
+/qs
+END
