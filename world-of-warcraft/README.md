@@ -79,14 +79,17 @@ Versoes exatas e IDs do CurseForge em [`addons.json`](addons.json).
   `instalar-addons.ps1` apaga as pastas deles); a config dos dois continua em
   `config/` para poder voltar.
 
-**Vozes (por PC):** `scripts\instalar-vozes.ps1` (pede administrador).
-O WoW so enxerga vozes do SAPI classico, entao o script:
+**Vozes (por PC):** `scripts\instalar-vozes.ps1` (uma janela de administrador).
+O WoW so lista vozes **registradas fixas** no SAPI classico
+(`HKLM\SOFTWARE\Microsoft\Speech\Voices\Tokens`); vozes que um programa cria
+"na hora" aparecem no Windows mas nao no jogo. Entao o script:
 
 - registra o **Daniel** (pt-BR masculina, vem do pacote de fala do Windows
   mas so no OneCore) ao lado da **Maria**;
-- instala o NaturalVoiceSAPIAdapter so com as vozes **online do Edge** em
-  pt-BR (**Francisca**, **Antonio**, **Thalita**), bem mais naturais. As
-  vozes locais do Narrador ficam desligadas: com elas o WoW trava;
+- instala o NaturalVoiceSAPIAdapter e registra **fixas** as vozes **online
+  do Edge** em pt-BR (**Francisca**, **Antonio**, **Thalita**), bem mais
+  naturais, apontando para o motor do adapter. A lista dinamica dele fica
+  desligada (senao duplica) e as vozes locais do Narrador tambem (travam o WoW);
 - testa cada voz e mostra quais falam ("ok") e quais ficam mudas.
 
 No PC do trabalho as do Edge aparecem mas ficam mudas ("Timer Expired" no
