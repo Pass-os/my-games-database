@@ -66,6 +66,20 @@ desmarcados na configuracao de TTS para o jogo nao ler o chat junto. As vozes
 de novo depois de restaurar em outra maquina. O "Volume Ducking" fica
 desligado de proposito: o DynamicCam ja abaixa a musica no dialogo.
 
+**Vozes (por PC):** `scripts\instalar-vozes.ps1` (pede administrador).
+O WoW so enxerga vozes do SAPI classico, entao o script:
+
+- registra o **Daniel** (pt-BR masculina, vem do pacote de fala do Windows
+  mas so no OneCore) ao lado da **Maria**;
+- instala o NaturalVoiceSAPIAdapter so com as vozes **online do Edge** em
+  pt-BR (**Francisca**, **Antonio**, **Thalita**), bem mais naturais. As
+  vozes locais do Narrador ficam desligadas: com elas o WoW trava;
+- testa cada voz e mostra quais falam ("ok") e quais ficam mudas.
+
+No PC do trabalho as do Edge aparecem mas ficam mudas ("Timer Expired" no
+log). Se no outro PC tambem, `.\instalar-vozes.ps1 -Desinstalar` tira o
+adapter e fica Maria/Daniel.
+
 ### Addons proprios
 
 Feitos aqui, em [`addons-proprios/`](addons-proprios/). O `instalar-addons.ps1`
