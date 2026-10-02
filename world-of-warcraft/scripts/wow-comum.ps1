@@ -19,6 +19,7 @@ $SavedVariablesVersionados = @(
     'CanIMogIt'
     'BarberShopProfiles'
     'NpcAltura'
+    'QuestSpeaker'
 )
 
 function Get-WowRetailPath {

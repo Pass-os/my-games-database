@@ -1,0 +1,4 @@
+
+QuestSpeakerDB = {
+["duckVolume"] = false,
+}

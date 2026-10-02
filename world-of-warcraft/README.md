@@ -57,6 +57,14 @@ Versoes exatas e IDs do CurseForge em [`addons.json`](addons.json).
 | Better Wardrobe and Transmog | colecao de conjuntos, provador e transmog | abas na Colecao / Transmog |
 | Can I Mog It? | mostra se a aparencia do item ja foi aprendida | `/cimi` |
 | BarberShop Profiles | salva aparencias da barbearia por raca (conta toda) | botoes na barbearia |
+| QuestSpeaker | le missoes, dialogos, livros e cartas em voz alta (TTS do WoW, vozes pt-BR do Windows) | `/qs` |
+
+**QuestSpeaker, por PC:** precisa de "Ler texto do chat em voz alta" ligado
+(Sistema > Acessibilidade > Assistencia de Audio), com os canais de chat
+desmarcados na configuracao de TTS para o jogo nao ler o chat junto. As vozes
+(feminina/masculina) se escolhem no `/qs`; o ID delas e do PC, entao confira
+de novo depois de restaurar em outra maquina. O "Volume Ducking" fica
+desligado de proposito: o DynamicCam ja abaixa a musica no dialogo.
 
 ### Addons proprios
 

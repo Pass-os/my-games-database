@@ -145,6 +145,15 @@
       "size": 29782,
       "folders": ["BarberShopProfiles"],
       "note": "Salva/carrega aparencias na barbearia, por raca, para toda a conta. TOC 120007: no 12.1 precisa 'Carregar addons desatualizados' (APIs conferidas no codigo do 12.1.0)."
+    },
+    {
+      "name": "QuestSpeaker",
+      "projectId": 1495928,
+      "fileId": 8518285,
+      "version": "2.2.3",
+      "size": 15065,
+      "folders": ["QuestSpeaker"],
+      "note": "Le missoes, dialogos, livros e cartas em voz alta pelo TTS do WoW (vozes do Windows: Daniel/Maria pt-BR). TOC 120007: precisa 'Carregar addons desatualizados'. duckVolume desligado na config: o DynamicCam ja abaixa a musica no dialogo e os dois brigariam pelo volume."
     }
   ],
   "disabled": [
