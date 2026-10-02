@@ -81,20 +81,16 @@ Versoes exatas e IDs do CurseForge em [`addons.json`](addons.json).
 
 **Vozes (por PC):** `scripts\instalar-vozes.ps1` (uma janela de administrador).
 O WoW so lista vozes **registradas fixas** no SAPI classico
-(`HKLM\SOFTWARE\Microsoft\Speech\Voices\Tokens`); vozes que um programa cria
-"na hora" aparecem no Windows mas nao no jogo. Entao o script:
+(`HKLM\SOFTWARE\Microsoft\Speech\Voices\Tokens`). A **Maria** ja vem la; o
+script copia o **Daniel** (pt-BR masculina, que o Windows deixa so no
+OneCore) e testa as duas.
 
-- registra o **Daniel** (pt-BR masculina, vem do pacote de fala do Windows
-  mas so no OneCore) ao lado da **Maria**;
-- instala o NaturalVoiceSAPIAdapter e registra **fixas** as vozes **online
-  do Edge** em pt-BR (**Francisca**, **Antonio**, **Thalita**), bem mais
-  naturais, apontando para o motor do adapter. A lista dinamica dele fica
-  desligada (senao duplica) e as vozes locais do Narrador tambem (travam o WoW);
-- testa cada voz e mostra quais falam ("ok") e quais ficam mudas.
-
-No PC do trabalho as do Edge aparecem mas ficam mudas ("Timer Expired" no
-log). Se no outro PC tambem, `.\instalar-vozes.ps1 -Desinstalar` tira o
-adapter e fica Maria/Daniel.
+**Vozes naturais nao servem no WoW.** Francisca/Antonio/Thalita (Narrador ou
+Edge) so chegam ao SAPI pelo NaturalVoiceSAPIAdapter, e o WoW 12.1 nao carrega
+a DLL dele: com o registro fixo a voz aparece na lista do jogo, mas ele nunca
+abre o motor (log do adapter vazio, DLL fora dos modulos do Wow.exe) e fica
+mudo. Testado em 02/10/2026, com Maria e Daniel falando no mesmo teste. Com
+as vozes locais do Narrador o adapter ainda trava o WoW (issues #37 e #116).
 
 ### Addons proprios
 
