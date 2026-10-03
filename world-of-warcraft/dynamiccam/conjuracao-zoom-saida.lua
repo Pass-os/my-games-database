@@ -1,9 +1,10 @@
 -- DynamicCam > Situacoes > "Conjurando (fora de combate)" e "Conjurando (em combate)"
 -- > Controles de Situacao > Script de Saida
--- Volta exatamente para o ponto de partida anotado pelo Script de Entrada.
--- (Nao faz "posicao atual + o que aproximou": com magia rapida a camera ainda
--- nao terminou de aproximar quando a magia acaba, e a conta fazia a camera
--- terminar cada vez mais longe.)
+-- Volta para o ponto de partida anotado pelo Script de Entrada.
+-- Excecao: se depois da magia vem a camera livre e o addon ZoomLivreEstavel
+-- esta instalado, quem leva a camera de volta e ele (para a SUA distancia).
+-- Sem isso, conjurar montado (montaria 15 -> magia -> livre) devolvia a
+-- camera para 15, e 15 virava a distancia livre.
 
 -- ===== AJUSTE AQUI =====
 local segundosParaAfastar = 0.8   -- duracao do movimento de voltar
@@ -19,6 +20,12 @@ C_Timer.After(0.05, function()
   if aindaConjurando or not estado.aproximado then return end
 
   estado.aproximado = false
+
+  if situacaoAtual == nil and ZoomLivreEstavel and ZoomLivreEstavel.ativo then
+    estado.fimDoRetorno = nil
+    return
+  end
+
   -- Anota quando a volta termina: se conjurar de novo antes, o Script de
   -- Entrada parte do mesmo ponto de partida, nao do meio do caminho.
   estado.fimDoRetorno = GetTime() + segundosParaAfastar

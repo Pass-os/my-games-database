@@ -46,41 +46,37 @@ NarcissusDB = {
 ["UseAddonCompartment"] = true,
 ["DressingRoom"] = true,
 ["UseBustShot"] = true,
-["UseEntranceVisual"] = true,
+["TooltipLanguages"] = {
+},
 ["DressingRoomItemSetListHideDupes"] = true,
 ["TranslateName"] = false,
 ["TalentTreeUseClassBackground"] = false,
+["UseEntranceVisual"] = true,
+["ConduitTooltip"] = false,
 ["RealmNames"] = {
 [3209] = "Azralon",
 },
-["FontHeightItemName"] = 10,
-["TooltipLanguages"] = {
-},
-["Version"] = 10000,
+["installTime"] = 1790563880,
 ["DressingRoomShowSlot"] = true,
 ["EnableDoubleTap"] = false,
-["Tutorials"] = {
-["ExitConfirmation"] = true,
-["Movement"] = false,
-["SpellVisualBrowser"] = true,
-["NPCBrowserEntance"] = true,
-["WeaponBrowser"] = true,
-["NPCBrowser"] = true,
-},
+["SpeedyScreenshotAlert"] = true,
 ["AutoPlayAnimation"] = false,
 ["AFKScreen"] = false,
-["Favorites"] = {
-["FavoriteAnimationIDs"] = {
-},
-},
+["IndependentMinimapButton"] = false,
 ["AKFScreenDelay"] = false,
-["GlobalScale"] = 0.8,
-["WardrobeCollectionSetsCheckbox"] = true,
-["UseWoWQualityColor"] = false,
+["TalentTreeAnchor"] = 1,
+["TalentTreeForPaperDoll"] = false,
+["NameTranslationPosition"] = 1,
 ["PaperDollWidget_ClassSet"] = true,
 ["TalentTreeForEquipmentManager"] = true,
-["CameraOrbit"] = true,
+["HideTextsWithUI"] = false,
+["AnchorToMinimap"] = true,
 ["NamePlateNameOffset"] = 0,
+["TooltipTheme"] = "Bright",
+["OnlyShowOwnedUpgradeItem"] = true,
+["GemManager"] = true,
+["ModelPanelScale"] = 1,
+["AutoDisplayQuestItem"] = false,
 ["PerksProgramDB"] = {
 ["MonthNames"] = {
 {
@@ -161,14 +157,14 @@ NarcissusDB = {
 [1567] = "::description::A luz verde-azulada que emana do globo da maça remete ao brilho das teropinhas encontradas em Terokkar.::price::150::transmogSetID::0::quality::3::perksVendorCategoryID::1::invType::INVTYPE_2HWEAPON::mountID::0::itemModifiedAppearanceID::309684::speciesID::0::name::Malho de Guerra de Talassita Calejado::itemID::276418::addedDate::2026/45::",
 [1583] = "::description::Objetos cenográficos usados na futura produção de Karazhan de \"Ramkahen e o incrível gatonírico forjatitânico\".::price::200::transmogSetID::5903::quality::1::perksVendorCategoryID::8::invType::INVTYPE_NON_EQUIP_IGNORE::mountID::0::itemModifiedAppearanceID::0::speciesID::0::name::Coleção do Dramaturgo: Máscaras de Sol Pintadas::itemID::278814::addedDate::2026/46::",
 [1599] = "::description::Cada passo conquista um pouco de território.::price::40::transmogSetID::0::quality::1::perksVendorCategoryID::1::invType::INVTYPE_FEET::mountID::0::itemModifiedAppearanceID::311353::speciesID::0::name::Escarpes de Ferro Negro Básicos::itemID::279819::addedDate::2026/46::",
-[1571] = "::description::A roupa ideal para treinar pesado.::price::100::transmogSetID::4531::quality::2::perksVendorCategoryID::8::invType::INVTYPE_NON_EQUIP_IGNORE::mountID::0::itemModifiedAppearanceID::0::speciesID::0::name::Indumentária: Conjunto de Moletom Atijolado::itemID::242462::addedDate::2026/45::",
-[1195] = "::description::P'ra que, quando a ti se oponham os inimigos, um mero golpe baste p'ra que caiam vencidos.::price::230::transmogSetID::0::quality::3::perksVendorCategoryID::1::invType::INVTYPE_WEAPON::mountID::0::itemModifiedAppearanceID::295240::speciesID::0::name::Lâmina Santificada do Cavaleiro::itemID::247708::addedDate::2026/46::",
-[1600] = "::description::Furtividade reduzida, confiança aumentada.::price::40::transmogSetID::0::quality::1::perksVendorCategoryID::1::invType::INVTYPE_FEET::mountID::0::itemModifiedAppearanceID::311352::speciesID::0::name::Escarpes de Aço Básicos::itemID::279818::addedDate::2026/46::",
+[1192] = "::description::Até as Trevas, um dia, vão ter o seu fim, mas eterna há de ser a luz de Sir Martins.::price::600::transmogSetID::5162::quality::3::perksVendorCategoryID::8::invType::INVTYPE_NON_EQUIP_IGNORE::mountID::0::itemModifiedAppearanceID::0::speciesID::0::name::Indumentária: Coleção Santificada do Cavaleiro::itemID::247991::addedDate::2026/46::",
+[1191] = "::description::Este talbuque é uma montaria teimosa e obstinada, mesmo depois que se acostuma com o dono. Cavalgue com cuidado.::price::325::transmogSetID::0::mountTypeName::Terrestre::quality::4::perksVendorCategoryID::2::invType::INVTYPE_NON_EQUIP_IGNORE::mountID::2630::itemModifiedAppearanceID::0::speciesID::0::name::Pé-de-brisa Turrão::itemID::247795::addedDate::2026/45::",
+[203] = "::description::Para os inimigos, os olhos inocentes deste Vigia ocultam o perigo letal de uma Caçadora no encalço da presa, espreitando das sombras.::price::350::transmogSetID::0::quality::3::perksVendorCategoryID::3::invType::INVTYPE_NON_EQUIP_IGNORE::mountID::0::itemModifiedAppearanceID::0::speciesID::3254::name::Guardiã da Caçadora::itemID::190609::addedDate::2026/46::",
 [1536] = "::description::Ideal para um concerto extravagante na floresta.::price::50::transmogSetID::0::quality::1::perksVendorCategoryID::1::invType::INVTYPE_HEAD::mountID::0::itemModifiedAppearanceID::311091::speciesID::0::name::Soturmelo Aquático::itemID::279443::addedDate::2026/45::",
 [1552] = "::description::Usar isto mostra o verdadeiro poder da amizade.::price::50::transmogSetID::0::quality::1::perksVendorCategoryID::1::invType::INVTYPE_WRIST::mountID::0::itemModifiedAppearanceID::309253::speciesID::0::name::Bracelete da Amizade de Pedra-da-lua::itemID::275230::addedDate::2026/45::",
 [1568] = "::description::De beleza perigosa e peso devastador.::price::150::transmogSetID::0::quality::3::perksVendorCategoryID::1::invType::INVTYPE_2HWEAPON::mountID::0::itemModifiedAppearanceID::309687::speciesID::0::name::Malho de Guerra de Lumepedra Calejado::itemID::276421::addedDate::2026/45::",
 [1584] = "::description::Objetos cenográficos usados na futura produção de Karazhan de \"Galeroso 2: Chega de miquinhos amestrados\".::price::200::transmogSetID::5899::quality::1::perksVendorCategoryID::8::invType::INVTYPE_NON_EQUIP_IGNORE::mountID::0::itemModifiedAppearanceID::0::speciesID::0::name::Coleção do Dramaturgo: Máscaras de Bruxa Pintadas::itemID::278808::addedDate::2026/46::",
-[203] = "::description::Para os inimigos, os olhos inocentes deste Vigia ocultam o perigo letal de uma Caçadora no encalço da presa, espreitando das sombras.::price::350::transmogSetID::0::quality::3::perksVendorCategoryID::3::invType::INVTYPE_NON_EQUIP_IGNORE::mountID::0::itemModifiedAppearanceID::0::speciesID::3254::name::Guardiã da Caçadora::itemID::190609::addedDate::2026/46::",
+[1600] = "::description::Furtividade reduzida, confiança aumentada.::price::40::transmogSetID::0::quality::1::perksVendorCategoryID::1::invType::INVTYPE_FEET::mountID::0::itemModifiedAppearanceID::311352::speciesID::0::name::Escarpes de Aço Básicos::itemID::279818::addedDate::2026/46::",
 [1616] = "::description::Nem todas as vítimas de Medivh se foram para sempre.::price::700::transmogSetID::0::mountTypeName::Voador::quality::4::perksVendorCategoryID::2::invType::INVTYPE_NON_EQUIP_IGNORE::mountID::532::itemModifiedAppearanceID::0::speciesID::0::name::Crânio do Atacante Horrendo::itemID::93671::addedDate::2026/46::",
 [1193] = "::description::Proteção a ti, que és refúgio dos teus pares. Que te sobre força na hora da necessidade.::price::100::transmogSetID::0::quality::3::perksVendorCategoryID::1::invType::INVTYPE_SHIELD::mountID::0::itemModifiedAppearanceID::295248::speciesID::0::name::Baluarte Santificado do Cavaleiro::itemID::247717::addedDate::2026/46::",
 [1578] = "::description::Passe furtivamente por quem está distraído.::price::700::transmogSetID::5892::quality::1::perksVendorCategoryID::8::invType::INVTYPE_NON_EQUIP_IGNORE::mountID::0::itemModifiedAppearanceID::0::speciesID::0::name::Indumentária: Vestuário do Assassino do Brilho Lunar::itemID::278612::addedDate::2026/46::",
@@ -186,8 +182,8 @@ NarcissusDB = {
 [1586] = "::description::Objetos cenográficos usados na futura produção de Karazhan de \"O Rei Trovão e eu\".::price::200::transmogSetID::5897::quality::1::perksVendorCategoryID::8::invType::INVTYPE_NON_EQUIP_IGNORE::mountID::0::itemModifiedAppearanceID::0::speciesID::0::name::Coleção do Dramaturgo: Máscaras Mogu Pintadas::itemID::278806::addedDate::2026/46::",
 [1602] = "::description::Faça um estragãozinho com o espadãozinho.::price::115::transmogSetID::0::quality::1::perksVendorCategoryID::1::invType::INVTYPE_2HWEAPON::mountID::0::itemModifiedAppearanceID::310824::speciesID::0::name::Espadão de Brinquedo do Armagedinho::itemID::278993::addedDate::2026/46::",
 [1618] = "::description::Um chapéu engenhoso, ideal para o inverno.::price::50::transmogSetID::0::quality::1::perksVendorCategoryID::1::invType::INVTYPE_HEAD::mountID::0::itemModifiedAppearanceID::298549::speciesID::0::name::Touca de Inverno Ameixa::itemID::252747::addedDate::2026/46::",
-[1191] = "::description::Este talbuque é uma montaria teimosa e obstinada, mesmo depois que se acostuma com o dono. Cavalgue com cuidado.::price::325::transmogSetID::0::mountTypeName::Terrestre::quality::4::perksVendorCategoryID::2::invType::INVTYPE_NON_EQUIP_IGNORE::mountID::2630::itemModifiedAppearanceID::0::speciesID::0::name::Pé-de-brisa Turrão::itemID::247795::addedDate::2026/45::",
-[1192] = "::description::Até as Trevas, um dia, vão ter o seu fim, mas eterna há de ser a luz de Sir Martins.::price::600::transmogSetID::5162::quality::3::perksVendorCategoryID::8::invType::INVTYPE_NON_EQUIP_IGNORE::mountID::0::itemModifiedAppearanceID::0::speciesID::0::name::Indumentária: Coleção Santificada do Cavaleiro::itemID::247991::addedDate::2026/46::",
+[1195] = "::description::P'ra que, quando a ti se oponham os inimigos, um mero golpe baste p'ra que caiam vencidos.::price::230::transmogSetID::0::quality::3::perksVendorCategoryID::1::invType::INVTYPE_WEAPON::mountID::0::itemModifiedAppearanceID::295240::speciesID::0::name::Lâmina Santificada do Cavaleiro::itemID::247708::addedDate::2026/46::",
+[1571] = "::description::A roupa ideal para treinar pesado.::price::100::transmogSetID::4531::quality::2::perksVendorCategoryID::8::invType::INVTYPE_NON_EQUIP_IGNORE::mountID::0::itemModifiedAppearanceID::0::speciesID::0::name::Indumentária: Conjunto de Moletom Atijolado::itemID::242462::addedDate::2026/45::",
 },
 ["CurrentMonthData"] = {
 ["items"] = {
@@ -241,23 +237,27 @@ NarcissusDB = {
 ["month"] = 46,
 },
 },
-["AutoDisplayQuestItem"] = false,
-["OnlyShowOwnedUpgradeItem"] = true,
-["GemManager"] = true,
-["ModelPanelScale"] = 1,
-["TooltipTheme"] = "Bright",
-["AnchorToMinimap"] = true,
-["HideTextsWithUI"] = false,
+["CameraOrbit"] = true,
 ["TalentTreeForInspection"] = true,
-["NameTranslationPosition"] = 1,
-["TalentTreeForPaperDoll"] = false,
-["TalentTreeAnchor"] = 1,
-["IndependentMinimapButton"] = false,
-["SpeedyScreenshotAlert"] = true,
+["UseWoWQualityColor"] = false,
+["WardrobeCollectionSetsCheckbox"] = true,
+["GlobalScale"] = 0.8,
+["Favorites"] = {
+["FavoriteAnimationIDs"] = {
+},
+},
+["Tutorials"] = {
+["ExitConfirmation"] = true,
+["Movement"] = false,
+["SpellVisualBrowser"] = true,
+["NPCBrowserEntance"] = true,
+["NPCBrowser"] = true,
+["WeaponBrowser"] = true,
+},
 ["TradingPostChangePost"] = true,
-["installTime"] = 1790563880,
+["Version"] = 10000,
 ["SearchSuggestEnable"] = false,
-["ConduitTooltip"] = false,
+["FontHeightItemName"] = 10,
 ["DressingRoomUseTargetModel"] = true,
 }
 NarciAchievementOptions = {
@@ -268,10 +268,10 @@ NarciAchievementOptions = {
 },
 ["pinnedStatistics"] = {
 },
+["Theme"] = 1,
+["ReplaceToast"] = true,
 ["BookmarkedAchievements"] = {
 },
-["ReplaceToast"] = true,
-["Theme"] = 1,
 ["ShowRedMark"] = false,
 }
 NarciStatisticsDB = {
@@ -297,20 +297,10 @@ NarciCharacterProfiles = {
 ["name"] = "Deane",
 ["birth"] = 1790742332,
 ["serverID"] = 3209,
-["lastVisit"] = 1791064568,
+["lastVisit"] = 1791068339,
 ["outfits"] = {
 },
 ["class"] = 8,
-},
-["0C2362F1"] = {
-["race"] = 10,
-["name"] = "Kurufinwe",
-["birth"] = 1790815587,
-["serverID"] = 3209,
-["lastVisit"] = 1790815587,
-["outfits"] = {
-},
-["class"] = 3,
 },
 ["0C23ADFC"] = {
 ["race"] = 5,
@@ -321,6 +311,16 @@ NarciCharacterProfiles = {
 ["outfits"] = {
 },
 ["class"] = 9,
+},
+["0C2362F1"] = {
+["race"] = 10,
+["name"] = "Kurufinwe",
+["birth"] = 1790815587,
+["serverID"] = 3209,
+["lastVisit"] = 1790815587,
+["outfits"] = {
+},
+["class"] = 3,
 },
 }
 NarciPhotoModeDB = {

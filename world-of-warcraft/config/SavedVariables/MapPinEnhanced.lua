@@ -2,31 +2,31 @@
 MapPinEnhancedDB = {
 ["tracker"] = {
 ["lockTracker"] = false,
-["trackerScale"] = 1,
-["trackerHeight"] = 7,
 ["showNumbering"] = true,
+["trackerHeight"] = 7,
+["trackerScale"] = 1,
 ["backgroundOpacity"] = 0,
 ["autoVisibility"] = "none",
 },
 ["minimapIcon"] = {
 ["minimapPos"] = 45,
-["hide"] = false,
 ["lock"] = false,
+["hide"] = false,
 },
 ["version"] = 322,
 ["superTrackingOther"] = true,
-["general"] = {
-["autoTrackNearestPin"] = true,
-},
+["trackerVisible"] = false,
 ["trackerPosition"] = {
 ["y"] = -27.55530738830566,
 ["x"] = 10.22196006774902,
 },
 ["floatingPin"] = {
-["showEstimatedTime"] = true,
 ["unlimitedDistance"] = true,
+["showEstimatedTime"] = true,
 ["showTitle"] = true,
 ["blockWorldQuestTracking"] = false,
 },
-["trackerVisible"] = false,
+["general"] = {
+["autoTrackNearestPin"] = true,
+},
 }

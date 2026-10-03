@@ -47,6 +47,17 @@ local function aoTrocarDeSituacao(dynamicCam, situacaoAntiga, situacaoNova)
     end
 end
 
+-- Para os scripts das situacoes do DynamicCam (conjuracao): saber se este
+-- addon cuida da volta para a camera livre e, se a camera ainda esta voltando,
+-- para qual distancia.
+ZoomLivreEstavel = {
+    ativo = true,
+    DestinoSeVoltando = function()
+        if fimDaVolta and GetTime() < fimDaVolta then return destinoDaVolta end
+        return nil
+    end,
+}
+
 local instalado = false
 local function instalar()
     if instalado or not (DynamicCam and DynamicCam.ChangeSituation) then return end
