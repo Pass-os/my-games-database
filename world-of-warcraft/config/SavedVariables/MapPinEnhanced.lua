@@ -14,7 +14,7 @@ MapPinEnhancedDB = {
 ["hide"] = false,
 },
 ["version"] = 322,
-["superTrackingOther"] = true,
+["superTrackingOther"] = false,
 ["trackerVisible"] = false,
 ["trackerPosition"] = {
 ["y"] = -27.55530738830566,

@@ -45,15 +45,15 @@ MacroToolkitDB = {
 ["name"] = " ",
 ["body"] = "#showtooltip\n/stopcasting\n/cast Mão de Gul'dan\n",
 },
-[130] = {
-["icon"] = "2032588",
-["name"] = "+",
-["body"] = "#showtooltip\n/stopcasting\n/cast Seta Demoníaca\n",
-},
 [129] = {
 ["icon"] = "237559",
 ["name"] = " ",
 ["body"] = "#showtooltip\n/cast [mod:shift] Círculo Demoníaco\n/castsequence [nomod] reset=900 Círculo Demoníaco, Círculo Demoníaco: Teleporte, Círculo Demoníaco: Teleporte, Círculo Demoníaco: Teleporte, Círculo Demoníaco: Teleporte\n",
+},
+[130] = {
+["icon"] = "2032588",
+["name"] = "+",
+["body"] = "#showtooltip\n/stopcasting\n/cast Seta Demoníaca\n",
 },
 },
 ["backups"] = {
@@ -122,13 +122,13 @@ MacroToolkitDB = {
 ["Kurufinwe - Azralon"] = {
 ["macros"] = {
 [121] = {
-["icon"] = "2058007",
 ["name"] = "Disparo Marcado",
+["icon"] = "2058007",
 ["body"] = "#showtooltip Disparo Farpado\n/castsequence reset=target Marca do Caçador, null\n/cast Disparo Farpado\n",
 },
 [122] = {
-["icon"] = "132294",
 ["name"] = "Escapar",
+["icon"] = "132294",
 ["body"] = "#showtooltip Desvencilhar\n/cast Cortar Asas\n/cast Desvencilhar\n",
 },
 },
@@ -136,9 +136,9 @@ MacroToolkitDB = {
 },
 },
 ["global"] = {
-["ebackups"] = {
-},
 ["backups"] = {
+},
+["ebackups"] = {
 },
 },
 ["profiles"] = {

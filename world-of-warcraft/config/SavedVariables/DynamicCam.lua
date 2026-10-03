@@ -2,10 +2,10 @@
 DynamicCamDB = {
 ["global"] = {
 ["popOutFrame"] = {
-["height"] = 499.9999084472656,
+["height"] = 499.9999389648438,
 ["opacity"] = 0,
 ["left"] = 306.6658325195313,
-["top"] = 772.3331909179688,
+["top"] = 730,
 },
 },
 ["profiles"] = {
@@ -219,9 +219,14 @@ DynamicCamDB = {
 },
 ["situationSettings"] = {
 ["cvars"] = {
-["test_cameraOverShoulder"] = 0.6,
 ["test_cameraTargetFocusInteractEnable"] = 1,
+["test_cameraDynamicPitchBaseFovPadDownScale"] = 0.25,
+["test_cameraDynamicPitchBaseFovPad"] = 0.62,
+["test_cameraOverShoulder"] = 0.5,
 ["test_cameraTargetFocusInteractStrengthPitch"] = 0.75,
+["test_cameraDynamicPitchSmartPivotCutoffDist"] = 10,
+["test_cameraDynamicPitchBaseFovPadFlying"] = 0.75,
+["test_cameraDynamicPitch"] = 1,
 ["test_cameraTargetFocusInteractStrengthYaw"] = 1,
 },
 },
@@ -301,7 +306,7 @@ DynamicCamDB = {
 ["enabled"] = true,
 ["viewZoom"] = {
 ["enabled"] = true,
-["zoomValue"] = 20,
+["zoomValue"] = 22,
 },
 ["hideUI"] = {
 ["customFramesToKeep"] = {
