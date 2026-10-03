@@ -46,7 +46,7 @@ Versoes exatas e IDs do CurseForge em [`addons.json`](addons.json).
 | Addon | Para que | Comando |
 | --- | --- | --- |
 | DynamicCam | camera por situacao (NPC, montaria, taxi, interiores...) | `/dc` |
-| Dialogue UI | dialogo de NPC, narracao por voz e janela de livros (substitui o Immersion) | F1 no dialogo |
+| Immersion | dialogo de NPC em caixa estilo RPG (fixado na 1.4.60) | Opcoes > AddOns > Immersion |
 | BtWQuests (+ Midnight, The War Within) | diario de cadeias de missao da historia | aba no mapa |
 | Narcissus | tela de personagem e modo foto | `/narcissus` |
 | HandyNotes | anotacoes no mapa | Alt + clique direito no mapa |
@@ -57,7 +57,7 @@ Versoes exatas e IDs do CurseForge em [`addons.json`](addons.json).
 | Better Wardrobe and Transmog | colecao de conjuntos, provador e transmog | abas na Colecao / Transmog |
 | Can I Mog It? | mostra se a aparencia do item ja foi aprendida | `/cimi` |
 | BarberShop Profiles | salva aparencias da barbearia por raca (conta toda) | botoes na barbearia |
-**Dialogue UI:**
+**Dialogue UI (desativado desde 03/10/2026, voltamos ao Immersion):**
 
 - Teclado: `1`-`9` escolhe a opcao, Espaco aceita, `R` le/para a narracao,
   Tab alterna recompensas, F1 abre as opcoes. Setas so com controle (gamepad).
@@ -106,7 +106,9 @@ copia cada pasta de la direto para `Interface\AddOns`.
 
 ### Decisoes que nao sao obvias
 
-- **Immersion trocado pelo Dialogue UI (out/2026).** Estava preso na 1.4.60
+- **Immersion -> Dialogue UI -> Immersion (out/2026).** O Dialogue UI foi testado no trabalho
+  em 02/10 e o usuario preferiu voltar ao Immersion em 03/10: Dialogue UI em `disabled`,
+  situacoes 300 e custom1 do DynamicCam reativadas. Historico: Estava preso na 1.4.60
   (a 1.4.61 deixou a caixa de dialogo sem responder ao X, ESC e Espaco), e o
   Dialogue UI ja esta no 12.1 e traz narracao propria. Para voltar: mover o
   Immersion de `disabled` para `addons` e reativar as situacoes 300 e

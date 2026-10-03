@@ -41,9 +41,9 @@ maior. Tipo de Zoom: **Definir** (vai sempre para o valor), **Aproximar**
 
 ## Situacoes ativas
 
-> **Desde out/2026 o dialogo e do Dialogue UI**, que move a camera: "Interacao
-> com NPC" (300) e "NPC grande" (custom1) estao **desativadas** (o resto da
-> configuracao delas foi mantido). Para voltar ao Immersion, reativar as duas.
+> O dialogo voltou a ser do **Immersion** (03/10/2026): "Interacao com NPC" (300)
+> e "NPC grande" (custom1) estao **ativas**. Se trocar pelo Dialogue UI, que move
+> a camera sozinho, desative as duas.
 
 
 | Situacao (nome no `/dc`) | ID | Zoom | Outras acoes | Configuracoes de Situacao | Transicao |

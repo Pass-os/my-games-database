@@ -76,13 +76,13 @@
       "note": "Camera por situacao. Configuracao em config/SavedVariables/DynamicCam.lua."
     },
     {
-      "name": "Dialogue UI",
-      "projectId": 989270,
-      "fileId": 8865218,
-      "version": "1.0.5",
-      "size": 9625726,
-      "folders": ["DialogueUI"],
-      "note": "Dialogo com NPC (substitui o Immersion), narracao propria por TTS (vozes masculina/feminina/narrador) e janela de livros. Do autor do Narcissus. Ele move a camera no dialogo: as situacoes 300 e custom1 do DynamicCam ficam desativadas. F1 abre as opcoes."
+      "name": "Immersion",
+      "projectId": 257550,
+      "fileId": 8940431,
+      "version": "1.4.60",
+      "size": 235736,
+      "folders": ["Immersion"],
+      "note": "FIXADO na 1.4.60: a 1.4.61 (painel de config novo) deixou a caixa de dialogo sem responder aos botoes/atalhos. Voltou no lugar do Dialogue UI em 03/10/2026, por preferencia."
     },
     {
       "name": "BtWQuests",
@@ -108,15 +108,7 @@
       "fileId": 8885124,
       "version": "1.8.6-c",
       "size": 91087505,
-      "folders": [
-        "Narcissus",
-        "Narcissus_Achievements",
-        "Narcissus_BagFilter",
-        "Narcissus_Barbershop",
-        "Narcissus_Database_Item",
-        "Narcissus_Database_NPC",
-        "Narcissus_GamePad"
-      ],
+      "folders": ["Narcissus", "Narcissus_Achievements", "Narcissus_BagFilter", "Narcissus_Barbershop", "Narcissus_Database_Item", "Narcissus_Database_NPC", "Narcissus_GamePad"],
       "note": "Tela de personagem e modo foto (/narcissus). ~91 MB por causa dos modelos."
     },
     {
@@ -149,13 +141,13 @@
   ],
   "disabled": [
     {
-      "name": "Immersion",
-      "projectId": 257550,
-      "fileId": 8940431,
-      "version": "1.4.60",
-      "size": 235736,
-      "folders": ["Immersion"],
-      "reason": "Trocado pelo Dialogue UI (out/2026). Estava FIXADO na 1.4.60: a 1.4.61 deixou a caixa de dialogo sem responder aos botoes/atalhos. Para voltar: mover para addons e reativar as situacoes 300 e custom1 do DynamicCam."
+      "name": "Dialogue UI",
+      "projectId": 989270,
+      "fileId": 8865218,
+      "version": "1.0.5",
+      "size": 9625726,
+      "folders": ["DialogueUI"],
+      "reason": "Testado em out/2026 no lugar do Immersion; voltamos ao Immersion por preferencia. Ele move a camera no dialogo: para usar de novo, desativar as situacoes 300 e custom1 do DynamicCam."
     },
     {
       "name": "QuestSpeaker",

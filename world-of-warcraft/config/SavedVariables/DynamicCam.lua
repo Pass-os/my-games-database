@@ -190,7 +190,7 @@ DynamicCamDB = {
 ["name"] = "|TInterface\\Icons\\INV_Misc_Lantern_01:16|t Mundo (Interiores)",
 },
 ["custom1"] = {
-["enabled"] = false,
+["enabled"] = true,
 ["situationSettings"] = {
 ["cvars"] = {
 ["test_cameraTargetFocusInteractEnable"] = 1,
@@ -416,6 +416,7 @@ end
 },
 },
 ["300"] = {
+["enabled"] = true,
 ["viewZoom"] = {
 ["enabled"] = true,
 ["zoomType"] = "in",
