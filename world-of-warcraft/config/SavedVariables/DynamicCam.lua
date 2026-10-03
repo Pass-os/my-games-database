@@ -4,8 +4,8 @@ DynamicCamDB = {
 ["popOutFrame"] = {
 ["height"] = 499.9999389648438,
 ["opacity"] = 0,
-["left"] = 306.6658325195313,
-["top"] = 730,
+["left"] = 306.6658020019531,
+["top"] = 732.6668701171875,
 },
 },
 ["profiles"] = {
@@ -16,6 +16,10 @@ DynamicCamDB = {
 ["situations"] = {
 ["custom4"] = {
 ["enabled"] = true,
+["name"] = "|TInterface\\Icons\\Spell_Fire_FlameBolt:16|t Conjurando (em combate)",
+["executeOnEnter"] = "-- ===== AJUSTE AQUI =====\nlocal distanciaParaAproximar = 3      -- quanto a camera chega mais perto ao conjurar\nlocal distanciaMinimaDaCamera = 1.5   -- a camera nunca fica mais perto que isso\nlocal segundosParaAproximar = 0.6     -- duracao do movimento de aproximar\n-- =======================\n\nlocal estado = DynamicCam.zoomConjurar or {}\nDynamicCam.zoomConjurar = estado\n\nC_Timer.After(0, function()\n  if estado.aproximado then return end -- ja aproximou (ex.: entrou em combate no meio da magia)\n\n  -- Se a camera ainda esta voltando da magia anterior (conjurou de novo rapido),\n  -- o ponto de partida e o destino dessa volta, nao o meio do caminho.\n  local aindaVoltando = estado.fimDoRetorno and GetTime() < estado.fimDoRetorno\n  local pontoDePartida = aindaVoltando and estado.pontoDePartida or GetCameraZoom()\n  local zoomDestino = math.max(pontoDePartida - distanciaParaAproximar, distanciaMinimaDaCamera)\n  if zoomDestino >= pontoDePartida then return end\n\n  estado.aproximado = true\n  estado.pontoDePartida = pontoDePartida\n  estado.fimDoRetorno = nil\n  DynamicCam:ResetReactiveZoomTarget()\n  LibStub(\"LibCamera-1.0\"):SetZoom(zoomDestino, segundosParaAproximar)\nend)\n",
+["executeOnInit"] = "local conjuracao = DynamicCam.conjuracaoEmCombate or {}\nDynamicCam.conjuracaoEmCombate = conjuracao\n\n-- Um so frame, mesmo que o script rode de novo ao editar a situacao.\nif not conjuracao.frame then\n  local eventosQueComecam = {\n    UNIT_SPELLCAST_START = true,\n    UNIT_SPELLCAST_CHANNEL_START = true,\n    UNIT_SPELLCAST_EMPOWER_START = true,\n  }\n  local eventosQueTerminam = {\n    UNIT_SPELLCAST_STOP = true,\n    UNIT_SPELLCAST_CHANNEL_STOP = true,\n    UNIT_SPELLCAST_EMPOWER_STOP = true,\n    UNIT_SPELLCAST_INTERRUPTED = true,\n  }\n\n  conjuracao.frame = CreateFrame(\"Frame\")\n  for evento in pairs(eventosQueComecam) do conjuracao.frame:RegisterUnitEvent(evento, \"player\") end\n  for evento in pairs(eventosQueTerminam) do conjuracao.frame:RegisterUnitEvent(evento, \"player\") end\n\n  conjuracao.frame:SetScript(\"OnEvent\", function(_, evento)\n    if eventosQueComecam[evento] then\n      conjuracao.conjurando = true\n    elseif eventosQueTerminam[evento] then\n      conjuracao.conjurando = false\n    end\n    DynamicCam:EvaluateSituations()\n  end)\nend\n",
+["condition"] = "if not UnitAffectingCombat(\"player\") then return false end\n\nlocal conjuracao = DynamicCam.conjuracaoEmCombate\nreturn conjuracao ~= nil and conjuracao.conjurando == true\n",
 ["events"] = {
 "UNIT_SPELLCAST_START",
 "UNIT_SPELLCAST_STOP",
@@ -27,10 +31,6 @@ DynamicCamDB = {
 "PLAYER_REGEN_DISABLED",
 "PLAYER_REGEN_ENABLED",
 },
-["executeOnEnter"] = "-- ===== AJUSTE AQUI =====\nlocal distanciaParaAproximar = 3      -- quanto a camera chega mais perto ao conjurar\nlocal distanciaMinimaDaCamera = 1.5   -- a camera nunca fica mais perto que isso\nlocal segundosParaAproximar = 0.6     -- duracao do movimento de aproximar\n-- =======================\n\nlocal estado = DynamicCam.zoomConjurar or {}\nDynamicCam.zoomConjurar = estado\n\nC_Timer.After(0, function()\n  if estado.aproximado then return end -- ja aproximou (ex.: entrou em combate no meio da magia)\n\n  -- Se a camera ainda esta voltando da magia anterior (conjurou de novo rapido),\n  -- o ponto de partida e o destino dessa volta, nao o meio do caminho.\n  local aindaVoltando = estado.fimDoRetorno and GetTime() < estado.fimDoRetorno\n  local pontoDePartida = aindaVoltando and estado.pontoDePartida or GetCameraZoom()\n  local zoomDestino = math.max(pontoDePartida - distanciaParaAproximar, distanciaMinimaDaCamera)\n  if zoomDestino >= pontoDePartida then return end\n\n  estado.aproximado = true\n  estado.pontoDePartida = pontoDePartida\n  estado.fimDoRetorno = nil\n  DynamicCam:ResetReactiveZoomTarget()\n  LibStub(\"LibCamera-1.0\"):SetZoom(zoomDestino, segundosParaAproximar)\nend)\n",
-["executeOnInit"] = "local conjuracao = DynamicCam.conjuracaoEmCombate or {}\nDynamicCam.conjuracaoEmCombate = conjuracao\n\n-- Um so frame, mesmo que o script rode de novo ao editar a situacao.\nif not conjuracao.frame then\n  local eventosQueComecam = {\n    UNIT_SPELLCAST_START = true,\n    UNIT_SPELLCAST_CHANNEL_START = true,\n    UNIT_SPELLCAST_EMPOWER_START = true,\n  }\n  local eventosQueTerminam = {\n    UNIT_SPELLCAST_STOP = true,\n    UNIT_SPELLCAST_CHANNEL_STOP = true,\n    UNIT_SPELLCAST_EMPOWER_STOP = true,\n    UNIT_SPELLCAST_INTERRUPTED = true,\n  }\n\n  conjuracao.frame = CreateFrame(\"Frame\")\n  for evento in pairs(eventosQueComecam) do conjuracao.frame:RegisterUnitEvent(evento, \"player\") end\n  for evento in pairs(eventosQueTerminam) do conjuracao.frame:RegisterUnitEvent(evento, \"player\") end\n\n  conjuracao.frame:SetScript(\"OnEvent\", function(_, evento)\n    if eventosQueComecam[evento] then\n      conjuracao.conjurando = true\n    elseif eventosQueTerminam[evento] then\n      conjuracao.conjurando = false\n    end\n    DynamicCam:EvaluateSituations()\n  end)\nend\n",
-["condition"] = "if not UnitAffectingCombat(\"player\") then return false end\n\nlocal conjuracao = DynamicCam.conjuracaoEmCombate\nreturn conjuracao ~= nil and conjuracao.conjurando == true\n",
-["name"] = "|TInterface\\Icons\\Spell_Fire_FlameBolt:16|t Conjurando (em combate)",
 ["rotation"] = {
 ["enabled"] = false,
 ["pitchDegrees"] = 0,
@@ -39,7 +39,10 @@ DynamicCamDB = {
 ["yawDegrees"] = 5,
 ["rotateBack"] = true,
 },
-["executeOnExit"] = "-- ===== AJUSTE AQUI =====\nlocal segundosParaAfastar = 0.8   -- duracao do movimento de voltar\n-- =======================\n\nlocal estado = DynamicCam.zoomConjurar\nif not estado then return end\n\nC_Timer.After(0.05, function()\n  -- Passou direto para a outra situacao de conjuracao: continua aproximado.\n  local situacaoAtual = DynamicCam.currentSituationID\n  local aindaConjurando = situacaoAtual == \"custom3\" or situacaoAtual == \"custom4\"\n  if aindaConjurando or not estado.aproximado then return end\n\n  estado.aproximado = false\n  -- Anota quando a volta termina: se conjurar de novo antes, o Script de\n  -- Entrada parte do mesmo ponto de partida, nao do meio do caminho.\n  estado.fimDoRetorno = GetTime() + segundosParaAfastar\n  DynamicCam:ResetReactiveZoomTarget()\n  LibStub(\"LibCamera-1.0\"):SetZoom(estado.pontoDePartida, segundosParaAfastar)\nend)\n",
+["transitionTime"] = {
+["timeToEnter"] = 0.5,
+["timeToExit"] = 0.5,
+},
 ["viewZoom"] = {
 ["enabled"] = false,
 ["zoomMax"] = 15,
@@ -47,11 +50,11 @@ DynamicCamDB = {
 ["viewZoomType"] = "zoom",
 ["zoomType"] = "set",
 ["zoomTimeIsMax"] = false,
-["viewInstant"] = false,
+["zoomValue"] = 4,
 ["viewRestore"] = true,
 ["restoreDefaultViewNumber"] = 1,
 ["viewNumber"] = 2,
-["zoomValue"] = 4,
+["viewInstant"] = false,
 },
 ["hideUI"] = {
 ["enabled"] = false,
@@ -70,17 +73,10 @@ DynamicCamDB = {
 },
 ["priority"] = 65,
 ["delay"] = 0,
-["transitionTime"] = {
-["timeToEnter"] = 0.5,
-["timeToExit"] = 0.5,
-},
+["executeOnExit"] = "-- ===== AJUSTE AQUI =====\nlocal segundosParaAfastar = 0.8   -- duracao do movimento de voltar\n-- =======================\n\nlocal estado = DynamicCam.zoomConjurar\nif not estado then return end\n\nC_Timer.After(0.05, function()\n  -- Passou direto para a outra situacao de conjuracao: continua aproximado.\n  local situacaoAtual = DynamicCam.currentSituationID\n  local aindaConjurando = situacaoAtual == \"custom3\" or situacaoAtual == \"custom4\"\n  if aindaConjurando or not estado.aproximado then return end\n\n  estado.aproximado = false\n  -- Anota quando a volta termina: se conjurar de novo antes, o Script de\n  -- Entrada parte do mesmo ponto de partida, nao do meio do caminho.\n  estado.fimDoRetorno = GetTime() + segundosParaAfastar\n  DynamicCam:ResetReactiveZoomTarget()\n  LibStub(\"LibCamera-1.0\"):SetZoom(estado.pontoDePartida, segundosParaAfastar)\nend)\n",
 },
 ["custom3"] = {
 ["enabled"] = true,
-["name"] = "|TInterface\\Icons\\Spell_Holy_MagicalSentry:16|t Conjurando (fora de combate)",
-["executeOnEnter"] = "-- ===== AJUSTE AQUI =====\nlocal distanciaParaAproximar = 3      -- quanto a camera chega mais perto ao conjurar\nlocal distanciaMinimaDaCamera = 1.5   -- a camera nunca fica mais perto que isso\nlocal segundosParaAproximar = 0.6     -- duracao do movimento de aproximar\n-- =======================\n\nlocal estado = DynamicCam.zoomConjurar or {}\nDynamicCam.zoomConjurar = estado\n\nC_Timer.After(0, function()\n  if estado.aproximado then return end -- ja aproximou (ex.: entrou em combate no meio da magia)\n\n  -- Se a camera ainda esta voltando da magia anterior (conjurou de novo rapido),\n  -- o ponto de partida e o destino dessa volta, nao o meio do caminho.\n  local aindaVoltando = estado.fimDoRetorno and GetTime() < estado.fimDoRetorno\n  local pontoDePartida = aindaVoltando and estado.pontoDePartida or GetCameraZoom()\n  local zoomDestino = math.max(pontoDePartida - distanciaParaAproximar, distanciaMinimaDaCamera)\n  if zoomDestino >= pontoDePartida then return end\n\n  estado.aproximado = true\n  estado.pontoDePartida = pontoDePartida\n  estado.fimDoRetorno = nil\n  DynamicCam:ResetReactiveZoomTarget()\n  LibStub(\"LibCamera-1.0\"):SetZoom(zoomDestino, segundosParaAproximar)\nend)\n",
-["executeOnInit"] = "",
-["condition"] = "if UnitAffectingCombat(\"player\") then return false end\n\nlocal function existe(valor) return (issecretvalue and issecretvalue(valor)) or valor ~= nil end\nlocal function legivel(valor) return valor ~= nil and not (issecretvalue and issecretvalue(valor)) end\n\nlocal function ehMontaria(magia)\n  return C_MountJournal and C_MountJournal.GetMountFromSpell and C_MountJournal.GetMountFromSpell(magia) ~= nil\nend\n\n\n-- Janela de profissoes aberta: quem cuida da camera e a situacao 330.\nif ProfessionsFrame and ProfessionsFrame:IsShown() then return false end\n\nlocal nomeConjuracao, _, _, _, _, conjuracaoDeProfissao, _, _, magiaConjurada = UnitCastingInfo(\"player\")\nif existe(nomeConjuracao) then\n  if legivel(conjuracaoDeProfissao) and conjuracaoDeProfissao then return false end\n  if legivel(magiaConjurada) and ehMontaria(magiaConjurada) then\n    return false\n  end\n  return true\nend\n\nlocal nomeCanalizacao, _, _, _, _, canalizacaoDeProfissao = UnitChannelInfo(\"player\")\nif not existe(nomeCanalizacao) then return false end\nif legivel(canalizacaoDeProfissao) and canalizacaoDeProfissao then return false end\nlocal PESCA = 7620\nif legivel(nomeCanalizacao) and C_Spell and C_Spell.GetSpellName and nomeCanalizacao == C_Spell.GetSpellName(PESCA) then\n  return false\nend\nreturn true\n",
 ["events"] = {
 "UNIT_SPELLCAST_START",
 "UNIT_SPELLCAST_STOP",
@@ -92,6 +88,10 @@ DynamicCamDB = {
 "PLAYER_REGEN_DISABLED",
 "PLAYER_REGEN_ENABLED",
 },
+["executeOnEnter"] = "-- ===== AJUSTE AQUI =====\nlocal distanciaParaAproximar = 3      -- quanto a camera chega mais perto ao conjurar\nlocal distanciaMinimaDaCamera = 1.5   -- a camera nunca fica mais perto que isso\nlocal segundosParaAproximar = 0.6     -- duracao do movimento de aproximar\n-- =======================\n\nlocal estado = DynamicCam.zoomConjurar or {}\nDynamicCam.zoomConjurar = estado\n\nC_Timer.After(0, function()\n  if estado.aproximado then return end -- ja aproximou (ex.: entrou em combate no meio da magia)\n\n  -- Se a camera ainda esta voltando da magia anterior (conjurou de novo rapido),\n  -- o ponto de partida e o destino dessa volta, nao o meio do caminho.\n  local aindaVoltando = estado.fimDoRetorno and GetTime() < estado.fimDoRetorno\n  local pontoDePartida = aindaVoltando and estado.pontoDePartida or GetCameraZoom()\n  local zoomDestino = math.max(pontoDePartida - distanciaParaAproximar, distanciaMinimaDaCamera)\n  if zoomDestino >= pontoDePartida then return end\n\n  estado.aproximado = true\n  estado.pontoDePartida = pontoDePartida\n  estado.fimDoRetorno = nil\n  DynamicCam:ResetReactiveZoomTarget()\n  LibStub(\"LibCamera-1.0\"):SetZoom(zoomDestino, segundosParaAproximar)\nend)\n",
+["executeOnInit"] = "",
+["condition"] = "if UnitAffectingCombat(\"player\") then return false end\n\nlocal function existe(valor) return (issecretvalue and issecretvalue(valor)) or valor ~= nil end\nlocal function legivel(valor) return valor ~= nil and not (issecretvalue and issecretvalue(valor)) end\n\nlocal function ehMontaria(magia)\n  return C_MountJournal and C_MountJournal.GetMountFromSpell and C_MountJournal.GetMountFromSpell(magia) ~= nil\nend\n\n\n-- Janela de profissoes aberta: quem cuida da camera e a situacao 330.\nif ProfessionsFrame and ProfessionsFrame:IsShown() then return false end\n\nlocal nomeConjuracao, _, _, _, _, conjuracaoDeProfissao, _, _, magiaConjurada = UnitCastingInfo(\"player\")\nif existe(nomeConjuracao) then\n  if legivel(conjuracaoDeProfissao) and conjuracaoDeProfissao then return false end\n  if legivel(magiaConjurada) and ehMontaria(magiaConjurada) then\n    return false\n  end\n  return true\nend\n\nlocal nomeCanalizacao, _, _, _, _, canalizacaoDeProfissao = UnitChannelInfo(\"player\")\nif not existe(nomeCanalizacao) then return false end\nif legivel(canalizacaoDeProfissao) and canalizacaoDeProfissao then return false end\nlocal PESCA = 7620\nif legivel(nomeCanalizacao) and C_Spell and C_Spell.GetSpellName and nomeCanalizacao == C_Spell.GetSpellName(PESCA) then\n  return false\nend\nreturn true\n",
+["name"] = "|TInterface\\Icons\\Spell_Holy_MagicalSentry:16|t Conjurando (fora de combate)",
 ["situationSettings"] = {
 ["cvars"] = {
 ["test_cameraTargetFocusEnemyStrengthPitch"] = 0.5,
@@ -102,7 +102,10 @@ DynamicCamDB = {
 ["test_cameraTargetFocusInteractStrengthYaw"] = 1,
 },
 },
-["executeOnExit"] = "-- ===== AJUSTE AQUI =====\nlocal segundosParaAfastar = 0.8   -- duracao do movimento de voltar\n-- =======================\n\nlocal estado = DynamicCam.zoomConjurar\nif not estado then return end\n\nC_Timer.After(0.05, function()\n  -- Passou direto para a outra situacao de conjuracao: continua aproximado.\n  local situacaoAtual = DynamicCam.currentSituationID\n  local aindaConjurando = situacaoAtual == \"custom3\" or situacaoAtual == \"custom4\"\n  if aindaConjurando or not estado.aproximado then return end\n\n  estado.aproximado = false\n  -- Anota quando a volta termina: se conjurar de novo antes, o Script de\n  -- Entrada parte do mesmo ponto de partida, nao do meio do caminho.\n  estado.fimDoRetorno = GetTime() + segundosParaAfastar\n  DynamicCam:ResetReactiveZoomTarget()\n  LibStub(\"LibCamera-1.0\"):SetZoom(estado.pontoDePartida, segundosParaAfastar)\nend)\n",
+["transitionTime"] = {
+["timeToEnter"] = 1.5,
+["timeToExit"] = 1,
+},
 ["viewZoom"] = {
 ["enabled"] = false,
 ["zoomMax"] = 15,
@@ -110,11 +113,11 @@ DynamicCamDB = {
 ["viewZoomType"] = "zoom",
 ["zoomType"] = "in",
 ["zoomTimeIsMax"] = false,
-["viewInstant"] = false,
+["zoomValue"] = 2,
 ["viewRestore"] = true,
 ["restoreDefaultViewNumber"] = 1,
 ["viewNumber"] = 2,
-["zoomValue"] = 2,
+["viewInstant"] = false,
 },
 ["hideUI"] = {
 ["enabled"] = false,
@@ -131,10 +134,7 @@ DynamicCamDB = {
 },
 ["priority"] = 60,
 ["delay"] = 0,
-["transitionTime"] = {
-["timeToEnter"] = 1.5,
-["timeToExit"] = 1,
-},
+["executeOnExit"] = "-- ===== AJUSTE AQUI =====\nlocal segundosParaAfastar = 0.8   -- duracao do movimento de voltar\n-- =======================\n\nlocal estado = DynamicCam.zoomConjurar\nif not estado then return end\n\nC_Timer.After(0.05, function()\n  -- Passou direto para a outra situacao de conjuracao: continua aproximado.\n  local situacaoAtual = DynamicCam.currentSituationID\n  local aindaConjurando = situacaoAtual == \"custom3\" or situacaoAtual == \"custom4\"\n  if aindaConjurando or not estado.aproximado then return end\n\n  estado.aproximado = false\n  -- Anota quando a volta termina: se conjurar de novo antes, o Script de\n  -- Entrada parte do mesmo ponto de partida, nao do meio do caminho.\n  estado.fimDoRetorno = GetTime() + segundosParaAfastar\n  DynamicCam:ResetReactiveZoomTarget()\n  LibStub(\"LibCamera-1.0\"):SetZoom(estado.pontoDePartida, segundosParaAfastar)\nend)\n",
 },
 ["050"] = {
 ["enabled"] = true,
@@ -178,45 +178,19 @@ DynamicCamDB = {
 ["enabled"] = true,
 ["situationSettings"] = {
 ["cvars"] = {
-["test_cameraOverShoulder"] = 0.3,
+["test_cameraOverShoulder"] = -1.1,
 },
 },
 ["viewZoom"] = {
 ["enabled"] = true,
 ["zoomMax"] = 12,
+["zoomMin"] = 10,
 ["zoomType"] = "range",
 },
 ["name"] = "|TInterface\\Icons\\INV_Misc_Lantern_01:16|t Mundo (Interiores)",
 },
 ["custom1"] = {
 ["enabled"] = false,
-["rotation"] = {
-["enabled"] = false,
-["pitchDegrees"] = 0,
-["rotationType"] = "continuous",
-["rotationSpeed"] = 10,
-["yawDegrees"] = 0,
-["rotateBack"] = true,
-},
-["transitionTime"] = {
-["timeToEnter"] = 0.3,
-["timeToExit"] = 0.5,
-},
-["executeOnInit"] = "this.frames = {\"AuctionHouseFrame\", \"BankFrame\", \"ClassTrainerFrame\", \"GossipFrame\", \"ImmersionFrame\", \"MerchantFrame\", \"QuestFrame\"}\n\nDynamicCam.db.profile.dcBigNPCs = DynamicCam.db.profile.dcBigNPCs or {}\n\nthis.GetNpcId = function(unit)\n  local guid = UnitGUID(unit)\n  if not guid or (issecretvalue and issecretvalue(guid)) then return nil end\n  local unitType, _, _, _, _, npcId = strsplit(\"-\", guid)\n  if unitType == \"Creature\" or unitType == \"Vehicle\" then return npcId end\n  return nil\nend\n\ngetfenv(0).SLASH_DCNPCGRANDE1 = \"/npcgrande\"\nSlashCmdList[\"DCNPCGRANDE\"] = function()\n  local list = DynamicCam.db.profile.dcBigNPCs\n  local unit = UnitExists(\"npc\") and \"npc\" or \"target\"\n  local npcId = this.GetNpcId(unit)\n  if not npcId then\n    print(\"|cff33ccffDynamicCam:|r fale com o NPC (ou selecione-o) antes de usar /npcgrande\")\n    return\n  end\n  local name = UnitName(unit)\n  if issecretvalue and issecretvalue(name) then name = nil end\n  if list[npcId] then\n    list[npcId] = nil\n    print(\"|cff33ccffDynamicCam:|r \" .. (name or npcId) .. \" removido da lista de NPCs grandes\")\n  else\n    list[npcId] = name or true\n    print(\"|cff33ccffDynamicCam:|r \" .. (name or npcId) .. \" marcado como NPC grande - a camera vai afastar nele\")\n  end\n  DynamicCam:EvaluateSituations()\nend\n",
-["condition"] = "if not UnitExists(\"npc\") then return false end\nlocal npcId = this.GetNpcId(\"npc\")\nif not npcId then return false end\n\nlocal list = DynamicCam.db.profile.dcBigNPCs\nlocal grande = list and list[npcId]\nif not grande and NpcAltura and NpcAltura.EhGrande then\n  grande = NpcAltura.EhGrande(npcId)\nend\nif not grande then return false end\n\nfor _, v in pairs(this.frames) do\n  if _G[v] and _G[v]:IsShown() then return true end\nend\nreturn false",
-["viewZoom"] = {
-["enabled"] = true,
-["zoomMax"] = 15,
-["zoomMin"] = 5,
-["zoomValue"] = 1.5,
-["zoomType"] = "out",
-["viewNumber"] = 2,
-["viewInstant"] = false,
-["viewRestore"] = true,
-["restoreDefaultViewNumber"] = 1,
-["zoomTimeIsMax"] = false,
-["viewZoomType"] = "zoom",
-},
 ["situationSettings"] = {
 ["cvars"] = {
 ["test_cameraTargetFocusInteractEnable"] = 1,
@@ -230,7 +204,43 @@ DynamicCamDB = {
 ["test_cameraTargetFocusInteractStrengthYaw"] = 1,
 },
 },
+["transitionTime"] = {
+["timeToEnter"] = 0.3,
+["timeToExit"] = 0.5,
+},
+["executeOnInit"] = "this.frames = {\"AuctionHouseFrame\", \"BankFrame\", \"ClassTrainerFrame\", \"GossipFrame\", \"ImmersionFrame\", \"MerchantFrame\", \"QuestFrame\"}\n\nDynamicCam.db.profile.dcBigNPCs = DynamicCam.db.profile.dcBigNPCs or {}\n\nthis.GetNpcId = function(unit)\n  local guid = UnitGUID(unit)\n  if not guid or (issecretvalue and issecretvalue(guid)) then return nil end\n  local unitType, _, _, _, _, npcId = strsplit(\"-\", guid)\n  if unitType == \"Creature\" or unitType == \"Vehicle\" then return npcId end\n  return nil\nend\n\ngetfenv(0).SLASH_DCNPCGRANDE1 = \"/npcgrande\"\nSlashCmdList[\"DCNPCGRANDE\"] = function()\n  local list = DynamicCam.db.profile.dcBigNPCs\n  local unit = UnitExists(\"npc\") and \"npc\" or \"target\"\n  local npcId = this.GetNpcId(unit)\n  if not npcId then\n    print(\"|cff33ccffDynamicCam:|r fale com o NPC (ou selecione-o) antes de usar /npcgrande\")\n    return\n  end\n  local name = UnitName(unit)\n  if issecretvalue and issecretvalue(name) then name = nil end\n  if list[npcId] then\n    list[npcId] = nil\n    print(\"|cff33ccffDynamicCam:|r \" .. (name or npcId) .. \" removido da lista de NPCs grandes\")\n  else\n    list[npcId] = name or true\n    print(\"|cff33ccffDynamicCam:|r \" .. (name or npcId) .. \" marcado como NPC grande - a camera vai afastar nele\")\n  end\n  DynamicCam:EvaluateSituations()\nend\n",
+["condition"] = "if not UnitExists(\"npc\") then return false end\nlocal npcId = this.GetNpcId(\"npc\")\nif not npcId then return false end\n\nlocal list = DynamicCam.db.profile.dcBigNPCs\nlocal grande = list and list[npcId]\nif not grande and NpcAltura and NpcAltura.EhGrande then\n  grande = NpcAltura.EhGrande(npcId)\nend\nif not grande then return false end\n\nfor _, v in pairs(this.frames) do\n  if _G[v] and _G[v]:IsShown() then return true end\nend\nreturn false",
+["viewZoom"] = {
+["enabled"] = true,
+["zoomMax"] = 15,
+["zoomMin"] = 5,
+["viewInstant"] = false,
+["zoomType"] = "out",
+["viewNumber"] = 2,
+["zoomValue"] = 1.5,
+["viewRestore"] = true,
+["restoreDefaultViewNumber"] = 1,
+["zoomTimeIsMax"] = false,
+["viewZoomType"] = "zoom",
+},
+["rotation"] = {
+["enabled"] = false,
+["pitchDegrees"] = 0,
+["rotationType"] = "continuous",
+["rotationSpeed"] = 10,
+["yawDegrees"] = 0,
+["rotateBack"] = true,
+},
 ["executeOnEnter"] = "",
+["name"] = "|TInterface\\Icons\\Spell_Nature_Strength:16|t NPC grande (dialogo)",
+["hideUI"] = {
+["enabled"] = false,
+["customFramesToKeep"] = {
+},
+},
+["executeOnExit"] = "",
+["priority"] = 115,
+["delay"] = 0,
 ["events"] = {
 "AUCTION_HOUSE_CLOSED",
 "AUCTION_HOUSE_SHOW",
@@ -251,15 +261,6 @@ DynamicCamDB = {
 "TRAINER_CLOSED",
 "TRAINER_SHOW",
 },
-["hideUI"] = {
-["enabled"] = false,
-["customFramesToKeep"] = {
-},
-},
-["executeOnExit"] = "",
-["priority"] = 115,
-["delay"] = 0,
-["name"] = "|TInterface\\Icons\\Spell_Nature_Strength:16|t NPC grande (dialogo)",
 },
 ["302"] = {
 ["enabled"] = true,
@@ -274,7 +275,7 @@ DynamicCamDB = {
 ["enabled"] = true,
 ["situationSettings"] = {
 ["cvars"] = {
-["test_cameraDynamicPitchBaseFovPad"] = 0.09,
+["test_cameraDynamicPitchBaseFovPad"] = 0.24,
 ["test_cameraDynamicPitch"] = 1,
 ["test_cameraHeadMovementStrength"] = 0,
 ["test_cameraDynamicPitchBaseFovPadDownScale"] = 0.25,
@@ -292,13 +293,14 @@ DynamicCamDB = {
 ["enabled"] = true,
 ["situationSettings"] = {
 ["cvars"] = {
-["test_cameraOverShoulder"] = 0.3,
+["test_cameraOverShoulder"] = 0.8000000000000007,
 },
 },
 ["viewZoom"] = {
 ["enabled"] = true,
-["zoomMax"] = 12,
-["zoomType"] = "range",
+["zoomMax"] = 27.5,
+["zoomMin"] = 4,
+["zoomValue"] = 4,
 },
 ["name"] = "|TInterface\\Icons\\INV_Misc_Lantern_01:16|t Cidade (Interiores)",
 },
@@ -306,7 +308,7 @@ DynamicCamDB = {
 ["enabled"] = true,
 ["viewZoom"] = {
 ["enabled"] = true,
-["zoomValue"] = 22,
+["zoomValue"] = 36,
 },
 ["hideUI"] = {
 ["customFramesToKeep"] = {
@@ -336,16 +338,42 @@ DynamicCamDB = {
 },
 ["160"] = {
 ["enabled"] = true,
+["name"] = "|TInterface\\Icons\\Ability_Mount_Gryphon_01:16|t Táxi",
+["executeOnInit"] = [=[local taxi = DynamicCam.taxiReavaliar or {}
+DynamicCam.taxiReavaliar = taxi
+
+local function reavaliar()
+  DynamicCam:EvaluateSituations()
+  C_Timer.After(0.5, function() DynamicCam:EvaluateSituations() end)
+  C_Timer.After(1.5, function() DynamicCam:EvaluateSituations() end)
+end
+
+-- Um so frame, mesmo que o script rode de novo ao editar a situacao.
+if not taxi.frame then
+  taxi.frame = CreateFrame("Frame")
+  taxi.frame:RegisterEvent("TAXIMAP_CLOSED")
+  taxi.frame:RegisterEvent("PLAYER_CONTROL_LOST")
+  taxi.frame:RegisterEvent("PLAYER_CONTROL_GAINED")
+  taxi.frame:RegisterUnitEvent("UNIT_FLAGS", "player")
+  taxi.frame:SetScript("OnEvent", reavaliar)
+end
+]=],
 ["viewZoom"] = {
 ["enabled"] = true,
 ["zoomValue"] = 19.5,
 },
 ["hideUI"] = {
-["fadeOpacity"] = 0,
 ["enabled"] = true,
+["fadeOpacity"] = 0,
 ["keepMinimap"] = true,
+["keepChatFrame"] = true,
+["keepCustomFrames"] = true,
+["customFramesToKeep"] = {
+["ZoneTextFrame"] = true,
+["SubZoneTextFrame"] = true,
+["EventToastManagerFrame"] = true,
 },
-["name"] = "|TInterface\\Icons\\Ability_Mount_Gryphon_01:16|t Táxi",
+},
 },
 ["060"] = {
 ["enabled"] = true,
@@ -455,9 +483,15 @@ DynamicCamDB = {
 ["timeToExit"] = 2,
 },
 ["situationSettings"] = {
+["reactiveZoomAddIncrements"] = 0,
 ["cvars"] = {
-["cameraDistanceMaxZoomFactor"] = 2.6,
+["cameraDistanceMaxZoomFactor"] = 1,
+["cameraZoomSpeed"] = 15,
 },
+["reactiveZoomEnabled"] = true,
+["reactiveZoomAddIncrementsAlways"] = 3,
+["reactiveZoomMaxZoomTime"] = 0.1,
+["reactiveZoomIncAddDifference"] = 1.2,
 },
 ["viewZoom"] = {
 ["enabled"] = true,
@@ -516,8 +550,8 @@ DynamicCamDB = {
 ["cameraZoomSpeed"] = 15,
 ["test_cameraHeadMovementStrength"] = 0.5,
 ["test_cameraDynamicPitch"] = 1,
-["cameraDistanceMaxZoomFactor"] = 1,
-["test_cameraOverShoulder"] = 0.8000000000000007,
+["cameraDistanceMaxZoomFactor"] = 1.333333333333333,
+["test_cameraOverShoulder"] = 0.7000000000000011,
 },
 ["reactiveZoomAddIncrementsAlways"] = 3,
 },

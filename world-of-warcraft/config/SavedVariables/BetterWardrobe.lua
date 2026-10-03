@@ -16,6 +16,10 @@ BetterWardrobe_SavedSetData = {
 ["Kurufinwe - Azralon"] = "HUNTER",
 },
 },
+["profiles"] = {
+["Gurthmorg - Azralon"] = {
+},
+},
 }
 BetterWardrobe_SubstituteItemData = {
 }

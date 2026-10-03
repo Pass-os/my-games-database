@@ -56,7 +56,7 @@ maior. Tipo de Zoom: **Definir** (vai sempre para o valor), **Aproximar**
 | Campo de Batalha | 060 | | | ombro 0, cabeca 0 | padrao |
 | Montaria (qualquer) | 100 | Definir 15 | Ocultar Interface: opacidade 0, mantem Minimapa, Quadro de Encontro (vigor) e quadros adicionais `MainActionBar`, `ZoneTextFrame`, `SubZoneTextFrame`, `EventToastManagerFrame` (nomes de lugar e avisos de descoberta) | distancia max 39 | 1.5 / 2.0 s |
 | Montaria (apenas montaria voadora + no ar) | 102 | Definir 20 | | | padrao |
-| Taxi | 160 | Definir 19 | Ocultar Interface: opacidade 0, mantem Chat | | padrao |
+| Taxi | 160 | Definir 19.5 | Ocultar Interface: opacidade 0, mantem Minimapa, Chat e nomes de lugar; Script de Inicializacao `taxi-inicializacao.lua` reavalia ao fechar o mapa de voo (a condicao original so via PLAYER_CONTROL_LOST) | | padrao |
 | Pedra de Regresso/Teletransporte | 200 | Definir 8 | Rotacao continua 20; Ocultar Interface opacidade 0 | | padrao |
 | Interacao com NPC | 300 | Aproximar 3 | Rotacao: graus, inclinacao -5 (Ativar **desmarcado**); scripts de musica | ombro 0.6, foco de interacao 1.0 / 0.75 | 0.2 / 0.5 s |
 | Caixa de Correio | 301 | Aproximar 6 | | foco de interacao ligado | 0.3 / 0.5 s |
