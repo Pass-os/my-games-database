@@ -4,52 +4,51 @@ MacroToolkitDB = {
 ["Gurthmorg - Azralon"] = {
 ["macros"] = {
 [122] = {
-["icon"] = "607853",
 ["name"] = " ",
+["icon"] = "607853",
 ["body"] = "#showtooltip\n/castsequence reset=45 Espiral da Morte, Arremesso de Machado\n",
 },
 [126] = {
-["icon"] = "607853",
 ["name"] = " ",
+["icon"] = "607853",
 ["body"] = "#INTERROMPER COM [ Evocar Caçador Vil ]\n#showtooltip\n/stopcasting\n/cast Bloquear Feitiço(Habilidade de Comandar Demônio)\n/cast Devorar Magia(Habilidade Especial)\n",
 },
 [123] = {
-["icon"] = "135230",
 ["name"] = " ",
+["icon"] = "135230",
 ["body"] = "#showtooltip\n# DIFERENCIA O ICONE DA PEDRA DE VIDA\n/cast Criar Pedra de Vida\n",
 },
 [127] = {
-["icon"] = "7153694",
 ["name"] = " ",
+["icon"] = "7153694",
 ["body"] = "#showtooltip\n/castsequence reset=8 Bravura Calcinante, null\n/run C_Timer.After(0.5,function() SpellStopCasting() CastSpellByName(\"Protodraco Renovado\") end)\n",
 },
 [124] = {
-["icon"] = "535592",
 ["name"] = " ",
+["icon"] = "535592",
 ["body"] = "#showtooltip\n/stopcasting\n/cast Mão de Gul'dan\n",
 },
 [128] = {
-["icon"] = "237559",
 ["name"] = " ",
+["icon"] = "237559",
 ["body"] = "#showtooltip\n/cast [mod:shift] Círculo Demoníaco\n/castsequence [nomod] reset=900 Círculo Demoníaco, Círculo Demoníaco: Teleporte, Círculo Demoníaco: Teleporte, Círculo Demoníaco: Teleporte, Círculo Demoníaco: Teleporte\n",
 },
 [121] = {
-["icon"] = "136138",
 ["name"] = " ",
+["icon"] = "136138",
 ["body"] = "#showtooltip\n/castsequence reset=target Maldição da Fraqueza, Seta Sombria, Seta Sombria, Seta Sombria, Seta Sombria, Seta Sombria, Seta Sombria\n",
 },
 [125] = {
-["icon"] = "1378282",
 ["name"] = " ",
+["icon"] = "1378282",
 ["body"] = "#showtooltip\n/stopcasting\n/cast Evocar Espreitadores do Medo\n",
 },
 [129] = {
-["icon"] = "2032588",
 ["name"] = "+",
+["icon"] = "2032588",
 ["body"] = "#showtooltip\n/stopcasting\n/cast Seta Demoníaca\n",
 },
 },
-["classFile"] = "WARLOCK",
 ["backups"] = {
 {
 ["m"] = {
@@ -106,6 +105,7 @@ MacroToolkitDB = {
 ["n"] = "WOW RETAIL 1",
 },
 },
+["classFile"] = "WARLOCK",
 ["lastbackup"] = "27/09/26 21:38:39",
 },
 ["Guillgalad - Azralon"] = {
@@ -124,23 +124,26 @@ MacroToolkitDB = {
 ["Kurufinwe - Azralon"] = {
 ["macros"] = {
 [121] = {
-["name"] = "Disparo Marcado",
 ["icon"] = "2058007",
+["name"] = "Disparo Marcado",
 ["body"] = "#showtooltip Disparo Farpado\n/castsequence reset=target Marca do Caçador, null\n/cast Disparo Farpado\n",
 },
 [122] = {
-["name"] = "Escapar",
 ["icon"] = "132294",
+["name"] = "Escapar",
 ["body"] = "#showtooltip Desvencilhar\n/cast Cortar Asas\n/cast Desvencilhar\n",
 },
 },
 ["classFile"] = "HUNTER",
 },
+["Lumiels - Azralon"] = {
+["classFile"] = "PALADIN",
+},
 },
 ["global"] = {
-["backups"] = {
-},
 ["ebackups"] = {
+},
+["backups"] = {
 },
 },
 ["profiles"] = {

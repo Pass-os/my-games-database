@@ -14,10 +14,13 @@ BetterWardrobe_SavedSetData = {
 ["Guillgalad - Azralon"] = "PALADIN",
 ["Deane - Azralon"] = "MAGE",
 ["Kurufinwe - Azralon"] = "HUNTER",
+["Lumiels - Azralon"] = "PALADIN",
 },
 },
 ["profiles"] = {
 ["Gurthmorg - Azralon"] = {
+},
+["Lumiels - Azralon"] = {
 },
 },
 }
@@ -34,6 +37,8 @@ BetterWardrobe_ListData = {
 },
 ["Kurufinwe - Azralon"] = {
 },
+["Lumiels - Azralon"] = {
+},
 },
 },
 ["SharedSetsDB"] = {
@@ -48,6 +53,8 @@ BetterWardrobe_ListData = {
 },
 ["Kurufinwe - Azralon"] = {
 },
+["Lumiels - Azralon"] = {
+},
 },
 },
 ["OutfitDB"] = {
@@ -61,6 +68,8 @@ BetterWardrobe_ListData = {
 ["Guillgalad - Azralon"] = {
 },
 ["Deane - Azralon"] = {
+},
+["Lumiels - Azralon"] = {
 },
 },
 },

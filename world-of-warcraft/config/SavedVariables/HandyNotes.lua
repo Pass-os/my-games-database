@@ -9,6 +9,8 @@ HandyNotesDB = {
 },
 ["Kurufinwe - Azralon"] = {
 },
+["Lumiels - Azralon"] = {
+},
 },
 }
 HandyNotes_HandyNotesDB = {
@@ -20,6 +22,8 @@ HandyNotes_HandyNotesDB = {
 ["Deane - Azralon"] = {
 },
 ["Kurufinwe - Azralon"] = {
+},
+["Lumiels - Azralon"] = {
 },
 },
 }
