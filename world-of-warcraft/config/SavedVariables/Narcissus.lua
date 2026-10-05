@@ -46,16 +46,16 @@ NarcissusDB = {
 ["UseAddonCompartment"] = true,
 ["DressingRoom"] = true,
 ["UseBustShot"] = true,
-["TooltipLanguages"] = {
+["RealmNames"] = {
+[3209] = "Azralon",
 },
 ["DressingRoomItemSetListHideDupes"] = true,
 ["TranslateName"] = false,
 ["TalentTreeUseClassBackground"] = false,
-["UseEntranceVisual"] = true,
-["FontHeightItemName"] = 10,
-["RealmNames"] = {
-[3209] = "Azralon",
+["TooltipLanguages"] = {
 },
+["FontHeightItemName"] = 10,
+["UseEntranceVisual"] = true,
 ["Version"] = 10000,
 ["DressingRoomShowSlot"] = true,
 ["EnableDoubleTap"] = false,
@@ -302,6 +302,16 @@ NarciCharacterProfiles = {
 },
 ["class"] = 3,
 },
+["0C243BDB"] = {
+["race"] = 29,
+["name"] = "Lafya",
+["birth"] = 1791172935,
+["serverID"] = 3209,
+["lastVisit"] = 1791172935,
+["outfits"] = {
+},
+["class"] = 5,
+},
 ["0C23ADFC"] = {
 ["race"] = 5,
 ["name"] = "Gurthmorg",
@@ -317,7 +327,7 @@ NarciCharacterProfiles = {
 ["name"] = "Deane",
 ["birth"] = 1790742332,
 ["serverID"] = 3209,
-["lastVisit"] = 1791070479,
+["lastVisit"] = 1791170330,
 ["outfits"] = {
 },
 ["class"] = 8,
@@ -327,7 +337,7 @@ NarciCharacterProfiles = {
 ["name"] = "Lumiels",
 ["birth"] = 1791093005,
 ["serverID"] = 3209,
-["lastVisit"] = 1791093005,
+["lastVisit"] = 1791158390,
 ["outfits"] = {
 },
 ["class"] = 2,

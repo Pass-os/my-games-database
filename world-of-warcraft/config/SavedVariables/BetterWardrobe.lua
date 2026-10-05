@@ -2,6 +2,9 @@
 BetterWardrobe_Options = {
 ["profiles"] = {
 ["Default"] = {
+["ShowDetailedListTooltips"] = true,
+["ShowArmorSets"] = true,
+["ShowCosmeticSets"] = true,
 },
 },
 }
@@ -14,6 +17,7 @@ BetterWardrobe_SavedSetData = {
 ["Guillgalad - Azralon"] = "PALADIN",
 ["Deane - Azralon"] = "MAGE",
 ["Kurufinwe - Azralon"] = "HUNTER",
+["Lafya - Azralon"] = "PRIEST",
 ["Lumiels - Azralon"] = "PALADIN",
 },
 },
@@ -21,6 +25,13 @@ BetterWardrobe_SavedSetData = {
 ["Gurthmorg - Azralon"] = {
 },
 ["Lumiels - Azralon"] = {
+},
+["Deane - Azralon"] = {
+["autoHideSlot"] = {
+true,
+[3] = false,
+["toggle"] = true,
+},
 },
 },
 }
@@ -36,6 +47,8 @@ BetterWardrobe_ListData = {
 ["Deane - Azralon"] = {
 },
 ["Kurufinwe - Azralon"] = {
+},
+["Lafya - Azralon"] = {
 },
 ["Lumiels - Azralon"] = {
 },
@@ -53,13 +66,15 @@ BetterWardrobe_ListData = {
 },
 ["Kurufinwe - Azralon"] = {
 },
+["Lafya - Azralon"] = {
+},
 ["Lumiels - Azralon"] = {
 },
 },
 },
-["OutfitDB"] = {
-},
 ["SituationPresetsDB"] = {
+},
+["OutfitDB"] = {
 },
 ["HiddenAppearanceDB"] = {
 ["profiles"] = {
@@ -67,9 +82,11 @@ BetterWardrobe_ListData = {
 },
 ["Guillgalad - Azralon"] = {
 },
-["Deane - Azralon"] = {
-},
 ["Lumiels - Azralon"] = {
+},
+["Lafya - Azralon"] = {
+},
+["Deane - Azralon"] = {
 },
 },
 },

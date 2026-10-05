@@ -16,73 +16,13 @@ DynamicCamDB = {
 ["situations"] = {
 ["custom4"] = {
 ["enabled"] = true,
-["executeOnExit"] = [=[-- ===== AJUSTE AQUI =====
-local segundosParaAfastar = 0.8   -- duracao do movimento de voltar
--- =======================
-
-local estado = DynamicCam.zoomConjurar
-if not estado then return end
-
-C_Timer.After(0.05, function()
-  -- Passou direto para a outra situacao de conjuracao: continua aproximado.
-  local situacaoAtual = DynamicCam.currentSituationID
-  local aindaConjurando = situacaoAtual == "custom3" or situacaoAtual == "custom4"
-  if aindaConjurando or not estado.aproximado then return end
-
-  estado.aproximado = false
-
-  if situacaoAtual == nil and ZoomLivreEstavel and ZoomLivreEstavel.ativo then
-    estado.fimDoRetorno = nil
-    return
-  end
-
-  -- Anota quando a volta termina: se conjurar de novo antes, o Script de
-  -- Entrada parte do mesmo ponto de partida, nao do meio do caminho.
-  estado.fimDoRetorno = GetTime() + segundosParaAfastar
-  DynamicCam:ResetReactiveZoomTarget()
-  LibStub("LibCamera-1.0"):SetZoom(estado.pontoDePartida, segundosParaAfastar)
-end)
-]=],
+["executeOnExit"] = "-- ===== AJUSTE AQUI =====\nlocal segundosParaAfastar = 0.8   -- duracao do movimento de voltar\n-- =======================\n\nlocal estado = DynamicCam.zoomConjurar\nif not estado then return end\n\nC_Timer.After(0.05, function()\n  -- Passou direto para a outra situacao de conjuracao: continua aproximado.\n  local situacaoAtual = DynamicCam.currentSituationID\n  local aindaConjurando = situacaoAtual == \"custom3\" or situacaoAtual == \"custom4\"\n  if aindaConjurando or not estado.aproximado then return end\n\n  estado.aproximado = false\n\n  if situacaoAtual == nil and ZoomLivreEstavel and ZoomLivreEstavel.ativo then\n    estado.fimDoRetorno = nil\n    return\n  end\n\n  -- Anota quando a volta termina: se conjurar de novo antes, o Script de\n  -- Entrada parte do mesmo ponto de partida, nao do meio do caminho.\n  estado.fimDoRetorno = GetTime() + segundosParaAfastar\n  DynamicCam:ResetReactiveZoomTarget()\n  LibStub(\"LibCamera-1.0\"):SetZoom(estado.pontoDePartida, segundosParaAfastar)\nend)\n",
 ["transitionTime"] = {
 ["timeToEnter"] = 0.5,
 ["timeToExit"] = 0.5,
 },
-["executeOnInit"] = [=[local conjuracao = DynamicCam.conjuracaoEmCombate or {}
-DynamicCam.conjuracaoEmCombate = conjuracao
-
--- Um so frame, mesmo que o script rode de novo ao editar a situacao.
-if not conjuracao.frame then
-  local eventosQueComecam = {
-    UNIT_SPELLCAST_START = true,
-    UNIT_SPELLCAST_CHANNEL_START = true,
-    UNIT_SPELLCAST_EMPOWER_START = true,
-  }
-  local eventosQueTerminam = {
-    UNIT_SPELLCAST_STOP = true,
-    UNIT_SPELLCAST_CHANNEL_STOP = true,
-    UNIT_SPELLCAST_EMPOWER_STOP = true,
-    UNIT_SPELLCAST_INTERRUPTED = true,
-  }
-
-  conjuracao.frame = CreateFrame("Frame")
-  for evento in pairs(eventosQueComecam) do conjuracao.frame:RegisterUnitEvent(evento, "player") end
-  for evento in pairs(eventosQueTerminam) do conjuracao.frame:RegisterUnitEvent(evento, "player") end
-
-  conjuracao.frame:SetScript("OnEvent", function(_, evento)
-    if eventosQueComecam[evento] then
-      conjuracao.conjurando = true
-    elseif eventosQueTerminam[evento] then
-      conjuracao.conjurando = false
-    end
-    DynamicCam:EvaluateSituations()
-  end)
-end
-]=],
-["condition"] = [=[if not UnitAffectingCombat("player") then return false end
-
-local conjuracao = DynamicCam.conjuracaoEmCombate
-return conjuracao ~= nil and conjuracao.conjurando == true
-]=],
+["executeOnInit"] = "local conjuracao = DynamicCam.conjuracaoEmCombate or {}\nDynamicCam.conjuracaoEmCombate = conjuracao\n\n-- Um so frame, mesmo que o script rode de novo ao editar a situacao.\nif not conjuracao.frame then\n  local eventosQueComecam = {\n    UNIT_SPELLCAST_START = true,\n    UNIT_SPELLCAST_CHANNEL_START = true,\n    UNIT_SPELLCAST_EMPOWER_START = true,\n  }\n  local eventosQueTerminam = {\n    UNIT_SPELLCAST_STOP = true,\n    UNIT_SPELLCAST_CHANNEL_STOP = true,\n    UNIT_SPELLCAST_EMPOWER_STOP = true,\n    UNIT_SPELLCAST_INTERRUPTED = true,\n  }\n\n  conjuracao.frame = CreateFrame(\"Frame\")\n  for evento in pairs(eventosQueComecam) do conjuracao.frame:RegisterUnitEvent(evento, \"player\") end\n  for evento in pairs(eventosQueTerminam) do conjuracao.frame:RegisterUnitEvent(evento, \"player\") end\n\n  conjuracao.frame:SetScript(\"OnEvent\", function(_, evento)\n    if eventosQueComecam[evento] then\n      conjuracao.conjurando = true\n    elseif eventosQueTerminam[evento] then\n      conjuracao.conjurando = false\n    end\n    DynamicCam:EvaluateSituations()\n  end)\nend\n",
+["condition"] = "if not UnitAffectingCombat(\"player\") then return false end\n\nlocal conjuracao = DynamicCam.conjuracaoEmCombate\nreturn conjuracao ~= nil and conjuracao.conjurando == true\n",
 ["viewZoom"] = {
 ["enabled"] = false,
 ["zoomMax"] = 15,
@@ -104,33 +44,7 @@ return conjuracao ~= nil and conjuracao.conjurando == true
 ["yawDegrees"] = 5,
 ["rotateBack"] = true,
 },
-["executeOnEnter"] = [=[-- ===== AJUSTE AQUI =====
-local distanciaParaAproximar = 3      -- quanto a camera chega mais perto ao conjurar
-local distanciaMinimaDaCamera = 1.5   -- a camera nunca fica mais perto que isso
-local segundosParaAproximar = 0.6     -- duracao do movimento de aproximar
--- =======================
-
-local estado = DynamicCam.zoomConjurar or {}
-DynamicCam.zoomConjurar = estado
-
-C_Timer.After(0, function()
-  if estado.aproximado then return end -- ja aproximou (ex.: entrou em combate no meio da magia)
-
-  -- Se a camera ainda esta voltando (da magia anterior ou de outra situacao),
-  -- o ponto de partida e o destino dessa volta, nao o meio do caminho.
-  local aindaVoltando = estado.fimDoRetorno and GetTime() < estado.fimDoRetorno
-  local voltandoParaLivre = ZoomLivreEstavel and ZoomLivreEstavel.DestinoSeVoltando and ZoomLivreEstavel.DestinoSeVoltando()
-  local pontoDePartida = voltandoParaLivre or (aindaVoltando and estado.pontoDePartida) or GetCameraZoom()
-  local zoomDestino = math.max(pontoDePartida - distanciaParaAproximar, distanciaMinimaDaCamera)
-  if zoomDestino >= pontoDePartida then return end
-
-  estado.aproximado = true
-  estado.pontoDePartida = pontoDePartida
-  estado.fimDoRetorno = nil
-  DynamicCam:ResetReactiveZoomTarget()
-  LibStub("LibCamera-1.0"):SetZoom(zoomDestino, segundosParaAproximar)
-end)
-]=],
+["executeOnEnter"] = "-- ===== AJUSTE AQUI =====\nlocal distanciaParaAproximar = 3      -- quanto a camera chega mais perto ao conjurar\nlocal distanciaMinimaDaCamera = 1.5   -- a camera nunca fica mais perto que isso\nlocal segundosParaAproximar = 0.6     -- duracao do movimento de aproximar\n-- =======================\n\nlocal estado = DynamicCam.zoomConjurar or {}\nDynamicCam.zoomConjurar = estado\n\nC_Timer.After(0, function()\n  if estado.aproximado then return end -- ja aproximou (ex.: entrou em combate no meio da magia)\n\n  -- Se a camera ainda esta voltando (da magia anterior ou de outra situacao),\n  -- o ponto de partida e o destino dessa volta, nao o meio do caminho.\n  local aindaVoltando = estado.fimDoRetorno and GetTime() < estado.fimDoRetorno\n  local voltandoParaLivre = ZoomLivreEstavel and ZoomLivreEstavel.DestinoSeVoltando and ZoomLivreEstavel.DestinoSeVoltando()\n  local pontoDePartida = voltandoParaLivre or (aindaVoltando and estado.pontoDePartida) or GetCameraZoom()\n  local zoomDestino = math.max(pontoDePartida - distanciaParaAproximar, distanciaMinimaDaCamera)\n  if zoomDestino >= pontoDePartida then return end\n\n  estado.aproximado = true\n  estado.pontoDePartida = pontoDePartida\n  estado.fimDoRetorno = nil\n  DynamicCam:ResetReactiveZoomTarget()\n  LibStub(\"LibCamera-1.0\"):SetZoom(zoomDestino, segundosParaAproximar)\nend)\n",
 ["name"] = "|TInterface\\Icons\\Spell_Fire_FlameBolt:16|t Conjurando (em combate)",
 ["hideUI"] = {
 ["enabled"] = false,
@@ -163,33 +77,7 @@ end)
 },
 ["custom3"] = {
 ["enabled"] = true,
-["executeOnExit"] = [=[-- ===== AJUSTE AQUI =====
-local segundosParaAfastar = 0.8   -- duracao do movimento de voltar
--- =======================
-
-local estado = DynamicCam.zoomConjurar
-if not estado then return end
-
-C_Timer.After(0.05, function()
-  -- Passou direto para a outra situacao de conjuracao: continua aproximado.
-  local situacaoAtual = DynamicCam.currentSituationID
-  local aindaConjurando = situacaoAtual == "custom3" or situacaoAtual == "custom4"
-  if aindaConjurando or not estado.aproximado then return end
-
-  estado.aproximado = false
-
-  if situacaoAtual == nil and ZoomLivreEstavel and ZoomLivreEstavel.ativo then
-    estado.fimDoRetorno = nil
-    return
-  end
-
-  -- Anota quando a volta termina: se conjurar de novo antes, o Script de
-  -- Entrada parte do mesmo ponto de partida, nao do meio do caminho.
-  estado.fimDoRetorno = GetTime() + segundosParaAfastar
-  DynamicCam:ResetReactiveZoomTarget()
-  LibStub("LibCamera-1.0"):SetZoom(estado.pontoDePartida, segundosParaAfastar)
-end)
-]=],
+["executeOnExit"] = "-- ===== AJUSTE AQUI =====\nlocal segundosParaAfastar = 0.8   -- duracao do movimento de voltar\n-- =======================\n\nlocal estado = DynamicCam.zoomConjurar\nif not estado then return end\n\nC_Timer.After(0.05, function()\n  -- Passou direto para a outra situacao de conjuracao: continua aproximado.\n  local situacaoAtual = DynamicCam.currentSituationID\n  local aindaConjurando = situacaoAtual == \"custom3\" or situacaoAtual == \"custom4\"\n  if aindaConjurando or not estado.aproximado then return end\n\n  estado.aproximado = false\n\n  if situacaoAtual == nil and ZoomLivreEstavel and ZoomLivreEstavel.ativo then\n    estado.fimDoRetorno = nil\n    return\n  end\n\n  -- Anota quando a volta termina: se conjurar de novo antes, o Script de\n  -- Entrada parte do mesmo ponto de partida, nao do meio do caminho.\n  estado.fimDoRetorno = GetTime() + segundosParaAfastar\n  DynamicCam:ResetReactiveZoomTarget()\n  LibStub(\"LibCamera-1.0\"):SetZoom(estado.pontoDePartida, segundosParaAfastar)\nend)\n",
 ["transitionTime"] = {
 ["timeToEnter"] = 1.5,
 ["timeToExit"] = 1,
@@ -219,33 +107,7 @@ end)
 ["test_cameraTargetFocusEnemyStrengthYaw"] = 1,
 },
 },
-["executeOnEnter"] = [=[-- ===== AJUSTE AQUI =====
-local distanciaParaAproximar = 3      -- quanto a camera chega mais perto ao conjurar
-local distanciaMinimaDaCamera = 1.5   -- a camera nunca fica mais perto que isso
-local segundosParaAproximar = 0.6     -- duracao do movimento de aproximar
--- =======================
-
-local estado = DynamicCam.zoomConjurar or {}
-DynamicCam.zoomConjurar = estado
-
-C_Timer.After(0, function()
-  if estado.aproximado then return end -- ja aproximou (ex.: entrou em combate no meio da magia)
-
-  -- Se a camera ainda esta voltando (da magia anterior ou de outra situacao),
-  -- o ponto de partida e o destino dessa volta, nao o meio do caminho.
-  local aindaVoltando = estado.fimDoRetorno and GetTime() < estado.fimDoRetorno
-  local voltandoParaLivre = ZoomLivreEstavel and ZoomLivreEstavel.DestinoSeVoltando and ZoomLivreEstavel.DestinoSeVoltando()
-  local pontoDePartida = voltandoParaLivre or (aindaVoltando and estado.pontoDePartida) or GetCameraZoom()
-  local zoomDestino = math.max(pontoDePartida - distanciaParaAproximar, distanciaMinimaDaCamera)
-  if zoomDestino >= pontoDePartida then return end
-
-  estado.aproximado = true
-  estado.pontoDePartida = pontoDePartida
-  estado.fimDoRetorno = nil
-  DynamicCam:ResetReactiveZoomTarget()
-  LibStub("LibCamera-1.0"):SetZoom(zoomDestino, segundosParaAproximar)
-end)
-]=],
+["executeOnEnter"] = "-- ===== AJUSTE AQUI =====\nlocal distanciaParaAproximar = 3      -- quanto a camera chega mais perto ao conjurar\nlocal distanciaMinimaDaCamera = 1.5   -- a camera nunca fica mais perto que isso\nlocal segundosParaAproximar = 0.6     -- duracao do movimento de aproximar\n-- =======================\n\nlocal estado = DynamicCam.zoomConjurar or {}\nDynamicCam.zoomConjurar = estado\n\nC_Timer.After(0, function()\n  if estado.aproximado then return end -- ja aproximou (ex.: entrou em combate no meio da magia)\n\n  -- Se a camera ainda esta voltando (da magia anterior ou de outra situacao),\n  -- o ponto de partida e o destino dessa volta, nao o meio do caminho.\n  local aindaVoltando = estado.fimDoRetorno and GetTime() < estado.fimDoRetorno\n  local voltandoParaLivre = ZoomLivreEstavel and ZoomLivreEstavel.DestinoSeVoltando and ZoomLivreEstavel.DestinoSeVoltando()\n  local pontoDePartida = voltandoParaLivre or (aindaVoltando and estado.pontoDePartida) or GetCameraZoom()\n  local zoomDestino = math.max(pontoDePartida - distanciaParaAproximar, distanciaMinimaDaCamera)\n  if zoomDestino >= pontoDePartida then return end\n\n  estado.aproximado = true\n  estado.pontoDePartida = pontoDePartida\n  estado.fimDoRetorno = nil\n  DynamicCam:ResetReactiveZoomTarget()\n  LibStub(\"LibCamera-1.0\"):SetZoom(zoomDestino, segundosParaAproximar)\nend)\n",
 ["events"] = {
 "UNIT_SPELLCAST_START",
 "UNIT_SPELLCAST_STOP",
@@ -537,9 +399,9 @@ end)
 ["zoomType"] = "in",
 ["zoomValue"] = 3,
 },
-["rotation"] = {
-["pitchDegrees"] = -5,
-["rotationType"] = "degrees",
+["transitionTime"] = {
+["timeToEnter"] = 0.2,
+["timeToExit"] = 0.5,
 },
 ["situationSettings"] = {
 ["cvars"] = {
@@ -549,10 +411,7 @@ end)
 ["test_cameraTargetFocusInteractStrengthYaw"] = 1,
 },
 },
-["transitionTime"] = {
-["timeToEnter"] = 0.2,
-["timeToExit"] = 0.5,
-},
+["executeOnEnter"] = "this.vol = this.vol or tonumber(GetCVar(\"Sound_MusicVolume\")) or 0.4\nthis.t = (this.t or 0) + 1\nlocal t, from, to = this.t, tonumber(GetCVar(\"Sound_MusicVolume\")) or this.vol, 0.03\nlocal steps, dur = 30, 2.5\nfor i = 1, steps do\n  C_Timer.After(i * dur / steps, function()\n    if this.t == t then\n      local p = i / steps\n      p = p * p * (3 - 2 * p)\n      SetCVar(\"Sound_MusicVolume\", from + (to - from) * p)\n    end\n  end)\nend",
 ["name"] = "|TInterface\\Icons\\INV_Misc_Note_01:16|t Interação com NPC",
 ["hideUI"] = {
 ["customFramesToKeep"] = {
@@ -574,7 +433,10 @@ end)
 ["keepMinimap"] = true,
 },
 ["executeOnExit"] = "if not this.vol then return end\nthis.t = (this.t or 0) + 1\nlocal t, from, to = this.t, tonumber(GetCVar(\"Sound_MusicVolume\")) or 0, this.vol\nlocal steps, dur = 40, 3.5\nfor i = 1, steps do\n  C_Timer.After(i * dur / steps, function()\n    if this.t == t then\n      local p = i / steps\n      p = p * p * (3 - 2 * p)\n      SetCVar(\"Sound_MusicVolume\", from + (to - from) * p)\n      if i == steps then this.vol = nil end\n    end\n  end)\nend",
-["executeOnEnter"] = "this.vol = this.vol or tonumber(GetCVar(\"Sound_MusicVolume\")) or 0.4\nthis.t = (this.t or 0) + 1\nlocal t, from, to = this.t, tonumber(GetCVar(\"Sound_MusicVolume\")) or this.vol, 0.03\nlocal steps, dur = 30, 2.5\nfor i = 1, steps do\n  C_Timer.After(i * dur / steps, function()\n    if this.t == t then\n      local p = i / steps\n      p = p * p * (3 - 2 * p)\n      SetCVar(\"Sound_MusicVolume\", from + (to - from) * p)\n    end\n  end)\nend",
+["rotation"] = {
+["pitchDegrees"] = -5,
+["rotationType"] = "degrees",
+},
 },
 ["020"] = {
 ["enabled"] = true,
