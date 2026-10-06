@@ -20,6 +20,18 @@ e macros salvas em `config/` pelo `salvar-config.ps1`.
    depois, `salvar-config.ps1`.
 5. Branch `world-of-warcraft`: juntar na `main` direto ou via Pull Request?
 
+## Para testar no futuro
+
+- **Vozes naturais pt-BR no WoW (Francisca/Antonio/Thalita).** Videos mostram
+  funcionando com o NaturalVoiceSAPIAdapter pelo instalador grafico; aqui, em
+  02/10/2026 (WoW 12.1, adapter v0.2.9 registrado por regsvr32), o WoW nao
+  carregou a DLL e ficou mudo. Testar com `scripts\testar-vozes-naturais.ps1`
+  (usa o Installer.exe como nos videos), de preferencia no PC de casa (no do
+  trabalho as vozes do Edge tambem davam "Timer Expired" fora do jogo).
+  Resultado no `-Diagnostico`: "CARREGOU" = funciona (se mudo, e rede);
+  "NAO carregou" = o WoW recusa, desinstalar. Se funcionar, juntar ao
+  `instalar-vozes.ps1` e atualizar o README.
+
 ## Como aplicar
 
 Com o WoW **fechado**: ler o `DynamicCam.lua` do PC, preservar o que o

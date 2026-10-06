@@ -92,6 +92,11 @@ abre o motor (log do adapter vazio, DLL fora dos modulos do Wow.exe) e fica
 mudo. Testado em 02/10/2026, com Maria e Daniel falando no mesmo teste. Com
 as vozes locais do Narrador o adapter ainda trava o WoW (issues #37 e #116).
 
+Para testar de novo (versao nova do adapter ou do WoW, ou o jeito dos
+videos com o instalador grafico): `scripts\testar-vozes-naturais.ps1`
+(`-Versao vX.Y.Z` para outra versao, `-Diagnostico` com o WoW aberto diz se
+o jogo carregou a DLL, `-Desinstalar` desfaz tudo).
+
 ### Addons proprios
 
 Feitos aqui, em [`addons-proprios/`](addons-proprios/). O `instalar-addons.ps1`
