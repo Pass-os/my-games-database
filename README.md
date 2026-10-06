@@ -7,6 +7,12 @@ propria solution, as proprias dependencias e o proprio guia.
 | --- | --- | --- | --- |
 | Valheim | [`valheim/`](valheim/) | BepInEx 5 + HarmonyX, C# `net472` | configurado |
 
+## Ferramentas (fora dos jogos)
+
+| Ferramenta | Pasta | Para que |
+| --- | --- | --- |
+| Ghidra + MCP | [`tools/ghidra/`](tools/ghidra/) | Engenharia reversa de binarios nativos/IL2CPP; referencia, nao instalado |
+
 ## Como adicionar um jogo novo
 
 1. Crie `nome-do-jogo/` na raiz.
