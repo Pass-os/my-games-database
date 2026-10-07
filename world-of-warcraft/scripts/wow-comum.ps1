@@ -21,6 +21,7 @@ $SavedVariablesVersionados = @(
     'NpcAltura'
     'QuestSpeaker'
     'DialogueUI'
+    'Narcissus_Barbershop'
 )
 
 function Get-WowRetailPath {
