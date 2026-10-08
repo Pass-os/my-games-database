@@ -17,6 +17,7 @@ BetterWardrobe_SavedSetData = {
 ["Guillgalad - Azralon"] = "PALADIN",
 ["Deane - Azralon"] = "MAGE",
 ["Kurufinwe - Azralon"] = "HUNTER",
+["Lunary - Azralon"] = "DRUID",
 ["Lafya - Azralon"] = "PRIEST",
 ["Lumiels - Azralon"] = "PALADIN",
 },
@@ -26,11 +27,15 @@ BetterWardrobe_SavedSetData = {
 },
 ["Lumiels - Azralon"] = {
 },
+["Lunary - Azralon"] = {
+},
+["Lafya - Azralon"] = {
+},
 ["Deane - Azralon"] = {
 ["autoHideSlot"] = {
-true,
 [3] = false,
 ["toggle"] = true,
+true,
 },
 },
 },
@@ -47,6 +52,8 @@ BetterWardrobe_ListData = {
 ["Deane - Azralon"] = {
 },
 ["Kurufinwe - Azralon"] = {
+},
+["Lunary - Azralon"] = {
 },
 ["Lafya - Azralon"] = {
 },
@@ -66,6 +73,8 @@ BetterWardrobe_ListData = {
 },
 ["Kurufinwe - Azralon"] = {
 },
+["Lunary - Azralon"] = {
+},
 ["Lafya - Azralon"] = {
 },
 ["Lumiels - Azralon"] = {
@@ -83,6 +92,8 @@ BetterWardrobe_ListData = {
 ["Guillgalad - Azralon"] = {
 },
 ["Lumiels - Azralon"] = {
+},
+["Lunary - Azralon"] = {
 },
 ["Lafya - Azralon"] = {
 },

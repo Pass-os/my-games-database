@@ -1,6 +1,30 @@
 
 NarciBarberShopDB = {
+["Hotkeys"] = {
+["RotateRight"] = "D",
+["RotateLeft"] = "A",
+["ZoomOut"] = "S",
+["ZoomIn"] = "W",
+},
+["SharedSavedLooks"] = {
+},
 ["PlayerData"] = {
+["0C23F44E"] = {
+["classID"] = 8,
+["playerName"] = "Deane",
+["realmID"] = "3209",
+["SavedLooks"] = {
+["chrModel123"] = {
+},
+{
+["male"] = {
+},
+["female"] = {
+},
+},
+},
+["realmName"] = "Azralon",
+},
 ["0C23B914"] = {
 ["classID"] = 11,
 ["playerName"] = "Lunary",
@@ -244,13 +268,5 @@ NarciBarberShopDB = {
 ["classID"] = 5,
 ["realmID"] = "3209",
 },
-},
-["Hotkeys"] = {
-["RotateRight"] = "D",
-["RotateLeft"] = "A",
-["ZoomOut"] = "S",
-["ZoomIn"] = "W",
-},
-["SharedSavedLooks"] = {
 },
 }

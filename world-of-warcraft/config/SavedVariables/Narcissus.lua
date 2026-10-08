@@ -46,18 +46,18 @@ NarcissusDB = {
 ["UseAddonCompartment"] = true,
 ["DressingRoom"] = true,
 ["UseBustShot"] = true,
-["RealmNames"] = {
-[3209] = "Azralon",
+["TooltipLanguages"] = {
 },
 ["DressingRoomItemSetListHideDupes"] = true,
 ["TranslateName"] = false,
 ["TalentTreeUseClassBackground"] = false,
-["TooltipLanguages"] = {
-},
-["FontHeightItemName"] = 10,
 ["UseEntranceVisual"] = true,
+["FontHeightItemName"] = 10,
+["RealmNames"] = {
+[3209] = "Azralon",
+},
 ["Version"] = 10000,
-["DressingRoomShowSlot"] = true,
+["installTime"] = 1790563880,
 ["EnableDoubleTap"] = false,
 ["Tutorials"] = {
 ["ExitConfirmation"] = true,
@@ -80,7 +80,6 @@ NarcissusDB = {
 ["PaperDollWidget_ClassSet"] = true,
 ["TalentTreeForEquipmentManager"] = true,
 ["CameraOrbit"] = true,
-["NamePlateNameOffset"] = 0,
 ["PerksProgramDB"] = {
 ["MonthNames"] = {
 {
@@ -241,6 +240,7 @@ NarcissusDB = {
 ["month"] = 46,
 },
 },
+["NamePlateNameOffset"] = 0,
 ["AutoDisplayQuestItem"] = false,
 ["OnlyShowOwnedUpgradeItem"] = true,
 ["GemManager"] = true,
@@ -255,7 +255,7 @@ NarcissusDB = {
 ["IndependentMinimapButton"] = false,
 ["SpeedyScreenshotAlert"] = true,
 ["TradingPostChangePost"] = true,
-["installTime"] = 1790563880,
+["DressingRoomShowSlot"] = true,
 ["SearchSuggestEnable"] = false,
 ["ConduitTooltip"] = false,
 ["DressingRoomUseTargetModel"] = true,
@@ -307,10 +307,20 @@ NarciCharacterProfiles = {
 ["name"] = "Lafya",
 ["birth"] = 1791172935,
 ["serverID"] = 3209,
-["lastVisit"] = 1791172935,
+["lastVisit"] = 1791244577,
 ["outfits"] = {
 },
 ["class"] = 5,
+},
+["0C23B914"] = {
+["race"] = 4,
+["name"] = "Lunary",
+["birth"] = 1791256209,
+["serverID"] = 3209,
+["lastVisit"] = 1791256209,
+["outfits"] = {
+},
+["class"] = 11,
 },
 ["0C23ADFC"] = {
 ["race"] = 5,
