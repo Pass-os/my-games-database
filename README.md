@@ -13,6 +13,11 @@ propria solution, as proprias dependencias e o proprio guia.
 | --- | --- | --- |
 | Ghidra + MCP | [`tools/ghidra/`](tools/ghidra/) | Engenharia reversa de binarios nativos/IL2CPP; referencia, nao instalado |
 
+## Ideias para o futuro
+
+Estudos e guias de coisas que ainda nao foram implementadas ficam em
+[`ideias/`](ideias/), uma pasta por ideia.
+
 ## Como adicionar um jogo novo
 
 1. Crie `nome-do-jogo/` na raiz.

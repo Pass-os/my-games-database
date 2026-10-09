@@ -6,6 +6,9 @@ Ferramentas compartilhadas ficam em `tools/`. Precisa de engenharia reversa de
 binario nativo/IL2CPP? Veja `tools/ghidra/README.md` (Ghidra + MCP; ainda nao
 instalado). Para jogos Unity Mono use ILSpy/dnSpy, nao Ghidra.
 
+Ideias para implementar no futuro ficam em `ideias/`, uma pasta por ideia, com
+indice em `ideias/README.md`.
+
 ## Valheim (`valheim/`)
 
 Leia `valheim/README.md` e `valheim/docs/setup.md` antes de mexer no build.
