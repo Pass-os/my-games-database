@@ -1,9 +1,9 @@
 ## Interface: 120100
 ## Title: Diario da Camera
-## Notes: Diagnostico: anota cada troca de situacao do DynamicCam (e erros dos scripts) para conferir depois. /diariocamera liga/desliga e limpa.
+## Notes: Diagnostico: diario das trocas de situacao do DynamicCam, do que os addons proprios fazem e dos erros de Lua deles, para conferir e melhorar depois. /diariocamera liga/desliga e limpa.
 ## Author: Pass-os
-## Version: 1.0.0
-## Dependencies: DynamicCam
+## Version: 2.0.0
+## OptionalDeps: DynamicCam
 ## SavedVariables: DiarioDaCameraDB
 ## X-License: MIT
 

@@ -1,8 +1,9 @@
 ## Interface: 120100
 ## Title: Zoom Livre Estavel
-## Notes: Faz o DynamicCam devolver a camera sempre para a distancia que voce escolheu, mesmo entrando numa situacao enquanto a camera ainda esta voltando da anterior.
+## Notes: Zoom base fixo no DynamicCam: ao sair de uma situacao (montaria, NPC, magia, masmorra...) a camera volta sempre para a mesma distancia. /zoomlivre fixo N, /zoomlivre solto.
 ## Author: Pass-os
-## Version: 1.0.0
+## Version: 2.0.0
+## SavedVariables: ZoomLivreEstavelDB
 ## Dependencies: DynamicCam
 ## X-License: MIT
 

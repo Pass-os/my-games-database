@@ -1,15 +1,36 @@
 -- Diario da Camera
 --
--- Diagnostico das situacoes do DynamicCam. Cada troca de situacao vira uma
--- linha em DiarioDaCameraDB.linhas (gravado ao sair do jogo ou no /reload):
---   hora | antiga -> nova | zoom antes | zoom 1,5 s depois | contexto
--- Contexto: em combate, montado, voando, no taxi, conjurando, janelas abertas.
--- Tambem anota situacoes que o DynamicCam marcou com erro no script.
+-- Diario de diagnostico dos addons proprios e do DynamicCam, para conferir
+-- depois o que aconteceu e melhorar. Cada linha vai para
+-- DiarioDaCameraDB.linhas (gravado ao sair do jogo ou no /reload):
+--   hora | origem | texto
+--
+-- Origens:
+--   sessao   inicio da sessao: versao do jogo e dos addons
+--   camera   cada troca de situacao do DynamicCam: antiga -> nova, zoom antes,
+--            zoom 1,5 s depois e contexto (combate, montado, voando, taxi,
+--            conjurando, interior, instancia, janelas abertas)
+--   erro     erro de Lua dos addons proprios ou do DynamicCam (inclusive de
+--            script de situacao)
+--   zoom, janelas, combate, altura: os outros addons proprios, pela API abaixo
+--   gostei   camera marcada como favorita no PainelDaCamera
+--
+-- API (outros addons, sem depender deste):
+--   if DiarioDaCamera then DiarioDaCamera.Anotar("zoom", "texto") end
 --
 -- /diariocamera         liga/desliga (comeca ligado)
 -- /diariocamera limpar  apaga o diario
 
-local MAX_LINHAS = 2000
+local MAX_LINHAS = 4000
+
+-- Erros so destes addons (o resto ja tem o aviso padrao do jogo).
+local ADDONS_VIGIADOS = {
+    "DynamicCam", "DiarioDaCamera", "ZoomLivreEstavel", "MantemJanelasNPC",
+    "FechaDialogoEmCombate", "NpcAltura", "PainelDaCamera",
+}
+
+local carregado = false   -- SavedVariables ja chegaram
+local antesDeCarregar = {} -- linhas anotadas antes disso
 
 local function db()
     DiarioDaCameraDB = DiarioDaCameraDB or {}
@@ -18,7 +39,33 @@ local function db()
     return DiarioDaCameraDB
 end
 
+local function guardar(linha)
+    local d = db()
+    if not d.ligado then return end
+    local linhas = d.linhas
+    linhas[#linhas + 1] = linha
+    while #linhas > MAX_LINHAS do table.remove(linhas, 1) end
+end
+
+local function anotar(origem, texto)
+    local linha = date("%d/%m %H:%M:%S") .. " | " .. origem .. " | " .. tostring(texto)
+    if carregado then
+        guardar(linha)
+    else
+        antesDeCarregar[#antesDeCarregar + 1] = linha
+    end
+end
+
+DiarioDaCamera = { Anotar = anotar }
+
 local function legivel(v) return v ~= nil and not (issecretvalue and issecretvalue(v)) end
+
+local function versao(addon)
+    local v = C_AddOns and C_AddOns.GetAddOnMetadata and C_AddOns.GetAddOnMetadata(addon, "Version")
+    return v or "-"
+end
+
+-- Camera ------------------------------------------------------------------------
 
 local function nomeDa(id)
     if not id then return "livre" end
@@ -48,14 +95,6 @@ local function contexto()
     return table.concat(partes, ",")
 end
 
-local function anotar(texto)
-    local d = db()
-    if not d.ligado then return end
-    local linhas = d.linhas
-    linhas[#linhas + 1] = date("%d/%m %H:%M:%S") .. " | " .. texto
-    while #linhas > MAX_LINHAS do table.remove(linhas, 1) end
-end
-
 local errosAnotados = {}
 
 local function aoTrocar(dc, antiga, nova)
@@ -63,29 +102,77 @@ local function aoTrocar(dc, antiga, nova)
     local linha = ("%s -> %s | zoom %.1f"):format(nomeDa(antiga), nomeDa(nova), antes)
     local ctx = contexto()
     C_Timer.After(1.5, function()
-        anotar(("%s -> %.1f (1,5s, agora %s) | %s"):format(linha, GetCameraZoom(), tostring(DynamicCam.currentSituationID or "livre"), ctx))
+        anotar("camera", ("%s -> %.1f (1,5s, agora %s) | %s"):format(linha, GetCameraZoom(), tostring(DynamicCam.currentSituationID or "livre"), ctx))
     end)
     -- Situacoes com erro de script ficam desligadas pelo DynamicCam.
     for id, s in pairs(dc.db.profile.situations) do
         if s.errorEncountered and not errosAnotados[id] then
             errosAnotados[id] = true
-            anotar(("ERRO no script da situacao %s: %s"):format(nomeDa(id), tostring(s.errorMessage)))
+            anotar("erro", ("script da situacao %s: %s"):format(nomeDa(id), tostring(s.errorMessage)))
         end
     end
 end
 
-local instalado = false
-local function instalar()
-    if instalado or not (DynamicCam and DynamicCam.ChangeSituation) then return end
-    instalado = true
-    hooksecurefunc(DynamicCam, "ChangeSituation", aoTrocar)
-    anotar("--- sessao iniciada | zoom " .. ("%.1f"):format(GetCameraZoom()) .. " | " .. contexto())
+-- Erros de Lua -------------------------------------------------------------------
+
+local errosDaSessao = {}
+
+local function ehVigiado(texto)
+    for _, nome in ipairs(ADDONS_VIGIADOS) do
+        if texto:find("AddOns[/\\]" .. nome .. "[/\\]") then return true end
+    end
+    return false
+end
+
+local function vigiarErros()
+    local anterior = geterrorhandler()
+    seterrorhandler(function(msg, ...)
+        local ok = pcall(function()
+            local texto = tostring(msg)
+            local pilha = debugstack and debugstack(3, 6, 0) or ""
+            if (ehVigiado(texto) or ehVigiado(pilha)) and not errosDaSessao[texto] then
+                errosDaSessao[texto] = true -- o mesmo erro repetido vira uma linha so
+                anotar("erro", texto .. " || " .. pilha:gsub("\n", " / "))
+            end
+        end)
+        return anterior(msg, ...)
+    end)
+end
+
+-- Inicio ---------------------------------------------------------------------------
+
+local function inicioDaSessao()
+    local versaoJogo, build, _, interface = GetBuildInfo()
+    local zoom = GetCameraZoom()
+    local partes = {}
+    for _, nome in ipairs(ADDONS_VIGIADOS) do
+        if C_AddOns and C_AddOns.IsAddOnLoaded and C_AddOns.IsAddOnLoaded(nome) then
+            partes[#partes + 1] = nome .. " " .. versao(nome)
+        end
+    end
+    if C_AddOns and C_AddOns.IsAddOnLoaded and C_AddOns.IsAddOnLoaded("Immersion") then
+        partes[#partes + 1] = "Immersion " .. versao("Immersion")
+    end
+    anotar("sessao", ("--- sessao iniciada | WoW %s (%s, %s) | %s | zoom %.1f | %s"):format(
+        versaoJogo, build, interface, table.concat(partes, ", "), zoom, contexto()))
 end
 
 local eventos = CreateFrame("Frame")
 eventos:RegisterEvent("ADDON_LOADED")
 eventos:RegisterEvent("PLAYER_LOGIN")
-eventos:SetScript("OnEvent", instalar)
+eventos:SetScript("OnEvent", function(_, evento, addon)
+    if evento == "ADDON_LOADED" and addon == "DiarioDaCamera" then
+        carregado = true
+        for _, linha in ipairs(antesDeCarregar) do guardar(linha) end
+        antesDeCarregar = {}
+        vigiarErros()
+    elseif evento == "PLAYER_LOGIN" then
+        if DynamicCam and DynamicCam.ChangeSituation then
+            hooksecurefunc(DynamicCam, "ChangeSituation", aoTrocar)
+        end
+        inicioDaSessao()
+    end
+end)
 
 SLASH_DIARIOCAMERA1 = "/diariocamera"
 SlashCmdList["DIARIOCAMERA"] = function(msg)

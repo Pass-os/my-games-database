@@ -1,0 +1,10 @@
+## Interface: 120100
+## Title: Painel da Camera
+## Notes: Painel pequeno com a distancia da camera e as configuracoes do DynamicCam em uso. Botao direito guarda a camera como favorita. /pcam
+## Author: Pass-os
+## Version: 1.0.0
+## OptionalDeps: DynamicCam, ZoomLivreEstavel, DiarioDaCamera
+## SavedVariables: PainelDaCameraDB
+## X-License: MIT
+
+PainelDaCamera.lua

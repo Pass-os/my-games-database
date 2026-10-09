@@ -54,6 +54,17 @@ local JANELAS = {
 
 local SUBSTITUIDAS_PELO_IMMERSION = { GossipFrame = true, QuestFrame = true, ItemTextFrame = true }
 
+local NA_LISTA = {}
+for _, nome in ipairs(JANELAS) do NA_LISTA[nome] = true end
+
+-- Diario (addon DiarioDaCamera, se instalado): janelas mantidas, bloqueios em
+-- combate e janelas que ficaram escondidas sem estar na lista (candidatas a
+-- entrar nela).
+local function anotar(texto)
+    if DiarioDaCamera then DiarioDaCamera.Anotar("janelas", texto) end
+end
+local anotadasForaDaLista = {}
+
 local enganchadas = {}
 
 local function immersionAtivo()
@@ -69,16 +80,25 @@ local function podeMexer(frame)
 end
 
 local function manter(frame)
-    if not frame:IsShown() or not interfaceEscondida() or not podeMexer(frame) then return end
+    if not frame:IsShown() or not interfaceEscondida() then return end
+    if not podeMexer(frame) then
+        if not frame.mantemJanelasNPCBloqueada then
+            frame.mantemJanelasNPCBloqueada = true
+            anotar("bloqueada em combate (janela protegida): " .. (frame:GetName() or "?"))
+        end
+        return
+    end
     if SUBSTITUIDAS_PELO_IMMERSION[frame:GetName() or ""] and immersionAtivo() then return end
     if not frame:IsIgnoringParentAlpha() then
         frame:SetIgnoreParentAlpha(true)
         frame.mantemJanelasNPC = true
+        anotar(("mantida visivel: %s (interface em %.2f)"):format(frame:GetName() or "?", UIParent:GetAlpha()))
     end
     if frame:GetAlpha() < 1 then frame:SetAlpha(1) end
 end
 
 local function soltar(frame)
+    frame.mantemJanelasNPCBloqueada = nil
     if frame.mantemJanelasNPC and podeMexer(frame) then
         frame:SetIgnoreParentAlpha(false)
         frame.mantemJanelasNPC = nil
@@ -101,9 +121,32 @@ end
 
 -- Interface sendo escondida com a janela ja aberta: DynamicCam e Immersion
 -- mudam o alfa do UIParent aos poucos (fade), um SetAlpha por quadro.
+-- Janelas que fecham com ESC (UISpecialFrames) abertas com a interface
+-- escondida e fora da lista: anota uma vez por sessao.
+local function procurarForaDaLista()
+    if not interfaceEscondida() or not UISpecialFrames then return end
+    for _, nome in ipairs(UISpecialFrames) do
+        local frame = _G[nome]
+        if not NA_LISTA[nome] and not anotadasForaDaLista[nome] and type(frame) == "table"
+            and frame.IsShown and frame:IsShown() and not frame:IsIgnoringParentAlpha() then
+            anotadasForaDaLista[nome] = true
+            anotar("escondida e FORA da lista (avaliar incluir): " .. nome)
+        end
+    end
+end
+
+local procurando = false
 hooksecurefunc(UIParent, "SetAlpha", function(_, alfa)
     if alfa and alfa < 0.99 then
         for _, frame in pairs(enganchadas) do manter(frame) end
+        -- Uma busca por fade, 1 s depois (as janelas sob demanda chegam atrasadas).
+        if not procurando then
+            procurando = true
+            C_Timer.After(1, function()
+                procurando = false
+                procurarForaDaLista()
+            end)
+        end
     end
 end)
 

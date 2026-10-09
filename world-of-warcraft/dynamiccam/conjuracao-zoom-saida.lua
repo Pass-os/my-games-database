@@ -1,7 +1,8 @@
 -- DynamicCam > Situacoes > "Conjurando (fora de combate)" e "Conjurando (em combate)"
 -- > Controles de Situacao > Script de Saida
 -- Volta para o ponto de partida anotado pelo Script de Entrada.
--- Excecao: se depois da magia vem a camera livre e o addon ZoomLivreEstavel
+-- Excecao: se depois da magia vem a camera livre (ou, com zoom fixo, uma
+-- situacao sem zoom, como Masmorra) e o addon ZoomLivreEstavel
 -- esta instalado, quem leva a camera de volta e ele (para a SUA distancia).
 -- Sem isso, conjurar montado (montaria 15 -> magia -> livre) devolvia a
 -- camera para 15, e 15 virava a distancia livre.
@@ -21,7 +22,7 @@ C_Timer.After(0.05, function()
 
   estado.aproximado = false
 
-  if situacaoAtual == nil and ZoomLivreEstavel and ZoomLivreEstavel.ativo then
+  if ZoomLivreEstavel and ZoomLivreEstavel.CuidaDe and ZoomLivreEstavel.CuidaDe(situacaoAtual) then
     estado.fimDoRetorno = nil
     return
   end

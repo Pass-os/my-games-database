@@ -26,6 +26,12 @@ scene:SetAlpha(0)
 scene:Show()
 
 local actor = scene:CreateActor()
+
+-- Diario (addon DiarioDaCamera, se instalado): medidas novas e falhas, para
+-- calibrar o limite e achar NPCs que o modelo nao mede.
+local function anotar(texto)
+    if DiarioDaCamera then DiarioDaCamera.Anotar("altura", texto) end
+end
 local pendente -- { id, nome, mostrar }
 
 local function db()
@@ -71,6 +77,8 @@ local function concluir()
     local p = pendente
     pendente = nil
     db().cache[p.id] = h
+    anotar(("%s (%s) = %.2f (limite %.2f) -> %s"):format(
+        p.nome or "?", p.id, h, db().limite, h >= db().limite and "GRANDE" or "normal"))
     if p.mostrar then relatar(p.id, p.nome, h) end
     if DynamicCam and DynamicCam.EvaluateSituations then
         DynamicCam:EvaluateSituations()
@@ -82,10 +90,17 @@ end
 local ticker
 local function esperarCarregar()
     if ticker then ticker:Cancel() end
+    local medindo = pendente
+    local vezes = 0
     ticker = C_Timer.NewTicker(0.05, function(t)
+        vezes = vezes + 1
         if not pendente then t:Cancel() return end
         if actor:IsLoaded() then concluir() end
-        if not pendente then t:Cancel() end
+        if not pendente then t:Cancel() return end
+        if vezes >= 40 and pendente == medindo then
+            anotar(("NAO mediu %s (%s): modelo %s em 2 s"):format(
+                medindo.nome or "?", medindo.id, actor:IsLoaded() and "carregou sem contorno" or "nao carregou"))
+        end
     end, 40)
 end
 
@@ -155,6 +170,7 @@ SlashCmdList["NPCALTURA"] = function(msg)
         local n = tonumber(arg)
         if n and n > 0 then
             d.limite = n
+            anotar(("limite mudou para %.2f"):format(n))
             print(("|cff33ccffNPC Altura:|r limite = %.2f"):format(n))
             if DynamicCam and DynamicCam.EvaluateSituations then DynamicCam:EvaluateSituations() end
         else

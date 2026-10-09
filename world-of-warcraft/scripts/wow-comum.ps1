@@ -22,6 +22,8 @@ $SavedVariablesVersionados = @(
     'QuestSpeaker'
     'DialogueUI'
     'Narcissus_Barbershop'
+    'ZoomLivreEstavel'
+    'PainelDaCamera'
 )
 
 function Get-WowRetailPath {
