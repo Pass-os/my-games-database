@@ -1,124 +1,23 @@
 
 NarciBarberShopDB = {
 ["Hotkeys"] = {
-["RotateRight"] = "D",
+["ZoomIn"] = "W",
 ["RotateLeft"] = "A",
 ["ZoomOut"] = "S",
-["ZoomIn"] = "W",
+["RotateRight"] = "D",
 },
+["ToggleNotification"] = true,
 ["SharedSavedLooks"] = {
+[4] = {
+["female"] = {
+},
+},
 },
 ["PlayerData"] = {
-["0C23F44E"] = {
-["classID"] = 8,
-["playerName"] = "Deane",
-["realmID"] = "3209",
-["SavedLooks"] = {
-["chrModel123"] = {
-},
-{
-["male"] = {
-},
-["female"] = {
-},
-},
-},
-["realmName"] = "Azralon",
-},
-["0C23B914"] = {
-["classID"] = 11,
-["playerName"] = "Lunary",
-["realmID"] = "3209",
-["SavedLooks"] = {
-[4] = {
-["male"] = {
-},
-["female"] = {
-},
-},
-},
-["realmName"] = "Azralon",
-},
-["0C23ADFC"] = {
-["classID"] = 9,
-["playerName"] = "Gurthmorg",
-["realmID"] = "3209",
-["SavedLooks"] = {
-["chrModel198"] = {
-},
-["chrModel148"] = {
-},
-["chrModel183"] = {
-},
-["chrModel181"] = {
-},
-[5] = {
-["male"] = {
-{
-["data"] = {
-{
-58,
-6435,
-},
-{
-567,
-6529,
-},
-{
-59,
-921,
-},
-{
-60,
-5726,
-},
-{
-61,
-5706,
-},
-{
-62,
-975,
-},
-{
-563,
-6289,
-},
-{
-534,
-5335,
-},
-{
-6346,
-45118,
-},
-},
-["name"] = "Unded",
-["description"] = "Recente Tipo de Pele, Carrapito Estilo do Cabelo, Osso Duro Mandíbula, Decomposto Elementos do Rosto, Ambas Visão",
-["timeCreated"] = 1790877088,
-},
-},
-["female"] = {
-},
-},
-["chrModel176"] = {
-},
-["chrModel197"] = {
-},
-["chrModel184"] = {
-},
-["chrModel182"] = {
-},
-["chrModel180"] = {
-},
-},
-["realmName"] = "Azralon",
-},
 ["0C23A40F"] = {
-["realmName"] = "Azralon",
+["classID"] = 12,
 ["playerName"] = "Nessael",
 ["realmID"] = "3209",
-["classID"] = 12,
 ["SavedLooks"] = {
 [4] = {
 ["male"] = {
@@ -214,8 +113,62 @@ NarciBarberShopDB = {
 },
 },
 },
+["realmName"] = "Azralon",
+},
+["0C23B914"] = {
+["playerName"] = "Lunary",
+["classID"] = 11,
+["usePublicProfile"] = false,
+["realmID"] = "3209",
+["SavedLooks"] = {
+["chrModel129"] = {
+},
+["chrModel190"] = {
+},
+["chrModel189"] = {
+},
+["chrModel194"] = {
+},
+["chrModel123"] = {
+},
+[4] = {
+["male"] = {
+},
+["female"] = {
+},
+},
+["chrModel124"] = {
+},
+["chrModel192"] = {
+},
+},
+["realmName"] = "Azralon",
+},
+["0C23F44E"] = {
+["realmID"] = "3209",
+["playerName"] = "Deane",
+["realmName"] = "Azralon",
+["SavedLooks"] = {
+{
+["male"] = {
+},
+["female"] = {
+},
+},
+["chrModel129"] = {
+},
+["chrModel123"] = {
+},
+["chrModel124"] = {
+},
+},
+["classID"] = 8,
 },
 ["0C243BDB"] = {
+["realmName"] = "Azralon",
+["playerName"] = "Lafya",
+["realmID"] = "3209",
+["classID"] = 5,
 ["SavedLooks"] = {
 [29] = {
 ["male"] = {
@@ -263,10 +216,81 @@ NarciBarberShopDB = {
 },
 },
 },
-["playerName"] = "Lafya",
-["realmName"] = "Azralon",
-["classID"] = 5,
+},
+["0C23ADFC"] = {
 ["realmID"] = "3209",
+["playerName"] = "Gurthmorg",
+["realmName"] = "Azralon",
+["SavedLooks"] = {
+["chrModel198"] = {
+},
+["chrModel148"] = {
+},
+["chrModel183"] = {
+},
+["chrModel181"] = {
+},
+[5] = {
+["male"] = {
+{
+["data"] = {
+{
+58,
+6435,
+},
+{
+567,
+6529,
+},
+{
+59,
+921,
+},
+{
+60,
+5726,
+},
+{
+61,
+5706,
+},
+{
+62,
+975,
+},
+{
+563,
+6289,
+},
+{
+534,
+5335,
+},
+{
+6346,
+45118,
+},
+},
+["name"] = "Unded",
+["description"] = "Recente Tipo de Pele, Carrapito Estilo do Cabelo, Osso Duro Mandíbula, Decomposto Elementos do Rosto, Ambas Visão",
+["timeCreated"] = 1790877088,
+},
+},
+["female"] = {
+},
+},
+["chrModel176"] = {
+},
+["chrModel180"] = {
+},
+["chrModel182"] = {
+},
+["chrModel184"] = {
+},
+["chrModel197"] = {
+},
+},
+["classID"] = 9,
 },
 },
 }

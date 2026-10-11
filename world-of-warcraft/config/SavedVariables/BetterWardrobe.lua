@@ -33,9 +33,9 @@ BetterWardrobe_SavedSetData = {
 },
 ["Deane - Azralon"] = {
 ["autoHideSlot"] = {
+true,
 [3] = false,
 ["toggle"] = true,
-true,
 },
 },
 },
@@ -81,9 +81,41 @@ BetterWardrobe_ListData = {
 },
 },
 },
-["SituationPresetsDB"] = {
-},
 ["OutfitDB"] = {
+["char"] = {
+["Lunary - Azralon"] = {
+["outfits"] = {
+{
+77344,
+0,
+77343,
+83202,
+2241,
+94285,
+295342,
+24271,
+104604,
+240,
+0,
+0,
+0,
+0,
+77345,
+46962,
+0,
+0,
+83203,
+["name"] = "Druida 1",
+["offHandEnchant"] = 0,
+["offShoulder"] = 77343,
+["icon"] = 1360261,
+["mainHandEnchant"] = 5861,
+},
+},
+},
+},
+},
+["SituationPresetsDB"] = {
 },
 ["HiddenAppearanceDB"] = {
 ["profiles"] = {

@@ -1,32 +1,91 @@
 
 MapPinEnhancedDB = {
+["trackerVisible"] = false,
+["minimapIcon"] = {
+["minimapPos"] = 45,
+["lock"] = false,
+["hide"] = false,
+},
+["general"] = {
+["autoTrackNearestPin"] = true,
+},
+["superTrackingOther"] = false,
+["sets"] = {
+["set-32581fab-b7a1"] = {
+["name"] = "B",
+["pins"] = {
+["setpin-c37537ab-9036"] = {
+["usesAtlas"] = false,
+["x"] = 0.8603858204309004,
+["title"] = "BOLSA",
+["setTracked"] = false,
+["color"] = "Yellow",
+["order"] = 2,
+["y"] = 0.3902919646146629,
+["mapID"] = 2023,
+},
+},
+},
+},
 ["tracker"] = {
 ["lockTracker"] = false,
-["trackerScale"] = 1,
-["trackerHeight"] = 7,
 ["showNumbering"] = true,
+["trackerHeight"] = 7,
+["trackerScale"] = 1,
 ["backgroundOpacity"] = 0,
 ["autoVisibility"] = "none",
 },
-["minimapIcon"] = {
-["minimapPos"] = 45,
-["hide"] = false,
-["lock"] = false,
-},
 ["version"] = 322,
-["superTrackingOther"] = true,
-["general"] = {
-["autoTrackNearestPin"] = true,
+["storedPins"] = {
+{
+["usesAtlas"] = false,
+["x"] = 0.8318712718307052,
+["title"] = "castor boss",
+["setTracked"] = true,
+["color"] = "Yellow",
+["order"] = 4,
+["y"] = 0.201295864396938,
+["mapID"] = 2023,
+},
+{
+["usesAtlas"] = false,
+["x"] = 0.4341218047887831,
+["title"] = "SANTUARIO DA TARTARUGA",
+["setTracked"] = false,
+["color"] = "Yellow",
+["mapID"] = 2022,
+["y"] = 0.365929025310175,
+["order"] = 2,
+},
+{
+["usesAtlas"] = false,
+["x"] = 0.7147715873271099,
+["title"] = "CAVERNA BLOQUEADA",
+["setTracked"] = false,
+["color"] = "Yellow",
+["mapID"] = 2022,
+["y"] = 0.6605164504615593,
+["order"] = 3,
+},
+{
+["usesAtlas"] = false,
+["x"] = 0.377931034784554,
+["title"] = "BOLSA",
+["setTracked"] = false,
+["color"] = "Orange",
+["order"] = 1,
+["y"] = 0.7732606298882455,
+["mapID"] = 2025,
+},
+},
+["floatingPin"] = {
+["unlimitedDistance"] = true,
+["showEstimatedTime"] = true,
+["showTitle"] = true,
+["blockWorldQuestTracking"] = false,
 },
 ["trackerPosition"] = {
 ["y"] = -27.55530738830566,
 ["x"] = 10.22196006774902,
 },
-["floatingPin"] = {
-["showEstimatedTime"] = true,
-["unlimitedDistance"] = true,
-["showTitle"] = true,
-["blockWorldQuestTracking"] = false,
-},
-["trackerVisible"] = false,
 }

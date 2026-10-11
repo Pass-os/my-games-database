@@ -14,7 +14,7 @@
 -- /pcam curto        so a distancia / tudo
 -- /pcam gostei nota  guarda a camera de agora como favorita
 -- /pcam favoritos    lista as ultimas favoritas no chat
--- Shift + arrastar   move o painel
+-- arrastar           move o painel
 
 local MAX_FAVORITOS = 100
 
@@ -58,6 +58,8 @@ end
 local function leitura()
     return {
         zoom = GetCameraZoom(),
+        angulo = cvar("cameraSavedPitch"),
+        inclinacao = cvar("test_cameraDynamicPitchBaseFovPad"),
         situacao = nomeDaSituacao(),
         id = DynamicCam and DynamicCam.currentSituationID or "livre",
         fixo = zoomFixo(),
@@ -75,14 +77,33 @@ end
 
 local function simNao(v) return v and "sim" or "nao" end
 
+-- Angulo do giro vertical: graus acima do personagem (0 = na altura dele,
+-- maior = olhando mais de cima). O jogo nao tem funcao para isso; o valor
+-- vem do CVar em que ele guarda a camera.
+local function angulo(l)
+    return l.angulo and ("%.0f graus"):format(l.angulo) or "-"
+end
+
+-- Inclinacao vertical do DynamicCam (0 a 0.99) ou "desligada".
+local function inclinacao(l)
+    return l.pitch and ("%.2f"):format(l.inclinacao or 0) or "desligada"
+end
+
 local function textoCompleto(l)
-    return ("|cffffd100Zoom|r %.1f  |cff999999fixo %s  max %.0f|r\n"
+    return ("|cffffd100Zoom|r %.1f\n"
+        .. "|cffffd100Angulo vertical|r %s\n"
+        .. "|cffffd100Zoom fixo|r %s\n"
+        .. "|cffffd100Zoom max|r %.0f\n"
         .. "|cffffd100Situacao|r %s\n"
-        .. "|cffffd100Ombro|r %.2f  |cffffd100Pitch|r %s  |cffffd100Cabeca|r %.2f\n"
-        .. "|cffffd100Foco|r NPC %s, inimigo %s  |cffffd100FOV|r %.0f"):format(
-        l.zoom, l.fixo and ("%.1f"):format(l.fixo) or "-", l.max,
+        .. "|cffffd100Ombro|r %.2f\n"
+        .. "|cffffd100Inclinacao|r %s\n"
+        .. "|cffffd100Cabeca|r %.2f\n"
+        .. "|cffffd100Foco NPC|r %s\n"
+        .. "|cffffd100Foco inimigo|r %s\n"
+        .. "|cffffd100FOV|r %.0f"):format(
+        l.zoom, angulo(l), l.fixo and ("%.1f"):format(l.fixo) or "-", l.max,
         l.situacao,
-        l.ombro, simNao(l.pitch), l.cabeca,
+        l.ombro, inclinacao(l), l.cabeca,
         simNao(l.focoInteracao), simNao(l.focoInimigo), l.fov)
 end
 
@@ -91,9 +112,9 @@ local function textoCurto(l)
 end
 
 local function resumo(l)
-    return ("zoom %.1f | situacao %s (%s) | fixo %s | max %.0f | ombro %.2f | pitch %s | cabeca %.2f | foco NPC %s inimigo %s | fov %.0f | %s%s"):format(
-        l.zoom, l.situacao, l.id, l.fixo and ("%.1f"):format(l.fixo) or "-", l.max,
-        l.ombro, simNao(l.pitch), l.cabeca, simNao(l.focoInteracao), simNao(l.focoInimigo), l.fov,
+    return ("zoom %.1f | angulo %s | situacao %s (%s) | fixo %s | max %.0f | ombro %.2f | inclinacao %s | cabeca %.2f | foco NPC %s inimigo %s | fov %.0f | %s%s"):format(
+        l.zoom, angulo(l), l.situacao, l.id, l.fixo and ("%.1f"):format(l.fixo) or "-", l.max,
+        l.ombro, inclinacao(l), l.cabeca, simNao(l.focoInteracao), simNao(l.focoInimigo), l.fov,
         l.montado and "montado " or "", l.interior and "interior" or "")
 end
 
@@ -126,7 +147,7 @@ local function posicionar()
 end
 
 painel:SetScript("OnDragStart", function(self)
-    if IsShiftKeyDown() then self:StartMoving() end
+    self:StartMoving()
 end)
 painel:SetScript("OnDragStop", function(self)
     self:StopMovingOrSizing()
@@ -170,7 +191,7 @@ painel:SetScript("OnEnter", function(self)
     GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
     GameTooltip:AddLine("Painel da Camera")
     GameTooltip:AddLine("Botao direito: guardar esta camera como favorita", 1, 1, 1)
-    GameTooltip:AddLine("Shift + arrastar: mover", 1, 1, 1)
+    GameTooltip:AddLine("Arrastar: mover", 1, 1, 1)
     GameTooltip:AddLine("/pcam curto, /pcam favoritos, /pcam", 0.7, 0.7, 0.7)
     GameTooltip:Show()
 end)

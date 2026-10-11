@@ -13,8 +13,8 @@ CanIMogItOptions = {
 ["showTransmoggableOnly"] = true,
 ["showItemIconOverlay"] = true,
 ["version"] = "28",
-["showDecorItems"] = true,
-["showCatalizableItems"] = true,
-["showVerboseText"] = false,
 ["showSetInfo"] = true,
+["showVerboseText"] = false,
+["showCatalizableItems"] = true,
+["showDecorItems"] = true,
 }
