@@ -1,4 +1,4 @@
-## Interface: 120100
+## Interface: 120100, 120105
 ## Title: Mantem Janelas de NPC
 ## Notes: Mantem visiveis as janelas de interacao com NPC (loja, treinador, salao de classe, escolhas...) quando o DynamicCam ou o Immersion escondem a interface.
 ## Author: Pass-os

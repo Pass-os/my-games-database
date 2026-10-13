@@ -1,6 +1,6 @@
 
 ImmersionSetup = {
-["titleoffset"] = 452.0001220703125,
+["titleoffset"] = 391.5557861328125,
 ["padright"] = "PADDRIGHT",
 ["padnext"] = "PAD3",
 ["disableprogression"] = false,
@@ -16,7 +16,7 @@ ImmersionSetup = {
 ["padup"] = "PADDUP",
 ["gossipatcursor"] = false,
 ["delaydivisor"] = 17,
-["boxoffsetY"] = 167.2224731445313,
+["boxoffsetY"] = 136.111572265625,
 ["strata"] = "MEDIUM",
 ["scale"] = 1,
 ["elementscale"] = 1,
@@ -24,8 +24,8 @@ ImmersionSetup = {
 ["padgoodbye"] = "PAD2",
 ["enablenumbers"] = true,
 ["ttsvoice"] = 1,
-["titleoffsetY"] = 19.55609130859375,
-["boxoffsetX"] = 0.8887939453125,
+["titleoffsetY"] = 43.556396484375,
+["boxoffsetX"] = 14.2220458984375,
 ["disableanisequence"] = false,
 ["disableboxhighlight"] = false,
 ["disableportrait"] = false,

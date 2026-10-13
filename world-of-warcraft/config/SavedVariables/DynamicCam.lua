@@ -2,10 +2,10 @@
 DynamicCamDB = {
 ["global"] = {
 ["popOutFrame"] = {
-["height"] = 499.9999389648438,
+["height"] = 501.7777709960938,
 ["opacity"] = 0,
-["left"] = 1026.666625976563,
-["top"] = 784.2225341796875,
+["left"] = 614.2221069335938,
+["top"] = 790.4447631835938,
 },
 },
 ["profiles"] = {
@@ -14,6 +14,170 @@ DynamicCamDB = {
 ["dcBigNPCs"] = {
 },
 ["situations"] = {
+["custom5"] = {
+["name"] = "|TInterface\\Icons\\INV_Misc_Rune_01:16|t Dentro da casa",
+["enabled"] = true,
+["executeOnInit"] = "",
+["priority"] = 14,
+["events"] = {
+"HOUSE_PLOT_ENTERED",
+"HOUSE_PLOT_EXITED",
+"ZONE_CHANGED_INDOORS",
+"ZONE_CHANGED",
+"ZONE_CHANGED_NEW_AREA",
+},
+["condition"] = "return C_Housing and C_Housing.IsInsideHouse and C_Housing.IsInsideHouse() or false",
+["executeOnEnter"] = "",
+["executeOnExit"] = "",
+["delay"] = 0,
+["transitionTime"] = {
+["timeToEnter"] = 1,
+["timeToExit"] = 1,
+},
+["viewZoom"] = {
+["enabled"] = true,
+["viewZoomType"] = "zoom",
+["zoomType"] = "in",
+["zoomValue"] = 6,
+["zoomMin"] = 5,
+["zoomMax"] = 15,
+["zoomTimeIsMax"] = false,
+["viewNumber"] = 2,
+["viewRestore"] = true,
+["viewInstant"] = false,
+["restoreDefaultViewNumber"] = 1,
+},
+["rotation"] = {
+["enabled"] = false,
+["rotationType"] = "continuous",
+["rotationSpeed"] = 10,
+["yawDegrees"] = 0,
+["pitchDegrees"] = 0,
+["rotateBack"] = true,
+},
+["hideUI"] = {
+["enabled"] = false,
+["customFramesToKeep"] = {
+},
+},
+["situationSettings"] = {
+["cvars"] = {
+["test_cameraOverShoulder"] = 0,
+},
+["cvarsZoomBased"] = {
+},
+},
+},
+["custom6"] = {
+["name"] = "|TInterface\\Icons\\Ability_Rogue_FeignDeath:16|t Morto / fantasma",
+["enabled"] = true,
+["executeOnInit"] = "",
+["priority"] = 1200,
+["events"] = {
+"PLAYER_DEAD",
+"PLAYER_ALIVE",
+"PLAYER_UNGHOST",
+"ZONE_CHANGED_NEW_AREA",
+},
+["condition"] = "return UnitIsDeadOrGhost(\"player\") and true or false",
+["executeOnEnter"] = "",
+["executeOnExit"] = "",
+["delay"] = 0,
+["transitionTime"] = {
+["timeToEnter"] = 1.5,
+["timeToExit"] = 1,
+},
+["viewZoom"] = {
+["enabled"] = true,
+["viewZoomType"] = "zoom",
+["zoomType"] = "out",
+["zoomValue"] = 15,
+["zoomMin"] = 5,
+["zoomMax"] = 15,
+["zoomTimeIsMax"] = false,
+["viewNumber"] = 2,
+["viewRestore"] = true,
+["viewInstant"] = false,
+["restoreDefaultViewNumber"] = 1,
+},
+["rotation"] = {
+["enabled"] = false,
+["rotationType"] = "continuous",
+["rotationSpeed"] = 10,
+["yawDegrees"] = 0,
+["pitchDegrees"] = 0,
+["rotateBack"] = true,
+},
+["hideUI"] = {
+["enabled"] = false,
+["customFramesToKeep"] = {
+},
+},
+["situationSettings"] = {
+["cvars"] = {
+},
+["cvarsZoomBased"] = {
+},
+},
+},
+["custom7"] = {
+["name"] = "|TInterface\\Icons\\INV_Misc_Map_01:16|t Imersao (Delve)",
+["enabled"] = true,
+["executeOnInit"] = "",
+["priority"] = 4,
+["events"] = {
+"SCENARIO_UPDATE",
+"ZONE_CHANGED_NEW_AREA",
+"ACTIVE_DELVE_DATA_UPDATE",
+},
+["condition"] = "return C_PartyInfo and C_PartyInfo.IsDelveInProgress and C_PartyInfo.IsDelveInProgress() or false",
+["executeOnEnter"] = "",
+["executeOnExit"] = "",
+["delay"] = 0,
+["transitionTime"] = {
+["timeToEnter"] = 1,
+["timeToExit"] = 1,
+},
+["viewZoom"] = {
+["enabled"] = false,
+["viewZoomType"] = "zoom",
+["zoomType"] = "set",
+["zoomValue"] = 10,
+["zoomMin"] = 5,
+["zoomMax"] = 15,
+["zoomTimeIsMax"] = false,
+["viewNumber"] = 2,
+["viewRestore"] = true,
+["viewInstant"] = false,
+["restoreDefaultViewNumber"] = 1,
+},
+["rotation"] = {
+["enabled"] = false,
+["rotationType"] = "continuous",
+["rotationSpeed"] = 10,
+["yawDegrees"] = 0,
+["pitchDegrees"] = 0,
+["rotateBack"] = true,
+},
+["hideUI"] = {
+["enabled"] = false,
+["customFramesToKeep"] = {
+},
+},
+["situationSettings"] = {
+["cvars"] = {
+["test_cameraDynamicPitch"] = 1,
+["test_cameraDynamicPitchBaseFovPad"] = 0.24,
+["test_cameraDynamicPitchBaseFovPadDownScale"] = 0.25,
+["test_cameraDynamicPitchBaseFovPadFlying"] = 0.75,
+["test_cameraDynamicPitchSmartPivotCutoffDist"] = 10,
+["test_cameraOverShoulder"] = 0.3,
+["test_cameraHeadMovementStrength"] = 0,
+},
+["cvarsZoomBased"] = {
+},
+},
+},
 ["custom4"] = {
 ["enabled"] = true,
 ["name"] = "|TInterface\\Icons\\Spell_Fire_FlameBolt:16|t Conjurando (em combate)",
@@ -366,6 +530,9 @@ DynamicCamDB = {
 },
 },
 ["name"] = "|TInterface\\Icons\\INV_BannerPVP_02:16|t Campo de Batalha",
+["viewZoom"] = {
+["enabled"] = true,
+},
 },
 ["303"] = {
 ["enabled"] = true,
@@ -400,30 +567,30 @@ DynamicCamDB = {
 ["300"] = {
 ["enabled"] = true,
 ["name"] = "|TInterface\\Icons\\INV_Misc_Note_01:16|t Interação com NPC",
-["executeOnExit"] = "if not this.vol then return end\nthis.t = (this.t or 0) + 1\nlocal t, from, to = this.t, tonumber(GetCVar(\"Sound_MusicVolume\")) or 0, this.vol\nlocal steps, dur = 40, 3.5\nfor i = 1, steps do\n  C_Timer.After(i * dur / steps, function()\n    if this.t == t then\n      local p = i / steps\n      p = p * p * (3 - 2 * p)\n      SetCVar(\"Sound_MusicVolume\", from + (to - from) * p)\n      if i == steps then this.vol = nil end\n    end\n  end)\nend",
+["transitionTime"] = {
+["timeToEnter"] = 0.2,
+["timeToExit"] = 0.5,
+},
 ["situationSettings"] = {
 ["cvars"] = {
 ["test_cameraTargetFocusInteractEnable"] = 1,
+["test_cameraDynamicPitchBaseFovPadDownScale"] = 0.25,
+["test_cameraDynamicPitchBaseFovPad"] = 0.9,
 ["test_cameraOverShoulder"] = 0.6,
 ["test_cameraTargetFocusInteractStrengthPitch"] = 0.75,
 ["test_cameraTargetFocusInteractStrengthYaw"] = 1,
 ["test_cameraDynamicPitch"] = 1,
-["test_cameraDynamicPitchBaseFovPad"] = 0.9,
-["test_cameraDynamicPitchBaseFovPadDownScale"] = 0.25,
 ["test_cameraDynamicPitchBaseFovPadFlying"] = 0.75,
 ["test_cameraDynamicPitchSmartPivotCutoffDist"] = 10,
 },
 ["cvarsZoomBased"] = {
 },
 },
-["transitionTime"] = {
-["timeToEnter"] = 0.2,
-["timeToExit"] = 0.5,
-},
+["executeOnEnter"] = "this.vol = this.vol or tonumber(GetCVar(\"Sound_MusicVolume\")) or 0.4\nthis.t = (this.t or 0) + 1\nlocal t, from, to = this.t, tonumber(GetCVar(\"Sound_MusicVolume\")) or this.vol, 0.03\nlocal steps, dur = 30, 2.5\nfor i = 1, steps do\n  C_Timer.After(i * dur / steps, function()\n    if this.t == t then\n      local p = i / steps\n      p = p * p * (3 - 2 * p)\n      SetCVar(\"Sound_MusicVolume\", from + (to - from) * p)\n    end\n  end)\nend",
 ["viewZoom"] = {
 ["enabled"] = true,
 ["zoomType"] = "in",
-["zoomValue"] = 3,
+["zoomValue"] = 4,
 },
 ["hideUI"] = {
 ["customFramesToKeep"] = {
@@ -448,8 +615,9 @@ DynamicCamDB = {
 ["enabled"] = true,
 ["pitchDegrees"] = -15,
 ["rotationType"] = "degrees",
+["yawDegrees"] = 25,
 },
-["executeOnEnter"] = "this.vol = this.vol or tonumber(GetCVar(\"Sound_MusicVolume\")) or 0.4\nthis.t = (this.t or 0) + 1\nlocal t, from, to = this.t, tonumber(GetCVar(\"Sound_MusicVolume\")) or this.vol, 0.03\nlocal steps, dur = 30, 2.5\nfor i = 1, steps do\n  C_Timer.After(i * dur / steps, function()\n    if this.t == t then\n      local p = i / steps\n      p = p * p * (3 - 2 * p)\n      SetCVar(\"Sound_MusicVolume\", from + (to - from) * p)\n    end\n  end)\nend",
+["executeOnExit"] = "if not this.vol then return end\nthis.t = (this.t or 0) + 1\nlocal t, from, to = this.t, tonumber(GetCVar(\"Sound_MusicVolume\")) or 0, this.vol\nlocal steps, dur = 40, 3.5\nfor i = 1, steps do\n  C_Timer.After(i * dur / steps, function()\n    if this.t == t then\n      local p = i / steps\n      p = p * p * (3 - 2 * p)\n      SetCVar(\"Sound_MusicVolume\", from + (to - from) * p)\n      if i == steps then this.vol = nil end\n    end\n  end)\nend",
 },
 ["200"] = {
 ["enabled"] = true,

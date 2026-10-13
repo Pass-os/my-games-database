@@ -71,8 +71,8 @@ configuracao salva (SavedVariables + macros). Leia `world-of-warcraft/README.md`
 
 ### Fatos verificados na maquina (set/2026)
 
-- Jogo: `X:\Battle.net\World of Warcraft\_retail_`, Retail 12.1.0 (interface
-  `120100`), cliente `ptBR`.
+- Jogo: `X:\Battle.net\World of Warcraft\_retail_`, Retail 12.1.5 (interface
+  `120105`, desde 13/10/2026), cliente `ptBR`.
 - Uma conta em `WTF\Account`. O numero dela **nao** vai para o repo (publico).
 
 ### Ao mexer

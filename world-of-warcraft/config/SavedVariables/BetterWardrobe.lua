@@ -17,6 +17,7 @@ BetterWardrobe_SavedSetData = {
 ["Guillgalad - Azralon"] = "PALADIN",
 ["Deane - Azralon"] = "MAGE",
 ["Kurufinwe - Azralon"] = "HUNTER",
+["Laynix - Azralon"] = "ROGUE",
 ["Lunary - Azralon"] = "DRUID",
 ["Lafya - Azralon"] = "PRIEST",
 ["Lumiels - Azralon"] = "PALADIN",
@@ -26,6 +27,8 @@ BetterWardrobe_SavedSetData = {
 ["Gurthmorg - Azralon"] = {
 },
 ["Lumiels - Azralon"] = {
+},
+["Laynix - Azralon"] = {
 },
 ["Lunary - Azralon"] = {
 },
@@ -53,6 +56,8 @@ BetterWardrobe_ListData = {
 },
 ["Kurufinwe - Azralon"] = {
 },
+["Laynix - Azralon"] = {
+},
 ["Lunary - Azralon"] = {
 },
 ["Lafya - Azralon"] = {
@@ -73,6 +78,8 @@ BetterWardrobe_ListData = {
 },
 ["Kurufinwe - Azralon"] = {
 },
+["Laynix - Azralon"] = {
+},
 ["Lunary - Azralon"] = {
 },
 ["Lafya - Azralon"] = {
@@ -80,6 +87,8 @@ BetterWardrobe_ListData = {
 ["Lumiels - Azralon"] = {
 },
 },
+},
+["SituationPresetsDB"] = {
 },
 ["OutfitDB"] = {
 ["char"] = {
@@ -115,8 +124,6 @@ BetterWardrobe_ListData = {
 },
 },
 },
-["SituationPresetsDB"] = {
-},
 ["HiddenAppearanceDB"] = {
 ["profiles"] = {
 ["Gurthmorg - Azralon"] = {
@@ -124,6 +131,8 @@ BetterWardrobe_ListData = {
 ["Guillgalad - Azralon"] = {
 },
 ["Lumiels - Azralon"] = {
+},
+["Laynix - Azralon"] = {
 },
 ["Lunary - Azralon"] = {
 },

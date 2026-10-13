@@ -1,4 +1,4 @@
-## Interface: 120100
+## Interface: 120100, 120105
 ## Title: Zoom Livre Estavel
 ## Notes: Zoom base fixo no DynamicCam: ao sair de uma situacao (montaria, NPC, magia, masmorra...) a camera volta sempre para a mesma distancia. /zoomlivre fixo N, /zoomlivre solto.
 ## Author: Pass-os

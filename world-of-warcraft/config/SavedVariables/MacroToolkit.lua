@@ -4,52 +4,51 @@ MacroToolkitDB = {
 ["Gurthmorg - Azralon"] = {
 ["macros"] = {
 [122] = {
-["icon"] = "607853",
 ["name"] = " ",
+["icon"] = "607853",
 ["body"] = "#showtooltip\n/castsequence reset=45 Espiral da Morte, Arremesso de Machado\n",
 },
 [126] = {
-["icon"] = "607853",
 ["name"] = " ",
+["icon"] = "607853",
 ["body"] = "#INTERROMPER COM [ Evocar Caçador Vil ]\n#showtooltip\n/stopcasting\n/cast Bloquear Feitiço(Habilidade de Comandar Demônio)\n/cast Devorar Magia(Habilidade Especial)\n",
 },
 [123] = {
-["icon"] = "135230",
 ["name"] = " ",
+["icon"] = "135230",
 ["body"] = "#showtooltip\n# DIFERENCIA O ICONE DA PEDRA DE VIDA\n/cast Criar Pedra de Vida\n",
 },
 [127] = {
-["icon"] = "7153694",
 ["name"] = " ",
+["icon"] = "7153694",
 ["body"] = "#showtooltip\n/castsequence reset=8 Bravura Calcinante, null\n/run C_Timer.After(0.5,function() SpellStopCasting() CastSpellByName(\"Protodraco Renovado\") end)\n",
 },
 [124] = {
-["icon"] = "535592",
 ["name"] = " ",
+["icon"] = "535592",
 ["body"] = "#showtooltip\n/stopcasting\n/cast Mão de Gul'dan\n",
 },
 [128] = {
-["icon"] = "237559",
 ["name"] = " ",
+["icon"] = "237559",
 ["body"] = "#showtooltip\n/cast [mod:shift] Círculo Demoníaco\n/castsequence [nomod] reset=900 Círculo Demoníaco, Círculo Demoníaco: Teleporte, Círculo Demoníaco: Teleporte, Círculo Demoníaco: Teleporte, Círculo Demoníaco: Teleporte\n",
 },
 [121] = {
-["icon"] = "136138",
 ["name"] = " ",
+["icon"] = "136138",
 ["body"] = "#showtooltip\n/castsequence reset=target Maldição da Fraqueza, Seta Sombria, Seta Sombria, Seta Sombria, Seta Sombria, Seta Sombria, Seta Sombria\n",
 },
 [125] = {
-["icon"] = "1378282",
 ["name"] = " ",
+["icon"] = "1378282",
 ["body"] = "#showtooltip\n/stopcasting\n/cast Evocar Espreitadores do Medo\n",
 },
 [129] = {
-["icon"] = "2032588",
 ["name"] = "+",
+["icon"] = "2032588",
 ["body"] = "#showtooltip\n/stopcasting\n/cast Seta Demoníaca\n",
 },
 },
-["classFile"] = "WARLOCK",
 ["backups"] = {
 {
 ["m"] = {
@@ -106,6 +105,7 @@ MacroToolkitDB = {
 ["n"] = "WOW RETAIL 1",
 },
 },
+["classFile"] = "WARLOCK",
 ["lastbackup"] = "27/09/26 21:38:39",
 },
 ["Guillgalad - Azralon"] = {
@@ -114,19 +114,19 @@ MacroToolkitDB = {
 ["Deane - Azralon"] = {
 ["macros"] = {
 [121] = {
+["icon"] = "135848",
+["name"] = " ",
+["body"] = "#showtooltip\n/castsequence reset=3 Nova Congelante, Cintilação, Nova Congelante\n",
+},
+[122] = {
 ["icon"] = "135856",
 ["name"] = " ",
 ["body"] = "#showtooltip\n/castsequence reset=3 Contrafeitiço, Congelamento, Contrafeitiço\n",
 },
-[122] = {
+[123] = {
 ["icon"] = "135844",
 ["name"] = " ",
 ["body"] = "#showtooltip Lança de Gelo\n/stopcasting\n/cast Lança de Gelo\n",
-},
-[123] = {
-["icon"] = "135848",
-["name"] = " ",
-["body"] = "#showtooltip\n/castsequence reset=3 Nova Congelante, Cintilação, Nova Congelante\n",
 },
 },
 ["classFile"] = "MAGE",
@@ -145,6 +145,16 @@ MacroToolkitDB = {
 },
 },
 ["classFile"] = "HUNTER",
+},
+["Laynix - Azralon"] = {
+["macros"] = {
+[121] = {
+["icon"] = "132320",
+["name"] = " ",
+["body"] = "#showtooltip\n/cast [nocombat] Furtividade\n/cast [combat] Sumir\n",
+},
+},
+["classFile"] = "ROGUE",
 },
 ["Lunary - Azralon"] = {
 ["macros"] = {

@@ -1,4 +1,4 @@
-## Interface: 120100
+## Interface: 120100, 120105
 ## Title: Fecha Dialogo em Combate
 ## Notes: Fecha o dialogo com NPC (Immersion, missao, gossip, livros) ao entrar em combate.
 ## Author: Pass-os

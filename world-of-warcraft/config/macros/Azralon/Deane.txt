@@ -1,10 +1,11 @@
 VER 3 0100000000000002 " " "134400"
 #showtooltip
 /castsequence reset=3 Nova Congelante, Cintilação, Nova Congelante
+/castsequence [noknown:Cintilação] reset=3 Nova Congelante, Lampejo, Nova Congelante
 END
 VER 3 0100000000000003 " " "134400"
 #showtooltip
-/castsequence reset=3 Contrafeitiço, Congelamento, Contrafeitiço
+/castsequence reset=3 Contrafeitiço, Roubar Feitiço, Contrafeitiço
 END
 VER 3 0100000000000001 " " "134400"
 #showtooltip Lança de Gelo

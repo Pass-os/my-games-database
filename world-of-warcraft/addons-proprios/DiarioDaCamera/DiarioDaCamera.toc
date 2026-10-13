@@ -1,4 +1,4 @@
-## Interface: 120100
+## Interface: 120100, 120105
 ## Title: Diario da Camera
 ## Notes: Diagnostico: diario das trocas de situacao do DynamicCam, do que os addons proprios fazem e dos erros de Lua deles, para conferir e melhorar depois. /diariocamera liga/desliga e limpa.
 ## Author: Pass-os

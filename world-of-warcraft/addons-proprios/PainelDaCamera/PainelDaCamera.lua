@@ -161,12 +161,17 @@ local function atualizar()
     painel:SetSize(math.max(60, texto:GetStringWidth() + 10), texto:GetStringHeight() + 8)
 end
 
+local mouseDentro, linhaMostrada, mostrarTooltip -- tooltip por linha (definidos mais abaixo)
 local decorrido = 0
 painel:SetScript("OnUpdate", function(_, dt)
     decorrido = decorrido + dt
     if decorrido < 0.1 then return end
     decorrido = 0
     atualizar()
+    -- Troca o tooltip quando o mouse passa para outra linha.
+    if mouseDentro then
+        mostrarTooltip(painel)
+    end
 end)
 
 -- Favoritas -----------------------------------------------------------------------
@@ -187,15 +192,74 @@ painel:SetScript("OnMouseUp", function(_, botao)
     if botao == "RightButton" then gostei() end
 end)
 
-painel:SetScript("OnEnter", function(self)
+-- Tooltip de cada linha: o que o dado e e onde se muda. Mesma ordem do
+-- textoCompleto. Nomes do /dc como aparecem no cliente em portugues.
+local AJUDA = {
+    { "Zoom", "Distancia da camera ate o personagem, em jardas. A roda do mouse muda.",
+      "Zoom fixo (para onde ela volta): /zoomlivre" },
+    { "Angulo vertical", "Quantos graus a camera esta acima do personagem. 0 = na altura dele; maior = olhando mais de cima. Gire com o botao direito do mouse.",
+      "Giro automatico por situacao: /dc > Situacoes > (situacao) > Acoes da Situacao > Rotacao" },
+    { "Zoom fixo", "Distancia para onde a camera volta ao sair de qualquer situacao (ZoomLivreEstavel). \"-\" = modo solto.",
+      "/zoomlivre" },
+    { "Zoom max", "Maior distancia que a roda do mouse alcanca.",
+      "/dc > Configuracoes Base > Zoom do mouse > Distancia maxima da camera" },
+    { "Situacao", "Situacao do DynamicCam que manda na camera agora. \"livre\" = nenhuma (vale a Configuracoes Base).",
+      "/dc > Situacoes" },
+    { "Ombro", "Deslocamento horizontal: tira o personagem do centro da tela, para o lado. 0 = centro.",
+      "/dc > Configuracoes Base > Deslocamento Horizontal (ou na situacao: Configuracoes de Situacao)" },
+    { "Inclinacao", "Inclinacao vertical (0 a 0.99): quanto maior, mais alto o personagem fica na tela. \"desligada\" = personagem no centro.",
+      "/dc > Configuracoes Base > Inclinacao vertical > Inclinacao (no solo)" },
+    { "Cabeca", "Rastreamento de Cabeca: a camera acompanha o balanco da cabeca do personagem. 0 = parada.",
+      "/dc > Configuracoes Base > Rastreamento de Cabeca" },
+    { "Foco NPC", "A camera vira sozinha para o NPC com quem voce conversa.",
+      "/dc > Configuracoes Base > Foco no Alvo > Alvo de Interacao (NPCs)" },
+    { "Foco inimigo", "A camera vira sozinha para o inimigo selecionado.",
+      "/dc > Configuracoes Base > Foco no Alvo > Alvo Inimigo" },
+    { "FOV", "Campo de visao em graus: maior mostra mais dos lados (padrao 90).",
+      "/dc > Configuracoes Base > Campo de visao" },
+}
+
+-- Linha do texto sob o cursor (1 = primeira), ou nil.
+local function linhaSobOCursor()
+    local topo = texto:GetTop()
+    if not topo then return nil end
+    local _, cy = GetCursorPosition()
+    cy = cy / texto:GetEffectiveScale()
+    local _, altura = texto:GetFont()
+    local passo = (altura or 10) + texto:GetSpacing()
+    local i = math.floor((topo - cy) / passo) + 1
+    return (i >= 1 and i <= #AJUDA) and i or nil
+end
+
+function mostrarTooltip(self)
+    local i = not db().curto and linhaSobOCursor() or nil
+    if i == linhaMostrada and GameTooltip:IsOwned(self) then return end
+    linhaMostrada = i
     GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-    GameTooltip:AddLine("Painel da Camera")
-    GameTooltip:AddLine("Botao direito: guardar esta camera como favorita", 1, 1, 1)
-    GameTooltip:AddLine("Arrastar: mover", 1, 1, 1)
-    GameTooltip:AddLine("/pcam curto, /pcam favoritos, /pcam", 0.7, 0.7, 0.7)
+    local ajuda = i and AJUDA[i]
+    if ajuda then
+        GameTooltip:AddLine(ajuda[1])
+        GameTooltip:AddLine(ajuda[2], 1, 1, 1, true)
+        GameTooltip:AddLine(ajuda[3], 0.4, 0.8, 1, true)
+    else
+        GameTooltip:AddLine("Painel da Camera")
+        GameTooltip:AddLine("Passe o mouse num dado para ver o que ele e", 1, 1, 1)
+    end
+    GameTooltip:AddLine(" ")
+    GameTooltip:AddLine("Botao direito: guardar esta camera como favorita", 0.7, 0.7, 0.7)
+    GameTooltip:AddLine("Arrastar: mover - /pcam curto, /pcam favoritos, /pcam", 0.7, 0.7, 0.7)
     GameTooltip:Show()
+end
+
+painel:SetScript("OnEnter", function(self)
+    mouseDentro = true
+    linhaMostrada = false -- forca montar o tooltip
+    mostrarTooltip(self)
 end)
-painel:SetScript("OnLeave", function() GameTooltip:Hide() end)
+painel:SetScript("OnLeave", function()
+    mouseDentro = false
+    GameTooltip:Hide()
+end)
 
 -- Inicio ---------------------------------------------------------------------------
 
