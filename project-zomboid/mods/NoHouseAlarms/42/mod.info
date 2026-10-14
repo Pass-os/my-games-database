@@ -1,0 +1,4 @@
+name=No House Alarms (local)
+id=NoHouseAlarms
+description=Desliga os alarmes de casas e estabelecimentos (Sandbox: House Alarms = Never).
+versionMin=42.0.0

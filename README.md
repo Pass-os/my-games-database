@@ -6,12 +6,13 @@ propria solution, as proprias dependencias e o proprio guia.
 | Jogo | Pasta | Stack | Status |
 | --- | --- | --- | --- |
 | Valheim | [`valheim/`](valheim/) | BepInEx 5 + HarmonyX, C# `net472` | configurado |
+| Project Zomboid | [`project-zomboid/`](project-zomboid/) | Lua (B42) + ZombieBuddy (Java); REA/Ghidra para o nativo | configurado |
 
 ## Ferramentas (fora dos jogos)
 
 | Ferramenta | Pasta | Para que |
 | --- | --- | --- |
-| Ghidra + MCP | [`tools/ghidra/`](tools/ghidra/) | Engenharia reversa de binarios nativos/IL2CPP; referencia, nao instalado |
+| Ghidra + MCP | [`tools/ghidra/`](tools/ghidra/) | Engenharia reversa de binarios nativos/IL2CPP; Ghidra 12.1.4 instalado, usado via REA |
 
 ## Ideias para o futuro
 

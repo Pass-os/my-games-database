@@ -1,7 +1,11 @@
 # Ghidra (engenharia reversa) + MCP
 
-Referencia para uso futuro. **Nada aqui esta instalado** — e so o mapa de
-como instalar quando precisar.
+**Instalado em 14/out/2026:** Ghidra 12.1.4 em `G:\Program\ghidra_12.1.4_PUBLIC`
+e Microsoft JDK 21 em `G:\Program\jdk-21.0.12.1+1` (`GHIDRA_INSTALL_DIR` e
+`JAVA_HOME` de usuario). O Claude opera o Ghidra headless pelo MCP **REA**
+(`rea-agents`), sem precisar das extensoes abaixo — ver
+[`project-zomboid/docs/engenharia-reversa.md`](../../project-zomboid/docs/engenharia-reversa.md).
+As extensoes GhidraMCP continuam como alternativa para operar o Ghidra com GUI.
 
 - Repo oficial: <https://github.com/NationalSecurityAgency/ghidra>
 - Releases: <https://github.com/NationalSecurityAgency/ghidra/releases>
