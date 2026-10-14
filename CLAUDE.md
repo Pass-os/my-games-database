@@ -11,7 +11,8 @@ indice em `ideias/README.md`.
 
 ## Project Zomboid (`project-zomboid/`)
 
-Leia `project-zomboid/README.md`, `docs/setup.md` e `docs/engenharia-reversa.md`.
+Leia `project-zomboid/docs/plano.md` (etapas; atualize a tabela de status ao
+terminar uma), `README.md`, `docs/setup.md` e `docs/engenharia-reversa.md`.
 
 - Build 42.21.0, jogo em `G:\SteamLibrary\steamapps\common\ProjectZomboid`.
 - Mods Lua em `project-zomboid/mods/<ModId>/` (formato B42: `42/` + `common/`);

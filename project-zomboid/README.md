@@ -8,7 +8,8 @@ Mods e engenharia reversa do Project Zomboid (Build 42).
 | Engine (Java) | `projectzomboid.jar` | Decompilar (Vineflower/JADX) e patchear via ZombieBuddy |
 | Nativo (pathfinding, populacao, fisica) | `PZPathFind64.dll`, `PZPopMan64.dll`, `PZBullet64.dll` | REA + Ghidra, so para entender; o Java controla tudo |
 
-Leia [`docs/setup.md`](docs/setup.md) (caminhos e versoes da maquina) e
+Leia [`docs/plano.md`](docs/plano.md) (etapas e status),
+[`docs/setup.md`](docs/setup.md) (caminhos, versoes, ambiente de dev) e
 [`docs/engenharia-reversa.md`](docs/engenharia-reversa.md) (REA/Ghidra).
 
 ## Layout
@@ -16,9 +17,12 @@ Leia [`docs/setup.md`](docs/setup.md) (caminhos e versoes da maquina) e
 ```
 project-zomboid/
   mods/<ModId>/          um mod por pasta, no formato B42 (42/ + common/)
+  scripts/setup-dev.ps1  baixa as tipagens Umbrella para re/umbrella
   scripts/deploy.ps1     copia um mod do repo para %USERPROFILE%\Zomboid\mods
-  docs/                  setup, engenharia reversa, achados
-  re/                    (gitignored) snapshots do REA, codigo decompilado
+  scripts/log.ps1        console.txt ao vivo, so erros e print() de mod
+  .emmyrc.json           autocomplete Lua (VS Code + EmmyLua) — abra esta pasta
+  docs/                  plano, setup, engenharia reversa, achados
+  re/                    (gitignored) Umbrella, snapshots do REA, codigo decompilado
 ```
 
 `re/` nunca vai pro git: e codigo do jogo.
